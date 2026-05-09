@@ -19,5 +19,5 @@ document.getElementById("requestForm").addEventListener("submit", function (even
   const body = encodeURIComponent(lines.join("\n"));
 
   // IMPORTANT: Replace this email address with your real business email.
-  window.location.href = `mailto:youremail@example.com?subject=${subject}&body=${body}`;
+  window.location.href = `mailto:cheripontheroad@gmail.com?subject=${subject}&body=${body}`;
 });
