@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Made for the Moments | Personalized Songs & Greeting Cards</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">
+      <div class="logo">♪</div>
+      <div>
+        <h1>Made for the Moments</h1>
+        <p>Personalized songs, greeting cards, and keepsake gifts</p>
+      </div>
+    </div>
+    <a class="header-button" href="#order-form">Start a Request</a>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-text">
+        <div class="eyebrow">Custom gifts made from the heart</div>
+        <h2>Turn someone’s story into a song, card, or memory they’ll never forget.</h2>
+        <p>
+          Share the occasion, special details, memories, names, inside jokes, and the feeling you want to capture.
+          I’ll use your request to create something personal, meaningful, and made just for the moment.
+        </p>
+        <div class="chips">
+          <span>Birthdays</span>
+          <span>Mother’s Day</span>
+          <span>Anniversaries</span>
+          <span>Memorials</span>
+          <span>Weddings</span>
+          <span>Friendship</span>
+          <span>Retirement</span>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <h3>What I Create</h3>
+        <div class="package">
+          <strong>Personalized Song Lyrics</strong>
+          <span>Custom lyrics written from your story.</span>
+        </div>
+        <div class="package">
+          <strong>Personalized Greeting Cards</strong>
+          <span>Heartfelt messages for any occasion.</span>
+        </div>
+        <div class="package">
+          <strong>Song + Card Bundle</strong>
+          <span>A meaningful gift package for someone special.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="form-section" id="order-form">
+      <div class="form-heading">
+        <h2>Request a Personalized Creation</h2>
+        <p>Fill out the form below. The more detail you provide, the more personal the final result can be.</p>
+      </div>
+
+      <form id="requestForm" class="request-form">
+        <fieldset>
+          <legend>Your Contact Information</legend>
+          <div class="grid">
+            <label>
+              Your Name *
+              <input type="text" name="Your Name" required />
+            </label>
+            <label>
+              Email *
+              <input type="email" name="Email" required />
+            </label>
+            <label>
+              Phone Number
+              <input type="tel" name="Phone" />
+            </label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Project Details</legend>
+          <div class="grid">
+            <label>
+              What would you like created? *
+              <select name="Project Type" required>
+                <option value="">Choose one</option>
+                <option>Personalized Song</option>
+                <option>Personalized Greeting Card</option>
+                <option>Song + Greeting Card Bundle</option>
+              </select>
+            </label>
+
+            <label>
+              Occasion *
+              <input type="text" name="Occasion" placeholder="Birthday, Mother’s Day, Wedding, Memorial..." required />
+            </label>
+
+            <label>
+              Who is this for? *
+              <input type="text" name="Recipient Name" placeholder="Recipient name" required />
+            </label>
+
+            <label>
+              Relationship
+              <input type="text" name="Relationship" placeholder="Mom, spouse, friend, grandson..." />
+            </label>
+
+            <label>
+              Preferred Style / Genre
+              <select name="Style or Genre">
+                <option>Country</option>
+                <option>Pop</option>
+                <option>Rock</option>
+                <option>Gospel</option>
+                <option>Folk</option>
+                <option>Funny / Novelty</option>
+                <option>Heartfelt Ballad</option>
+                <option>Other</option>
+              </select>
+            </label>
+
+            <label>
+              Mood
+              <select name="Mood">
+                <option>Heartfelt</option>
+                <option>Funny</option>
+                <option>Emotional</option>
+                <option>Upbeat</option>
+                <option>Romantic</option>
+                <option>Inspirational</option>
+                <option>Nostalgic</option>
+              </select>
+            </label>
+
+            <label>
+              Needed By
+              <input type="date" name="Needed By" />
+            </label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Personal Details to Include</legend>
+
+          <label>
+            Tell me about the person
+            <textarea name="About the Person" rows="4" placeholder="Personality, hobbies, favorite sayings, what makes them special..."></textarea>
+          </label>
+
+          <label>
+            Special memories, stories, or inside jokes
+            <textarea name="Memories" rows="4" placeholder="Trips, funny memories, family moments, places, shared experiences..."></textarea>
+          </label>
+
+          <label>
+            Main message you want included
+            <textarea name="Main Message" rows="4" placeholder="What do you want them to feel when they read or hear it?"></textarea>
+          </label>
+
+          <label>
+            Any names, dates, places, or details that must be included
+            <textarea name="Must Include Details" rows="3"></textarea>
+          </label>
+        </fieldset>
+
+        <label class="checkbox">
+          <input type="checkbox" name="Permission" required />
+          I understand this request may be used to create personalized lyrics, greeting text, or a custom keepsake based on the details I provide.
+        </label>
+
+        <button type="submit">Send Request</button>
+
+        <p class="small-note">
+          This form opens your email with the request details. To receive requests automatically without email, connect this site to a form service later.
+        </p>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>© <span id="year"></span> Made for the Moments. Personalized creations for life’s special moments.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
