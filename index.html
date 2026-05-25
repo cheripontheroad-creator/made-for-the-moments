@@ -12,7 +12,7 @@
       <div class="logo">♪</div>
       <div>
         <h1>Made for the Moments</h1>
-        <p>Personalized songs and Greeting cards</p>
+        <p>Personalized songs and greeting cards</p>
       </div>
     </div>
     <a class="header-button" href="#order-form">Start a Request</a>
@@ -27,6 +27,10 @@
           Share the occasion, special details, memories, names, inside jokes, and the feeling you want to capture.
           I’ll use your request to create something personal, meaningful, and made just for the moment.
         </p>
+        <p class="download-note">
+          Customers receive a digital download. Songs include MP3 and MP4 files.
+        </p>
+
         <div class="chips">
           <span>Birthdays</span>
           <span>Mother’s Day</span>
@@ -35,22 +39,32 @@
           <span>Weddings</span>
           <span>Friendship</span>
           <span>Retirement</span>
-          <span>Holidays</span> 
+          <span>Holidays</span>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <h3>What I Create</h3>
+
+        <div class="package">
+          <strong>Personalized Greeting Card</strong>
+          <span>Custom heartfelt greeting card created from your memories and details.</span>
+          <p><strong>$6.99</strong></p>
+          <p>Includes digital download.</p>
         </div>
 
-        <div class="hero-card">
-        <h3>What I Create</h3>
         <div class="package">
           <strong>Personalized Song</strong>
-          <span>Custom song written from your story.</span>
+          <span>Custom personalized song created for your special occasion.</span>
+          <p><strong>$19.99</strong></p>
+          <p>Includes MP3 and MP4 digital download.</p>
         </div>
+
         <div class="package">
-          <strong>Personalized Greeting Cards</strong>
-          <span>Heartfelt messages for any occasion.</span>
-        </div>
-        <div class="package">
-          <strong>Song + Card Bundle</strong>
-          <span>A meaningful gift package for someone special.</span>
+          <strong>Song + Greeting Card Bundle</strong>
+          <span>A meaningful personalized song and matching greeting card package.</span>
+          <p><strong>$23.99</strong></p>
+          <p>Includes digital greeting card, MP3, and MP4 download.</p>
         </div>
       </div>
     </section>
@@ -87,9 +101,9 @@
               What would you like created? *
               <select name="Project Type" required>
                 <option value="">Choose one</option>
-                <option>Personalized Song</option>
-                <option>Personalized Greeting Card</option>
-                <option>Song + Greeting Card Bundle</option>
+                <option>Personalized Greeting Card - $6.99</option>
+                <option>Personalized Song - $19.99</option>
+                <option>Song + Greeting Card Bundle - $23.99</option>
               </select>
             </label>
 
@@ -164,6 +178,11 @@
             Any names, dates, places, or details that must be included
             <textarea name="Must Include Details" rows="3"></textarea>
           </label>
+
+          <label>
+            Upload Photos for Greeting Card
+            <input type="file" name="Photos" multiple />
+          </label>
         </fieldset>
 
         <label class="checkbox">
@@ -174,7 +193,7 @@
         <button type="submit">Send Request</button>
 
         <p class="small-note">
-          This form opens your email with the request details. To receive requests automatically without email, connect this site to a form service later.
+          This form opens your email with the request details. Photo uploads and payments will need to be connected through Jotform, PayPal, or another form/payment service.
         </p>
       </form>
     </section>
@@ -182,6 +201,11 @@
 
   <footer>
     <p>© <span id="year"></span> Made for the Moments. Personalized creations for life’s special moments.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
   </footer>
 
   <script src="script.js"></script>
