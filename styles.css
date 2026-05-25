@@ -284,3 +284,9 @@ footer {
     padding: 22px;
   }
 }
+.download-note {
+  margin-top: 18px;
+  font-size: 18px;
+  color: #a72f54;
+  font-weight: 700;
+}
