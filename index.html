@@ -8,28 +8,39 @@
 </head>
 <body>
   <header class="site-header">
-    <div class="brand">
+    <a class="brand" href="#top" aria-label="Made for the Moments home">
       <div class="logo">♪</div>
       <div>
         <h1>Made for the Moments</h1>
         <p>Personalized songs and greeting cards</p>
       </div>
-    </div>
-    <a class="header-button" href="#order-form">Start a Request</a>
+    </a>
+
+    <nav class="site-nav" aria-label="Main navigation">
+      <a href="#gallery">Gallery</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#testimonials">Testimonials</a>
+      <a class="header-button" href="#order-form">Start a Request</a>
+    </nav>
   </header>
 
-  <main>
+  <main id="top">
     <section class="hero">
       <div class="hero-text">
         <div class="eyebrow">Unique and custom gifts made from the heart</div>
         <h2>Turn someone’s story into a song or card they’ll never forget.</h2>
         <p>
           Share the occasion, special details, memories, names, inside jokes, and the feeling you want to capture.
-          I’ll use your request to create something personal, meaningful, and made just for the moment.
+          I’ll create something personal, meaningful, and made just for the moment.
         </p>
         <p class="download-note">
-          Customers receive a Personalized Card mailed to the recepient. Songs include MP3 and MP4 files.
+          Customers receive a personalized card mailed to the recipient. Songs include MP3 and MP4 files.
         </p>
+
+        <div class="hero-actions">
+          <a class="header-button" href="#order-form">Request a Custom Gift</a>
+          <a class="secondary-button" href="#gallery">View Examples</a>
+        </div>
 
         <div class="chips">
           <span>Birthdays</span>
@@ -37,35 +48,121 @@
           <span>Anniversaries</span>
           <span>Memorials</span>
           <span>Weddings</span>
+          <span>Graduations</span>
           <span>Friendship</span>
-          <span>Retirement</span>
           <span>Holidays</span>
         </div>
       </div>
 
       <div class="hero-card">
         <h3>What I Create</h3>
-
+        <div class="package featured-package">
+          <strong>Song + Greeting Card Bundle</strong>
+          <span>A personalized song and a custom 5x7 photo card for one special moment.</span>
+          <p><strong>$23.99</strong></p>
+          <p>Includes mailed greeting card, MP3, and MP4 download.</p>
+          <a href="#order-form">Order Bundle</a>
+        </div>
         <div class="package">
           <strong>Personalized Greeting Card</strong>
           <span>Custom heartfelt greeting card created from your memories and details.</span>
           <p><strong>$6.99</strong></p>
-          <p>Includes Personalized 5x7 Photo Card mailed to the recipient</p>
+          <p>Includes personalized 5x7 photo card mailed to the recipient.</p>
         </div>
-
         <div class="package">
           <strong>Personalized Song</strong>
           <span>Custom personalized song created for your special occasion.</span>
           <p><strong>$19.99</strong></p>
           <p>Includes MP3 and MP4 digital download.</p>
         </div>
+      </div>
+    </section>
 
-        <div class="package">
-          <strong>Song + Greeting Card Bundle</strong>
-          <span>A meaningful personalized song and greeting card package.</span>
-          <p><strong>$23.99</strong></p>
-          <p>Includes greeting card, MP3, and MP4 download.</p>
-        </div>
+    <section class="section categories" id="categories">
+      <div class="section-heading">
+        <span class="eyebrow">Made for every occasion</span>
+        <h2>Choose your moment</h2>
+        <p>Each card or song can be customized with names, dates, photos, hobbies, memories, and personal messages.</p>
+      </div>
+      <div class="category-grid">
+        <article><h3>Birthdays</h3><p>Milestone birthdays, kids’ themes, funny songs, heartfelt tributes, and party-ready cards.</p></article>
+        <article><h3>Weddings & Anniversaries</h3><p>Celebrate the couple, their journey, and the love story they are still writing.</p></article>
+        <article><h3>Sympathy & Memorial</h3><p>Comforting keepsakes that honor a loved one’s life, memories, and legacy.</p></article>
+        <article><h3>Graduation</h3><p>Cards and songs for high school, college, nursing, cosmetology, teaching, and more.</p></article>
+        <article><h3>Mother’s & Father’s Day</h3><p>Personal messages for the people who give love, strength, guidance, and support.</p></article>
+        <article><h3>Holidays & Friendship</h3><p>Christmas, Valentine’s Day, friendship, retirement, thank-you gifts, and special surprises.</p></article>
+      </div>
+    </section>
+
+    <section class="section gallery-section" id="gallery">
+      <div class="section-heading">
+        <span class="eyebrow">Sample Gallery</span>
+        <h2>Greeting card examples</h2>
+        <p>These samples show the style and possibilities. Your final card will be personalized with your photos, message, occasion, and details.</p>
+      </div>
+
+      <div class="gallery-grid">
+        <figure><img src="images/sympathy-card.jpg" alt="Custom sympathy card example"><figcaption>Sympathy</figcaption></figure>
+        <figure><img src="images/birthday-card.jpg" alt="Custom birthday card example"><figcaption>Birthday</figcaption></figure>
+        <figure><img src="images/graduation-card.jpg" alt="Custom graduation card example"><figcaption>Graduation</figcaption></figure>
+        <figure><img src="images/wedding-card.jpg" alt="Custom wedding card example"><figcaption>Wedding</figcaption></figure>
+        <figure><img src="images/anniversary-card.jpg" alt="Custom anniversary card example"><figcaption>Anniversary</figcaption></figure>
+        <figure><img src="images/christmas-card.jpg" alt="Custom Christmas card example"><figcaption>Christmas</figcaption></figure>
+        <figure><img src="images/valentines-card.jpg" alt="Custom Valentine’s Day card example"><figcaption>Valentine’s Day</figcaption></figure>
+        <figure><img src="images/fathers-day-card.jpg" alt="Custom Father’s Day card example"><figcaption>Father’s Day</figcaption></figure>
+      </div>
+      <p class="small-note">Tip: rename your uploaded files to match these names, or update the image paths in this section.</p>
+    </section>
+
+    <section class="section pricing" id="pricing">
+      <div class="section-heading">
+        <span class="eyebrow">Simple Pricing</span>
+        <h2>Personalized gifts at affordable prices</h2>
+      </div>
+      <div class="pricing-grid">
+        <article class="price-card">
+          <h3>Greeting Card</h3>
+          <p class="price">$6.99</p>
+          <ul>
+            <li>Personalized 5x7 photo card</li>
+            <li>Custom message and design</li>
+            <li>Mailed to the recipient</li>
+          </ul>
+          <a href="#order-form">Order a Card</a>
+        </article>
+        <article class="price-card highlighted">
+          <div class="badge">Best Value</div>
+          <h3>Song + Card Bundle</h3>
+          <p class="price">$23.99</p>
+          <ul>
+            <li>Personalized song</li>
+            <li>MP3 and MP4 download</li>
+            <li>Custom 5x7 mailed card</li>
+          </ul>
+          <a href="#order-form">Order the Bundle</a>
+        </article>
+        <article class="price-card">
+          <h3>Personalized Song</h3>
+          <p class="price">$19.99</p>
+          <ul>
+            <li>Custom song for any occasion</li>
+            <li>MP3 digital file</li>
+            <li>MP4 video file</li>
+          </ul>
+          <a href="#order-form">Order a Song</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="section testimonials" id="testimonials">
+      <div class="section-heading">
+        <span class="eyebrow">Kind Words</span>
+        <h2>Made to feel personal</h2>
+      </div>
+      <div class="testimonial-grid">
+        <blockquote>“The song captured our story perfectly. It felt like it was written just for us.”<cite>— Happy Customer</cite></blockquote>
+        <blockquote>“The card was beautiful and meaningful. It was so much more personal than anything from a store.”<cite>— Card Recipient</cite></blockquote>
+        <blockquote>“Such a special keepsake. The details, memories, and message made it unforgettable.”<cite>— Gift Giver</cite></blockquote>
       </div>
     </section>
 
@@ -79,26 +176,16 @@
         <fieldset>
           <legend>Your Contact Information</legend>
           <div class="grid">
-            <label>
-              Your Name *
-              <input type="text" name="Your Name" required />
-            </label>
-            <label>
-              Email *
-              <input type="email" name="Email" required />
-            </label>
-            <label>
-              Phone Number
-              <input type="tel" name="Phone" />
-            </label>
+            <label>Your Name *<input type="text" name="Your Name" required /></label>
+            <label>Email *<input type="email" name="Email" required /></label>
+            <label>Phone Number<input type="tel" name="Phone" /></label>
           </div>
         </fieldset>
 
         <fieldset>
           <legend>Project Details</legend>
           <div class="grid">
-            <label>
-              What would you like created? *
+            <label>What would you like created? *
               <select name="Project Type" required>
                 <option value="">Choose one</option>
                 <option>Personalized Greeting Card - $6.99</option>
@@ -106,106 +193,41 @@
                 <option>Song + Greeting Card Bundle - $23.99</option>
               </select>
             </label>
-
-            <label>
-              Occasion *
-              <input type="text" name="Occasion" placeholder="Birthday, Mother’s Day, Wedding, Memorial..." required />
-            </label>
-
-            <label>
-              Who is this for? *
-              <input type="text" name="Recipient Name" placeholder="Recipient name" required />
-            </label>
-
-            <label>
-              Relationship
-              <input type="text" name="Relationship" placeholder="Mom, spouse, friend, grandson..." />
-            </label>
-
-            <label>
-              Preferred Style / Genre
+            <label>Occasion *<input type="text" name="Occasion" placeholder="Birthday, Mother’s Day, Wedding, Memorial..." required /></label>
+            <label>Who is this for? *<input type="text" name="Recipient Name" placeholder="Recipient name" required /></label>
+            <label>Relationship<input type="text" name="Relationship" placeholder="Mom, spouse, friend, grandson..." /></label>
+            <label>Preferred Style / Genre
               <select name="Style or Genre">
-                <option>Country</option>
-                <option>Pop</option>
-                <option>Rock</option>
-                <option>Gospel</option>
-                <option>Folk</option>
-                <option>Funny / Novelty</option>
-                <option>Heartfelt Ballad</option>
-                <option>Other</option>
+                <option>Country</option><option>Pop</option><option>Rock</option><option>Gospel</option><option>Folk</option><option>Funny / Novelty</option><option>Heartfelt Ballad</option><option>Other</option>
               </select>
             </label>
-
-            <label>
-              Mood
+            <label>Mood
               <select name="Mood">
-                <option>Heartfelt</option>
-                <option>Funny</option>
-                <option>Emotional</option>
-                <option>Upbeat</option>
-                <option>Romantic</option>
-                <option>Inspirational</option>
-                <option>Nostalgic</option>
+                <option>Heartfelt</option><option>Funny</option><option>Emotional</option><option>Upbeat</option><option>Romantic</option><option>Inspirational</option><option>Nostalgic</option>
               </select>
             </label>
-
-            <label>
-              Needed By
-              <input type="date" name="Needed By" />
-            </label>
+            <label>Needed By<input type="date" name="Needed By" /></label>
           </div>
         </fieldset>
 
         <fieldset>
           <legend>Personal Details to Include</legend>
-
-          <label>
-            Tell me about the person
-            <textarea name="About the Person" rows="4" placeholder="Personality, hobbies, favorite sayings, what makes them special..."></textarea>
-          </label>
-
-          <label>
-            Special memories, stories, or inside jokes
-            <textarea name="Memories" rows="4" placeholder="Trips, funny memories, family moments, places, shared experiences..."></textarea>
-          </label>
-
-          <label>
-            Main message you want included
-            <textarea name="Main Message" rows="4" placeholder="What do you want them to feel when they read or hear it?"></textarea>
-          </label>
-
-          <label>
-            Any names, dates, places, or details that must be included
-            <textarea name="Must Include Details" rows="3"></textarea>
-          </label>
-
-          <label>
-            Upload Photos for Greeting Card
-            <input type="file" name="Photos" multiple />
-          </label>
+          <label>Tell me about the person<textarea name="About the Person" rows="4" placeholder="Personality, hobbies, favorite sayings, what makes them special..."></textarea></label>
+          <label>Special memories, stories, or inside jokes<textarea name="Memories" rows="4" placeholder="Trips, funny memories, family moments, places, shared experiences..."></textarea></label>
+          <label>Main message you want included<textarea name="Main Message" rows="4" placeholder="What do you want them to feel when they read or hear it?"></textarea></label>
+          <label>Any names, dates, places, or details that must be included<textarea name="Must Include Details" rows="3"></textarea></label>
+          <label>Upload Photos for Greeting Card<input type="file" name="Photos" multiple /></label>
         </fieldset>
 
-        <label class="checkbox">
-          <input type="checkbox" name="Permission" required />
-          I understand this request may be used to create personalized lyrics, greeting text, or a custom keepsake based on the details I provide.
-        </label>
-
+        <label class="checkbox"><input type="checkbox" name="Permission" required />I understand this request may be used to create personalized lyrics, greeting text, or a custom keepsake based on the details I provide.</label>
         <button type="submit">Send Request</button>
-
-        <p class="small-note">
-          This form opens your email with the request details. Photo uploads and payments will need to be connected through Jotform, PayPal, or another form/payment service.
-        </p>
+        <p class="small-note">This form opens your email with the request details. Photo uploads and payments will need to be connected through Jotform, PayPal, or another form/payment service.</p>
       </form>
     </section>
   </main>
 
   <footer>
     <p>© <span id="year"></span> Made for the Moments. Personalized creations for life’s special moments.</p>
-  </footer>
-
-  <script src="script.js"></script>
-</body>
-</html>
   </footer>
 
   <script src="script.js"></script>
