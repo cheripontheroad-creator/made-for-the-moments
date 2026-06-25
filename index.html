@@ -6,6 +6,7 @@
   <title>Made for the Moments | Personalized Songs & Greeting Cards</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body>
   <header class="site-header">
     <a class="brand" href="#top" aria-label="Made for the Moments home">
@@ -26,58 +27,65 @@
   </header>
 
   <main id="top">
-    <section class="hero">
-      <div class="hero-text">
+
+    <section class="hero hero-new">
+      <div class="hero-overlay"></div>
+
+      <div class="hero-content">
         <div class="eyebrow">Unique and custom gifts made from the heart</div>
+
         <h2>Turn someone’s story into a song or card they’ll never forget.</h2>
-        <p>
+
+        <p class="hero-description">
           Share the occasion, special details, memories, names, inside jokes, and the feeling you want to capture.
           I’ll create something personal, meaningful, and made just for the moment.
         </p>
-        <p class="download-note">
-          Customers receive a personalized card mailed to the recipient. Songs include MP3 and MP4 files.
-        </p>
 
-        <div class="hero-actions">
-          <a class="header-button" href="#order-form">Start Your Order</a>
-          <a class="secondary-button" href="#gallery">View Examples</a>
+        <div class="hero-notes">
+          <div class="hero-note">
+            <span class="note-icon">💌</span>
+            <p>Customers receive a personalized card mailed to the recipient.</p>
+          </div>
+
+          <div class="hero-note">
+            <span class="note-icon">🎵</span>
+            <p>Songs include MP3 and MP4 files.</p>
+          </div>
         </div>
 
-        <div class="chips">
-          <span>Birthdays</span>
-          <span>Mother’s Day</span>
-          <span>Anniversaries</span>
-          <span>Memorials</span>
-          <span>Weddings</span>
-          <span>Graduations</span>
-          <span>Friendship</span>
-          <span>Holidays</span>
-        </div>
-      </div>
-
-      <div class="hero-card">
-        <h3>What I Create</h3>
-
-        <div class="package featured-package">
-          <strong>Song + Greeting Card Bundle</strong>
-          <span>A personalized song and a custom 5x7 photo card for one special moment.</span>
-          <p><strong>$23.99</strong></p>
-          <p>Includes mailed greeting card, MP3, and MP4 download.</p>
-          <a href="#order-form">Order Bundle</a>
+        <div class="what-i-create-heading">
+          <span></span>
+          <h3>What I Create</h3>
+          <span></span>
         </div>
 
-        <div class="package">
-          <strong>Personalized Greeting Card</strong>
-          <span>Custom heartfelt greeting card created from your memories and details.</span>
-          <p><strong>$6.99</strong></p>
-          <p>Includes personalized 5x7 photo card mailed to the recipient.</p>
-        </div>
+        <div class="hero-packages">
+          <article class="package featured-package">
+            <div class="package-icon">🎁</div>
+            <strong>Song + Greeting Card Bundle</strong>
+            <p>A personalized song and a custom 5x7 photo card for one special moment.</p>
+            <p class="package-price">$23.99</p>
+            <p>Includes mailed greeting card, MP3, and MP4 download.</p>
+            <a href="#order-form">Order Bundle</a>
+          </article>
 
-        <div class="package">
-          <strong>Personalized Song</strong>
-          <span>Custom personalized song created for your special occasion.</span>
-          <p><strong>$19.99</strong></p>
-          <p>Includes MP3 and MP4 digital download.</p>
+          <article class="package">
+            <div class="package-icon">💌</div>
+            <strong>Personalized Greeting Card</strong>
+            <p>Custom heartfelt greeting card created from your memories and details.</p>
+            <p class="package-price">$6.99</p>
+            <p>Includes personalized 5x7 photo card mailed to the recipient.</p>
+            <a href="#order-form">Order a Card</a>
+          </article>
+
+          <article class="package">
+            <div class="package-icon">🎵</div>
+            <strong>Personalized Song</strong>
+            <p>Custom personalized song created for your special occasion.</p>
+            <p class="package-price">$19.99</p>
+            <p>Includes MP3 and MP4 digital download.</p>
+            <a href="#order-form">Order a Song</a>
+          </article>
         </div>
       </div>
     </section>
