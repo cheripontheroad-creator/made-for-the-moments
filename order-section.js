@@ -1,47 +1,53 @@
 document.addEventListener("DOMContentLoaded", function () {
   const productRadios = document.querySelectorAll('input[name="product"]');
-  const totalPrice = document.getElementById("orderTotal");
 
   const songSection = document.getElementById("songSection");
   const cardSection = document.getElementById("cardSection");
   const mailSection = document.getElementById("mailSection");
-  const otherOccasionBox = document.getElementById("otherOccasionBox");
 
   const occasionSelect = document.getElementById("occasion");
+  const otherOccasionBox = document.getElementById("otherOccasionBox");
+  const otherOccasionInput = document.getElementById("otherOccasion");
+
   const mailChoice = document.getElementById("mailChoice");
-  const orderForm = document.getElementById("customOrderForm");
 
-  const prices = {
-    song: 24.99,
-    card: 7.99,
-    bundle: 29.99
-  };
+  const summaryProduct = document.getElementById("summaryProduct");
+  const summaryPrice = document.getElementById("summaryPrice");
+  const summaryTotal = document.getElementById("summaryTotal");
+  const payButton = document.getElementById("payButton");
 
-  function hideSections() {
-    if (songSection) songSection.style.display = "none";
-    if (cardSection) cardSection.style.display = "none";
-    if (mailSection) mailSection.style.display = "none";
+  const orderForm = document.getElementById("momentOrderForm");
+
+  function hideConditionalSections() {
+    songSection.style.display = "none";
+    cardSection.style.display = "none";
+    mailSection.style.display = "none";
   }
 
   productRadios.forEach((radio) => {
     radio.addEventListener("change", function () {
-      const value = this.value;
+      const productName = this.dataset.name;
+      const productPrice = parseFloat(this.dataset.price).toFixed(2);
+      const productValue = this.value;
 
-      if (totalPrice && prices[value]) {
-        totalPrice.textContent = "$" + prices[value].toFixed(2);
-      }
+      summaryProduct.textContent = productName;
+      summaryPrice.textContent = "$" + productPrice;
+      summaryTotal.textContent = "$" + productPrice;
 
-      hideSections();
+      payButton.classList.remove("disabled");
+      payButton.setAttribute("aria-disabled", "false");
 
-      if (value === "song") {
+      hideConditionalSections();
+
+      if (productValue === "song") {
         songSection.style.display = "block";
       }
 
-      if (value === "card") {
+      if (productValue === "card") {
         cardSection.style.display = "block";
       }
 
-      if (value === "bundle") {
+      if (productValue === "bundle") {
         songSection.style.display = "block";
         cardSection.style.display = "block";
       }
@@ -52,11 +58,11 @@ document.addEventListener("DOMContentLoaded", function () {
     occasionSelect.addEventListener("change", function () {
       if (this.value === "Other") {
         otherOccasionBox.style.display = "block";
-        document.getElementById("otherOccasion").required = true;
+        otherOccasionInput.required = true;
       } else {
         otherOccasionBox.style.display = "none";
-        document.getElementById("otherOccasion").required = false;
-        document.getElementById("otherOccasion").value = "";
+        otherOccasionInput.required = false;
+        otherOccasionInput.value = "";
       }
     });
   }
@@ -78,11 +84,11 @@ document.addEventListener("DOMContentLoaded", function () {
       const selectedProduct = document.querySelector('input[name="product"]:checked');
 
       if (!selectedProduct) {
-        alert("Please select what you would like to order.");
+        alert("Please choose what you would like to order.");
         return;
       }
 
-      alert("Thank you! Payment setup is the next step.");
+      alert("Your order form is ready. Payment connection is the next step.");
     });
   }
 });
