@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Made for the Moments | Personalized Songs & Greeting Cards</title>
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="order-section.css" />
 </head>
 
 <body>
@@ -350,21 +351,147 @@
       </div>
     </section>
 
-    <section class="form-section" id="order-form">
-      <div class="form-heading">
-        <span class="eyebrow">Start Your Order</span>
-        <h2>Tell me about your special moment</h2>
-        <p>
-          Fill out the form below with as much detail as possible.
-          The more you share, the more personal your song or greeting card will be.
-        </p>
-      </div>
+    <section class="order-section" id="order-form">
+      <div class="order-wrap">
+        <div class="form-heading">
+          <span class="eyebrow">Start Your Order</span>
+          <h2>Create a personalized gift they'll never forget</h2>
+          <p>
+            Choose your gift, share the story, and I'll create something meaningful for your special moment.
+            Songs are delivered by email as MP3 and MP4 files. Greeting cards are mailed to you or directly to the recipient.
+          </p>
+        </div>
 
-      <div class="jotform-container">
-        <script
-          type="text/javascript"
-          src="https://pci.jotform.com/jsform/261286140457053">
-        </script>
+        <form class="order-form" id="momentOrderForm" name="momentOrderForm">
+          <fieldset class="order-card choose-gift">
+            <legend>1. What would you like to order?</legend>
+
+            <label class="gift-option">
+              <input type="radio" name="product" value="song" data-name="Personalized Song" data-price="24.99" required>
+              <span class="gift-content">
+                <strong>🎵 Personalized Song</strong>
+                <small>Custom song for any occasion. Includes MP3 and MP4 digital download by email.</small>
+              </span>
+              <span class="gift-price">$24.99</span>
+            </label>
+
+            <label class="gift-option">
+              <input type="radio" name="product" value="card" data-name="Personalized Greeting Card" data-price="7.99">
+              <span class="gift-content">
+                <strong>💌 Personalized Greeting Card</strong>
+                <small>Custom 5x7 greeting card, personalized message, beautiful design, and mailed via USPS.</small>
+              </span>
+              <span class="gift-price">$7.99</span>
+            </label>
+
+            <label class="gift-option featured-gift">
+              <input type="radio" name="product" value="bundle" data-name="Song + Greeting Card Bundle" data-price="29.99">
+              <span class="gift-content">
+                <strong>🎁 Song + Greeting Card Bundle</strong>
+                <small>Best value. Includes a personalized song and matching personalized greeting card.</small>
+              </span>
+              <span class="gift-price">$29.99</span>
+            </label>
+          </fieldset>
+
+          <fieldset class="order-card">
+            <legend>2. Customer Information</legend>
+            <div class="form-grid">
+              <label>Full Name *<input type="text" name="customer_name" required></label>
+              <label>Email Address *<input type="email" name="email" required></label>
+              <label>Phone Number<input type="tel" name="phone"></label>
+              <label>Recipient's Name *<input type="text" name="recipient_name" required></label>
+              <label>Occasion *
+                <select name="occasion" required>
+                  <option value="">Choose an occasion</option>
+                  <option>Birthday</option><option>Anniversary</option><option>Wedding</option><option>Graduation</option>
+                  <option>Retirement</option><option>Mother's Day</option><option>Father's Day</option><option>Christmas</option>
+                  <option>Valentine's Day</option><option>Sympathy</option><option>Just Because</option><option>Other</option>
+                </select>
+              </label>
+              <label>Requested Date<input type="date" name="needed_date"></label>
+            </div>
+          </fieldset>
+
+          <fieldset class="order-card conditional-section" id="songDetails">
+            <legend>3. Song Details</legend>
+            <div class="form-grid">
+              <label>Music Style
+                <select name="music_style">
+                  <option value="">Choose a style</option>
+                  <option>Country</option><option>Pop</option><option>Christian / Inspirational</option><option>Bluegrass</option>
+                  <option>Rock</option><option>Acoustic</option><option>Funny / Lighthearted</option><option>Other</option>
+                </select>
+              </label>
+              <label>Mood
+                <select name="song_mood">
+                  <option value="">Choose a mood</option>
+                  <option>Sweet</option><option>Emotional</option><option>Funny</option><option>Uplifting</option>
+                  <option>Romantic</option><option>Celebratory</option><option>Sentimental</option>
+                </select>
+              </label>
+            </div>
+            <label>Tell me the story you want included in the song<textarea name="song_story" rows="5"></textarea></label>
+            <label>Names, memories, dates, phrases, or special details<textarea name="song_details" rows="4"></textarea></label>
+            <label>Anything you do NOT want included?<textarea name="song_avoid" rows="3"></textarea></label>
+          </fieldset>
+
+          <fieldset class="order-card conditional-section" id="cardDetails">
+            <legend>4. Greeting Card Details</legend>
+            <div class="form-grid">
+              <label>Card Style
+                <select name="card_style">
+                  <option value="">Choose a style</option>
+                  <option>Elegant</option><option>Funny</option><option>Sweet</option><option>Cute</option>
+                  <option>Rustic</option><option>Floral</option><option>Pet-themed</option><option>Modern</option><option>Simple</option>
+                </select>
+              </label>
+              <label>Favorite Colors<input type="text" name="favorite_colors"></label>
+            </div>
+            <label>Message for the card<textarea name="card_message" rows="5"></textarea></label>
+            <label>Upload photos for the card<input type="file" name="photos" accept="image/*" multiple></label>
+
+            <div class="mailing-choice">
+              <p>Where should we mail your greeting card?</p>
+              <label><input type="radio" name="mail_to" value="customer"> Mail it to me</label>
+              <label><input type="radio" name="mail_to" value="recipient"> Mail it directly to the recipient</label>
+            </div>
+          </fieldset>
+
+          <fieldset class="order-card conditional-section" id="mailingDetails">
+            <legend>5. Mailing Address</legend>
+            <div class="form-grid">
+              <label>Name for Mailing<input type="text" name="mail_name"></label>
+              <label>Street Address<input type="text" name="street"></label>
+              <label>Apartment or Suite<input type="text" name="apt"></label>
+              <label>City<input type="text" name="city"></label>
+              <label>State<input type="text" name="state"></label>
+              <label>ZIP Code<input type="text" name="zip"></label>
+            </div>
+          </fieldset>
+
+          <fieldset class="order-card">
+            <legend>6. Anything Else?</legend>
+            <label>Additional requests or details<textarea name="additional_notes" rows="4"></textarea></label>
+          </fieldset>
+
+          <aside class="order-summary" aria-live="polite">
+            <h3>Order Summary</h3>
+            <div class="summary-line"><span id="summaryProduct">No product selected</span><strong id="summaryPrice">$0.00</strong></div>
+            <div class="summary-total"><span>Total</span><strong id="summaryTotal">$0.00</strong></div>
+            <p class="summary-note">After the form is connected to payment, customers will pay securely by card or PayPal.</p>
+            <div class="payment-buttons">
+              <a class="pay-button disabled" id="payButton" href="#" aria-disabled="true">Continue to Payment</a>
+            </div>
+          </aside>
+
+          <label class="terms-check">
+            <input type="checkbox" name="terms" required>
+            I understand every song and greeting card is custom created specifically for me. All sales are final once production has started.
+          </label>
+
+          <button type="submit" class="submit-order">Create My Personalized Gift</button>
+        </form>
       </div>
     </section>
   </main>
@@ -373,6 +500,7 @@
     <p>© <span id="year"></span> Made for the Moments. Personalized creations for life’s special moments.</p>
   </footer>
 
+  <script src="order-section.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
