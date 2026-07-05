@@ -452,8 +452,50 @@
               </label>
               <label>Favorite Colors<input type="text" name="favorite_colors"></label>
             </div>
-            <label>Message for the card<textarea name="card_message" rows="5"></textarea></label>
-            <label>Upload photos for the card<input type="file" name="photos" accept="image/*" multiple></label>
+            <label class="full-width">
+    <strong>Tell me about the recipient. <span class="required">*</span></strong>
+
+    <p class="field-description">
+        The more details you share, the more personal and meaningful your greeting card will be.
+        Don't worry about writing perfectly—just tell me about the person!
+    </p>
+
+    <div class="examples-box">
+        <strong>Ideas to include:</strong>
+
+        <ul>
+            <li>🎂 Age or milestone birthday</li>
+            <li>😂 Funny stories or inside jokes</li>
+            <li>🏡 Where they live</li>
+            <li>❤️ Spouse, children, grandchildren, or family</li>
+            <li>🐶 Pets</li>
+            <li>⚾ Favorite sports or teams</li>
+            <li>🎣 Hobbies and interests</li>
+            <li>💼 Occupation or retirement</li>
+            <li>🏆 Accomplishments or milestones</li>
+            <li>💬 Favorite sayings or nicknames</li>
+            <li>🌴 Vacations or favorite places</li>
+            <li>🎵 Favorite music or activities</li>
+            <li>💕 Special memories you'd like included</li>
+            <li>✨ Anything that makes them unique</li>
+        </ul>
+
+        <p>
+            <em>
+                The more you tell me, the more personal and unforgettable your greeting card will be.
+            </em>
+        </p>
+    </div>
+
+    <textarea
+        id="cardDetails"
+        name="card_details"
+        rows="10"
+        required
+        placeholder="Example:
+
+John is turning 50 this year. He lives in Florida with his wife Susan. They have three grandchildren that he absolutely adores. He's an avid golfer, loves the Green Bay Packers, and always tells terrible dad jokes. Everyone calls him 'Big John.' We'd love for the card to be funny but heartfelt and mention how much his family appreciates him."></textarea>
+</label>
 
             <div class="mailing-choice">
               <label>Where should we mail your greeting card?
