@@ -13,34 +13,16 @@ document.addEventListener("DOMContentLoaded", function () {
   const otherOccasionBox = document.getElementById("otherOccasionBox");
   const otherOccasion = document.getElementById("otherOccasion");
 
+  const songStyle = document.getElementById("songStyle");
+  const otherSongStyleBox = document.getElementById("otherSongStyleBox");
+  const otherSongStyle = document.getElementById("otherSongStyle");
+
   const mailChoice = document.getElementById("mailChoice");
 
   function hideOptionalSections() {
     if (songSection) songSection.style.display = "none";
     if (cardSection) cardSection.style.display = "none";
     if (mailSection) mailSection.style.display = "none";
- const songStyle = document.getElementById("songStyle");
-const otherSongStyleBox = document.getElementById("otherSongStyleBox");
-const otherSongStyle = document.getElementById("otherSongStyle");
-
-if (songStyle) {
-
-    songStyle.addEventListener("change", function () {
-
-        if (this.value === "Other") {
-
-            otherSongStyleBox.style.display = "block";
-            otherSongStyle.required = true;
-
-        } else {
-
-            otherSongStyleBox.style.display = "none";
-            otherSongStyle.required = false;
-            otherSongStyle.value = "";
-
-        }
-
-    });
   }
 
   productRadios.forEach(function (radio) {
@@ -79,6 +61,19 @@ if (songStyle) {
         otherOccasionBox.style.display = "none";
         otherOccasion.required = false;
         otherOccasion.value = "";
+      }
+    });
+  }
+
+  if (songStyle && otherSongStyleBox && otherSongStyle) {
+    songStyle.addEventListener("change", function () {
+      if (this.value === "Other") {
+        otherSongStyleBox.style.display = "block";
+        otherSongStyle.required = true;
+      } else {
+        otherSongStyleBox.style.display = "none";
+        otherSongStyle.required = false;
+        otherSongStyle.value = "";
       }
     });
   }
