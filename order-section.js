@@ -1,139 +1,88 @@
 document.addEventListener("DOMContentLoaded", function () {
+  const productRadios = document.querySelectorAll('input[name="product"]');
+  const totalPrice = document.getElementById("orderTotal");
 
-    // Product Selection
-    const productRadios = document.querySelectorAll('input[name="product"]');
+  const songSection = document.getElementById("songSection");
+  const cardSection = document.getElementById("cardSection");
+  const mailSection = document.getElementById("mailSection");
+  const otherOccasionBox = document.getElementById("otherOccasionBox");
 
-    const totalPrice = document.getElementById("orderTotal");
+  const occasionSelect = document.getElementById("occasion");
+  const mailChoice = document.getElementById("mailChoice");
+  const orderForm = document.getElementById("customOrderForm");
 
-    const songSection = document.getElementById("songSection");
-    const cardSection = document.getElementById("cardSection");
+  const prices = {
+    song: 24.99,
+    card: 7.99,
+    bundle: 29.99
+  };
 
-    const mailSection = document.getElementById("mailSection");
+  function hideSections() {
+    if (songSection) songSection.style.display = "none";
+    if (cardSection) cardSection.style.display = "none";
+    if (mailSection) mailSection.style.display = "none";
+  }
 
-    const mailChoice = document.getElementById("mailChoice");
+  productRadios.forEach((radio) => {
+    radio.addEventListener("change", function () {
+      const value = this.value;
 
-    // Prices
-    const prices = {
-        song: 24.99,
-        card: 7.99,
-        bundle: 29.99
-    };
+      if (totalPrice && prices[value]) {
+        totalPrice.textContent = "$" + prices[value].toFixed(2);
+      }
 
-    productRadios.forEach(radio => {
+      hideSections();
 
-        radio.addEventListener("change", function () {
+      if (value === "song") {
+        songSection.style.display = "block";
+      }
 
-            let value = this.value;
+      if (value === "card") {
+        cardSection.style.display = "block";
+      }
 
-            // Update total
-            totalPrice.innerHTML = "$" + prices[value].toFixed(2);
-
-            // Hide everything
-            songSection.style.display = "none";
-            cardSection.style.display = "none";
-            mailSection.style.display = "none";
-
-            // Song
-            if (value === "song") {
-
-                songSection.style.display = "block";
-
-            }
-
-            // Greeting Card
-            if (value === "card") {
-
-                cardSection.style.display = "block";
-
-            }
-
-            // Bundle
-            if (value === "bundle") {
-
-                songSection.style.display = "block";
-                cardSection.style.display = "block";
-
-            }
-
-        });
-
+      if (value === "bundle") {
+        songSection.style.display = "block";
+        cardSection.style.display = "block";
+      }
     });
+  });
 
-    // Mailing Option
-
-    if (mailChoice) {
-
-        mailChoice.addEventListener("change", function () {
-
-            if (this.value === "customer" || this.value === "recipient") {
-
-                mailSection.style.display = "block";
-
-            } else {
-
-                mailSection.style.display = "none";
-
-            }
-
-        });
-
-    }
-
-    // Smooth Scroll Buttons
-
-    const orderButtons = document.querySelectorAll(".order-now");
-
-    orderButtons.forEach(button => {
-
-        button.addEventListener("click", function () {
-
-            document.getElementById("orderSection").scrollIntoView({
-                behavior: "smooth"
-            });
-
-        });
-
+  if (occasionSelect) {
+    occasionSelect.addEventListener("change", function () {
+      if (this.value === "Other") {
+        otherOccasionBox.style.display = "block";
+        document.getElementById("otherOccasion").required = true;
+      } else {
+        otherOccasionBox.style.display = "none";
+        document.getElementById("otherOccasion").required = false;
+        document.getElementById("otherOccasion").value = "";
+      }
     });
+  }
 
-});
+  if (mailChoice) {
+    mailChoice.addEventListener("change", function () {
+      if (this.value === "customer" || this.value === "recipient") {
+        mailSection.style.display = "block";
+      } else {
+        mailSection.style.display = "none";
+      }
+    });
+  }
 
+  if (orderForm) {
+    orderForm.addEventListener("submit", function (event) {
+      event.preventDefault();
 
-//---------------------------------------------
-// Ready for Stripe or PayPal Integration
-//---------------------------------------------
+      const selectedProduct = document.querySelector('input[name="product"]:checked');
 
-function checkout() {
-
-    const selected = document.querySelector('input[name="product"]:checked');
-
-    if (!selected) {
-
-        alert("Please select a product.");
+      if (!selectedProduct) {
+        alert("Please select what you would like to order.");
         return;
+      }
 
-    }
-
-    switch (selected.value) {
-
-        case "song":
-
-            // Replace with your Stripe or PayPal link
-            window.location.href = "#";
-
-            break;
-
-        case "card":
-
-            window.location.href = "#";
-
-            break;
-
-        case "bundle":
-
-            window.location.href = "#";
-
-            break;
-
-    }
-
-}
+      alert("Thank you! Payment setup is the next step.");
+    });
+  }
+});
