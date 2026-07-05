@@ -402,41 +402,45 @@
               <label>Phone Number<input type="tel" name="phone"></label>
               <label>Recipient's Name *<input type="text" name="recipient_name" required></label>
               <label>Occasion *
-                <select name="occasion" required>
+                <select id="occasion" name="occasion" required>
                   <option value="">Choose an occasion</option>
                   <option>Birthday</option><option>Anniversary</option><option>Wedding</option><option>Graduation</option>
                   <option>Retirement</option><option>Mother's Day</option><option>Father's Day</option><option>Christmas</option>
                   <option>Valentine's Day</option><option>Sympathy</option><option>Just Because</option><option>Other</option>
                 </select>
               </label>
-              <label>Requested Date<input type="date" name="needed_date"></label>
+              <label id="otherOccasionBox" class="conditional-inline" style="display:none;">Other Occasion *
+                <input type="text" id="otherOccasion" name="other_occasion">
+              </label>
+              <label>Requested Date *<input type="date" id="requestedDate" name="needed_date" required></label>
             </div>
           </fieldset>
 
-          <fieldset class="order-card conditional-section" id="songDetails">
+          <fieldset class="order-card conditional-section" id="songSection">
             <legend>3. Song Details</legend>
             <div class="form-grid">
-              <label>Music Style
-                <select name="music_style">
+              <label>Style of Song
+                <select id="songStyle" name="music_style">
                   <option value="">Choose a style</option>
                   <option>Country</option><option>Pop</option><option>Christian / Inspirational</option><option>Bluegrass</option>
-                  <option>Rock</option><option>Acoustic</option><option>Funny / Lighthearted</option><option>Other</option>
+                  <option>Rock</option><option>Acoustic</option><option>Folk</option><option>Funny / Lighthearted</option><option>Other</option>
                 </select>
               </label>
-              <label>Mood
-                <select name="song_mood">
+              <label>What mood should the song have?
+                <select id="songMood" name="song_mood">
                   <option value="">Choose a mood</option>
                   <option>Sweet</option><option>Emotional</option><option>Funny</option><option>Uplifting</option>
-                  <option>Romantic</option><option>Celebratory</option><option>Sentimental</option>
+                  <option>Romantic</option><option>Celebratory</option><option>Sentimental</option><option>Inspirational</option><option>Upbeat</option>
                 </select>
               </label>
             </div>
-            <label>Tell me the story you want included in the song<textarea name="song_story" rows="5"></textarea></label>
-            <label>Names, memories, dates, phrases, or special details<textarea name="song_details" rows="4"></textarea></label>
+            <label>Details to include in the song
+              <textarea id="songDetails" name="song_details" rows="7" placeholder="Names, memories, phrases, dates, inside jokes, or special details to include"></textarea>
+            </label>
             <label>Anything you do NOT want included?<textarea name="song_avoid" rows="3"></textarea></label>
           </fieldset>
 
-          <fieldset class="order-card conditional-section" id="cardDetails">
+          <fieldset class="order-card conditional-section" id="cardSection">
             <legend>4. Greeting Card Details</legend>
             <div class="form-grid">
               <label>Card Style
@@ -452,13 +456,17 @@
             <label>Upload photos for the card<input type="file" name="photos" accept="image/*" multiple></label>
 
             <div class="mailing-choice">
-              <p>Where should we mail your greeting card?</p>
-              <label><input type="radio" name="mail_to" value="customer"> Mail it to me</label>
-              <label><input type="radio" name="mail_to" value="recipient"> Mail it directly to the recipient</label>
+              <label>Where should we mail your greeting card?
+                <select id="mailChoice" name="mail_to">
+                  <option value="">Select one</option>
+                  <option value="customer">Mail it to me, the person ordering</option>
+                  <option value="recipient">Mail it directly to the recipient</option>
+                </select>
+              </label>
             </div>
           </fieldset>
 
-          <fieldset class="order-card conditional-section" id="mailingDetails">
+          <fieldset class="order-card conditional-section" id="mailSection">
             <legend>5. Mailing Address</legend>
             <div class="form-grid">
               <label>Name for Mailing<input type="text" name="mail_name"></label>
