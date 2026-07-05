@@ -412,8 +412,21 @@
               <label id="otherOccasionBox" class="conditional-inline" style="display:none;">Other Occasion *
                 <input type="text" id="otherOccasion" name="other_occasion">
               </label>
-              <label>Requested Date *<input type="date" id="requestedDate" name="needed_date" required></label>
-            </div>
+             <label>
+    <strong>What is your desired delivery date? <span class="required">*</span></strong>
+
+    <p class="field-description">
+        This is the date you would like your completed project delivered.
+        Songs are delivered by email, and greeting cards are mailed through USPS.
+        Please allow enough time for creation and mailing when selecting your date.
+    </p>
+
+    <input
+        type="date"
+        id="requestedDate"
+        name="needed_date"
+        required>
+</label> 
           </fieldset>
 
           <fieldset class="order-card conditional-section" id="songSection">
