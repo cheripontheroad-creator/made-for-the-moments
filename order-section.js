@@ -19,6 +19,28 @@ document.addEventListener("DOMContentLoaded", function () {
     if (songSection) songSection.style.display = "none";
     if (cardSection) cardSection.style.display = "none";
     if (mailSection) mailSection.style.display = "none";
+ const songStyle = document.getElementById("songStyle");
+const otherSongStyleBox = document.getElementById("otherSongStyleBox");
+const otherSongStyle = document.getElementById("otherSongStyle");
+
+if (songStyle) {
+
+    songStyle.addEventListener("change", function () {
+
+        if (this.value === "Other") {
+
+            otherSongStyleBox.style.display = "block";
+            otherSongStyle.required = true;
+
+        } else {
+
+            otherSongStyleBox.style.display = "none";
+            otherSongStyle.required = false;
+            otherSongStyle.value = "";
+
+        }
+
+    });
   }
 
   productRadios.forEach(function (radio) {
