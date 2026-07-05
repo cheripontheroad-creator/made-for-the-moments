@@ -529,9 +529,25 @@ John is turning 50 this year. He lives in Florida with his wife Susan. They have
                   <option>Acoustic</option>
                   <option>Folk</option>
                   <option>Funny / Lighthearted</option>
-                  <option>Other</option>
-                </select>
-              </label>
+                 <option value="Other">Other</option>
+    </select>
+
+</label>
+
+<div id="otherSongStyleBox" style="display:none;">
+
+    <label>
+        Tell me what style of music you'd like *
+
+        <input
+            type="text"
+            id="otherSongStyle"
+            name="other_song_style"
+            placeholder="Example: Jazz, Blues, Disney, 80's Rock, Rap, etc.">
+
+    </label>
+
+</div>
 
               <label>What mood should the song have?
                 <select id="songMood" name="song_mood" data-required-when-visible="true">
