@@ -441,64 +441,85 @@
           </fieldset>
 
           <fieldset class="order-card conditional-section" id="cardSection">
-            <legend>4. Greeting Card Details</legend>
+            <legend>4. Help Me Create Something They'll Never Forget</legend>
+
+            <div class="story-intro">
+              <h3>Every great gift begins with a story.</h3>
+              <p>
+                Every personalized greeting card is thoughtfully designed using the memories,
+                personalities, and special moments you share with me.
+              </p>
+              <p>
+                Don't worry about writing perfectly—just tell me about the person.
+                The more details you provide, the more personal and meaningful your gift will become.
+              </p>
+            </div>
+
+            <div class="story-box">
+              <h4>Tell me about the recipient. <span class="required">*</span></h4>
+
+              <p class="story-description">
+                Imagine you're introducing your favorite person to me. Tell me what makes them smile,
+                what makes them laugh, what makes them unique, and what details would make the card feel personal.
+              </p>
+
+              <div class="ideas-box">
+                <h4>Ideas to Include</h4>
+                <div class="ideas-grid">
+                  <div>🎂 Age or milestone birthday</div>
+                  <div>😂 Funny stories or inside jokes</div>
+                  <div>🏡 Where they live</div>
+                  <div>❤️ Spouse, children, or grandchildren</div>
+                  <div>🐶 Pets</div>
+                  <div>⚾ Favorite sports or teams</div>
+                  <div>🎣 Hobbies and interests</div>
+                  <div>💼 Occupation or retirement</div>
+                  <div>🏆 Accomplishments or milestones</div>
+                  <div>💬 Favorite sayings or nicknames</div>
+                  <div>🌴 Favorite vacation spots</div>
+                  <div>🎵 Favorite music or activities</div>
+                  <div>📖 Special memories</div>
+                  <div>✨ Anything that makes them unique</div>
+                </div>
+              </div>
+
+              <label>
+                Your Story *
+                <textarea
+                  id="cardDetailsText"
+                  name="card_details"
+                  rows="12"
+                  required
+                  data-required-when-visible="true"
+                  placeholder="Example:
+
+John is turning 50 this year. He lives in Florida with his wife Susan. They have three grandchildren who absolutely adore him. He loves golfing, cheering on the Green Bay Packers, telling terrible dad jokes, and spending weekends fishing. Everyone calls him 'Big John.' We'd love the card to be funny but heartfelt and mention how much his family appreciates everything he does."></textarea>
+              </label>
+            </div>
+
+            <hr class="section-divider">
+
+            <h3>Greeting Card Style</h3>
+
             <div class="form-grid">
               <label>Card Style
                 <select name="card_style">
                   <option value="">Choose a style</option>
                   <option>Elegant</option><option>Funny</option><option>Sweet</option><option>Cute</option>
                   <option>Rustic</option><option>Floral</option><option>Pet-themed</option><option>Modern</option><option>Simple</option>
+                  <option>Minimalist</option><option>Vintage</option>
                 </select>
               </label>
               <label>Favorite Colors<input type="text" name="favorite_colors"></label>
             </div>
-            <label class="full-width">
-    <strong>Tell me about the recipient. <span class="required">*</span></strong>
 
-    <p class="field-description">
-        The more details you share, the more personal and meaningful your greeting card will be.
-        Don't worry about writing perfectly—just tell me about the person!
-    </p>
-
-    <div class="examples-box">
-        <strong>Ideas to include:</strong>
-
-        <ul>
-            <li>🎂 Age or milestone birthday</li>
-            <li>😂 Funny stories or inside jokes</li>
-            <li>🏡 Where they live</li>
-            <li>❤️ Spouse, children, grandchildren, or family</li>
-            <li>🐶 Pets</li>
-            <li>⚾ Favorite sports or teams</li>
-            <li>🎣 Hobbies and interests</li>
-            <li>💼 Occupation or retirement</li>
-            <li>🏆 Accomplishments or milestones</li>
-            <li>💬 Favorite sayings or nicknames</li>
-            <li>🌴 Vacations or favorite places</li>
-            <li>🎵 Favorite music or activities</li>
-            <li>💕 Special memories you'd like included</li>
-            <li>✨ Anything that makes them unique</li>
-        </ul>
-
-        <p>
-            <em>
-                The more you tell me, the more personal and unforgettable your greeting card will be.
-            </em>
-        </p>
-    </div>
-
-    <textarea
-        id="cardDetails"
-        name="card_details"
-        rows="10"
-        required
-        placeholder="Example:
-
-John is turning 50 this year. He lives in Florida with his wife Susan. They have three grandchildren that he absolutely adores. He's an avid golfer, loves the Green Bay Packers, and always tells terrible dad jokes. Everyone calls him 'Big John.' We'd love for the card to be funny but heartfelt and mention how much his family appreciates him."></textarea>
-</label>
+            <label>
+              Upload Photos (Optional)
+              <input type="file" name="photos" accept="image/*" multiple>
+            </label>
 
             <div class="mailing-choice">
-              <label>Where should we mail your greeting card?
+              <label>Where should we mail your greeting card? *
                 <select id="mailChoice" name="mail_to">
                   <option value="">Select one</option>
                   <option value="customer">Mail it to me, the person ordering</option>
