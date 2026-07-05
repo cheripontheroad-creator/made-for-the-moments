@@ -396,178 +396,97 @@
 
           <fieldset class="order-card">
             <legend>2. Customer Information</legend>
+
             <div class="form-grid">
-              <label>Full Name *<input type="text" name="customer_name" required></label>
-              <label>Email Address *<input type="email" name="email" required></label>
-              <label>Phone Number<input type="tel" name="phone"></label>
-              <label>Recipient's Name *<input type="text" name="recipient_name" required></label>
+              <label>Full Name *
+                <input type="text" name="customer_name" required>
+              </label>
+
+              <label>Email Address *
+                <input type="email" name="email" required>
+              </label>
+
+              <label>Phone Number
+                <input type="tel" name="phone">
+              </label>
+
+              <label>Recipient's Name *
+                <input type="text" name="recipient_name" required>
+              </label>
+
               <label>Occasion *
                 <select id="occasion" name="occasion" required>
                   <option value="">Choose an occasion</option>
-                  <option>Birthday</option><option>Anniversary</option><option>Wedding</option><option>Graduation</option>
-                  <option>Retirement</option><option>Mother's Day</option><option>Father's Day</option><option>Christmas</option>
-                  <option>Valentine's Day</option><option>Sympathy</option><option>Just Because</option><option>Other</option>
+                  <option>Birthday</option>
+                  <option>Anniversary</option>
+                  <option>Wedding</option>
+                  <option>Graduation</option>
+                  <option>Retirement</option>
+                  <option>Mother's Day</option>
+                  <option>Father's Day</option>
+                  <option>Christmas</option>
+                  <option>Valentine's Day</option>
+                  <option>Sympathy</option>
+                  <option>Just Because</option>
+                  <option>Other</option>
                 </select>
               </label>
+
               <label id="otherOccasionBox" class="conditional-inline" style="display:none;">Other Occasion *
                 <input type="text" id="otherOccasion" name="other_occasion">
               </label>
             </div>
-            <label class="delivery-date">
-              
-    <strong>What is your desired delivery date? <span class="required">*</span></strong>
 
-    <p class="field-description">
-        This is the date you would like your completed project delivered.
-        Songs are delivered by email, and greeting cards are mailed through USPS.
-        Please allow enough time for creation and mailing when selecting your date.
-    </p>
-
-    <input
-        type="date"
-        id="requestedDate"
-        name="needed_date"
-        required>
-</label> 
+            <div class="delivery-box">
+              <h3>📅 What is your desired delivery date? <span class="required">*</span></h3>
+              <p>
+                This is the date you would like your completed project delivered.
+                Songs are delivered by email. Greeting cards are mailed through USPS.
+                Please allow enough time for creation and mailing when selecting your date.
+              </p>
+              <input type="date" id="requestedDate" name="needed_date" required>
+            </div>
           </fieldset>
 
-          <fieldset class="order-card conditional-section" id="songSection">
-  <legend>3. Help Me Write a Song They’ll Never Forget</legend>
-
-  <div class="story-intro">
-    <h3>Every great song begins with a story.</h3>
-    <p>
-      Your personalized song will be created from the names, memories, emotions,
-      and special details you share with me.
-    </p>
-    <p>
-      Don’t worry about writing perfectly—just tell me the story.
-      The more details you provide, the more personal and meaningful your song will become.
-    </p>
-  </div>
-
-  <div class="story-box">
-    <h4>Tell me about the person, occasion, or story. <span class="required">*</span></h4>
-
-    <p class="story-description">
-      Imagine you’re telling me what makes this person, relationship, or moment special.
-      What should the song feel like? What memories, names, places, or inside jokes should be included?
-    </p>
-
-    <div class="ideas-box">
-      <h4>Ideas to Include</h4>
-
-      <div class="ideas-grid">
-        <div>🎂 Age or milestone birthday</div>
-        <div>❤️ Relationship or love story</div>
-        <div>😂 Funny stories or inside jokes</div>
-        <div>🏡 Where they live or grew up</div>
-        <div>👨‍👩‍👧 Family, children, or grandchildren</div>
-        <div>🐶 Pets</div>
-        <div>⚾ Favorite sports or teams</div>
-        <div>🎣 Hobbies and interests</div>
-        <div>💼 Career or retirement</div>
-        <div>🏆 Accomplishments</div>
-        <div>💬 Favorite sayings or nicknames</div>
-        <div>🌴 Vacations or favorite places</div>
-        <div>🎵 Favorite music style</div>
-        <div>💕 Special memories</div>
-        <div>✨ Anything that makes them unique</div>
-      </div>
-    </div>
-
-    <label>
-      Your Story *
-      <textarea
-        id="songDetails"
-        name="song_details"
-        rows="12"
-        required
-        placeholder="Example:
-
-Sarah and Mike are celebrating their 25th anniversary. They met in high school, built a life together in Iowa, raised three kids, and now love spending time with their grandkids. They enjoy camping, country music, Sunday coffee on the porch, and making everyone laugh. We'd like the song to feel heartfelt, romantic, and grateful."></textarea>
-    </label>
-  </div>
-
-  <hr class="section-divider">
-
-  <h3>Song Style</h3>
-
-  <div class="form-grid">
-    <label>Style of Song
-      <select id="songStyle" name="music_style" required>
-        <option value="">Choose a style</option>
-        <option>Country</option>
-        <option>Pop</option>
-        <option>Christian / Inspirational</option>
-        <option>Bluegrass</option>
-        <option>Rock</option>
-        <option>Acoustic</option>
-        <option>Folk</option>
-        <option>Funny / Lighthearted</option>
-        <option>Other</option>
-      </select>
-    </label>
-
-    <label>What mood should the song have?
-      <select id="songMood" name="song_mood" required>
-        <option value="">Choose a mood</option>
-        <option>Sweet</option>
-        <option>Emotional</option>
-        <option>Funny</option>
-        <option>Uplifting</option>
-        <option>Romantic</option>
-        <option>Celebratory</option>
-        <option>Sentimental</option>
-        <option>Inspirational</option>
-        <option>Upbeat</option>
-      </select>
-    </label>
-  </div>
-
-  <label>
-    Anything you do NOT want included?
-    <textarea name="song_avoid" rows="3"></textarea>
-  </label>
-</fieldset>
-
-          <fieldset class="order-card conditional-section" id="cardSection">
-            <legend>4. Help Me Create Something They'll Never Forget</legend>
+          <fieldset class="order-card" id="storySection">
+            <legend>3. Tell Me Your Story</legend>
 
             <div class="story-intro">
               <h3>Every great gift begins with a story.</h3>
               <p>
-                Every personalized greeting card is thoughtfully designed using the memories,
-                personalities, and special moments you share with me.
+                Tell me everything you'd like me to know about the recipient, the occasion,
+                and the memories or details you want included.
               </p>
               <p>
-                Don't worry about writing perfectly—just tell me about the person.
-                The more details you provide, the more personal and meaningful your gift will become.
+                If you order the bundle, you only need to share the story once. I will use it
+                to create both the song and the greeting card.
               </p>
             </div>
 
             <div class="story-box">
-              <h4>Tell me about the recipient. <span class="required">*</span></h4>
+              <h4>Help me create something personal and meaningful. <span class="required">*</span></h4>
 
               <p class="story-description">
-                Imagine you're introducing your favorite person to me. Tell me what makes them smile,
-                what makes them laugh, what makes them unique, and what details would make the card feel personal.
+                Imagine you're introducing this person or special moment to me.
+                What makes them smile? What makes them laugh? What memories, names,
+                places, phrases, or inside jokes should be included?
               </p>
 
               <div class="ideas-box">
                 <h4>Ideas to Include</h4>
                 <div class="ideas-grid">
                   <div>🎂 Age or milestone birthday</div>
+                  <div>❤️ Relationship or love story</div>
                   <div>😂 Funny stories or inside jokes</div>
-                  <div>🏡 Where they live</div>
-                  <div>❤️ Spouse, children, or grandchildren</div>
+                  <div>🏡 Where they live or grew up</div>
+                  <div>👨‍👩‍👧 Family, children, or grandchildren</div>
                   <div>🐶 Pets</div>
                   <div>⚾ Favorite sports or teams</div>
                   <div>🎣 Hobbies and interests</div>
-                  <div>💼 Occupation or retirement</div>
+                  <div>💼 Career or retirement</div>
                   <div>🏆 Accomplishments or milestones</div>
                   <div>💬 Favorite sayings or nicknames</div>
-                  <div>🌴 Favorite vacation spots</div>
+                  <div>🌴 Vacations or favorite places</div>
                   <div>🎵 Favorite music or activities</div>
                   <div>📖 Special memories</div>
                   <div>✨ Anything that makes them unique</div>
@@ -577,31 +496,97 @@ Sarah and Mike are celebrating their 25th anniversary. They met in high school, 
               <label>
                 Your Story *
                 <textarea
-                  id="cardDetailsText"
-                  name="card_details"
+                  id="sharedStory"
+                  name="shared_story"
                   rows="12"
                   required
-                  data-required-when-visible="true"
                   placeholder="Example:
 
-John is turning 50 this year. He lives in Florida with his wife Susan. They have three grandchildren who absolutely adore him. He loves golfing, cheering on the Green Bay Packers, telling terrible dad jokes, and spending weekends fishing. Everyone calls him 'Big John.' We'd love the card to be funny but heartfelt and mention how much his family appreciates everything he does."></textarea>
+John is turning 50 this year. He lives in Florida with his wife Susan. They have three grandchildren who absolutely adore him. He loves golfing, cheering on the Green Bay Packers, telling terrible dad jokes, and spending weekends fishing. Everyone calls him 'Big John.' We'd love this to be funny but heartfelt and mention how much his family appreciates everything he does."></textarea>
+              </label>
+            </div>
+          </fieldset>
+
+          <fieldset class="order-card conditional-section" id="songSection">
+            <legend>4. Song Details</legend>
+
+            <div class="story-intro">
+              <h3>Help Me Shape the Song</h3>
+              <p>
+                Choose the style and mood that best match the story you shared above.
+              </p>
+            </div>
+
+            <div class="form-grid">
+              <label>Style of Song
+                <select id="songStyle" name="music_style" data-required-when-visible="true">
+                  <option value="">Choose a style</option>
+                  <option>Country</option>
+                  <option>Pop</option>
+                  <option>Christian / Inspirational</option>
+                  <option>Bluegrass</option>
+                  <option>Rock</option>
+                  <option>Acoustic</option>
+                  <option>Folk</option>
+                  <option>Funny / Lighthearted</option>
+                  <option>Other</option>
+                </select>
+              </label>
+
+              <label>What mood should the song have?
+                <select id="songMood" name="song_mood" data-required-when-visible="true">
+                  <option value="">Choose a mood</option>
+                  <option>Sweet</option>
+                  <option>Emotional</option>
+                  <option>Funny</option>
+                  <option>Uplifting</option>
+                  <option>Romantic</option>
+                  <option>Celebratory</option>
+                  <option>Sentimental</option>
+                  <option>Inspirational</option>
+                  <option>Upbeat</option>
+                </select>
               </label>
             </div>
 
-            <hr class="section-divider">
+            <label>
+              Anything you do NOT want included?
+              <textarea name="song_avoid" rows="3"></textarea>
+            </label>
+          </fieldset>
 
-            <h3>Greeting Card Style</h3>
+          <fieldset class="order-card conditional-section" id="cardSection">
+            <legend>5. Greeting Card Details</legend>
+
+            <div class="story-intro">
+              <h3>Help Me Design the Card</h3>
+              <p>
+                Choose the look and mailing option for the greeting card.
+                I will use the story you shared above to personalize the design and message.
+              </p>
+            </div>
 
             <div class="form-grid">
               <label>Card Style
-                <select name="card_style">
+                <select name="card_style" data-required-when-visible="true">
                   <option value="">Choose a style</option>
-                  <option>Elegant</option><option>Funny</option><option>Sweet</option><option>Cute</option>
-                  <option>Rustic</option><option>Floral</option><option>Pet-themed</option><option>Modern</option><option>Simple</option>
-                  <option>Minimalist</option><option>Vintage</option>
+                  <option>Elegant</option>
+                  <option>Funny</option>
+                  <option>Sweet</option>
+                  <option>Cute</option>
+                  <option>Rustic</option>
+                  <option>Floral</option>
+                  <option>Pet-themed</option>
+                  <option>Modern</option>
+                  <option>Simple</option>
+                  <option>Minimalist</option>
+                  <option>Vintage</option>
                 </select>
               </label>
-              <label>Favorite Colors<input type="text" name="favorite_colors"></label>
+
+              <label>Favorite Colors
+                <input type="text" name="favorite_colors">
+              </label>
             </div>
 
             <label>
@@ -611,7 +596,7 @@ John is turning 50 this year. He lives in Florida with his wife Susan. They have
 
             <div class="mailing-choice">
               <label>Where should we mail your greeting card? *
-                <select id="mailChoice" name="mail_to">
+                <select id="mailChoice" name="mail_to" data-required-when-visible="true">
                   <option value="">Select one</option>
                   <option value="customer">Mail it to me, the person ordering</option>
                   <option value="recipient">Mail it directly to the recipient</option>
@@ -621,27 +606,54 @@ John is turning 50 this year. He lives in Florida with his wife Susan. They have
           </fieldset>
 
           <fieldset class="order-card conditional-section" id="mailSection">
-            <legend>5. Mailing Address</legend>
+            <legend>6. Mailing Address</legend>
             <div class="form-grid">
-              <label>Name for Mailing<input type="text" name="mail_name"></label>
-              <label>Street Address<input type="text" name="street"></label>
-              <label>Apartment or Suite<input type="text" name="apt"></label>
-              <label>City<input type="text" name="city"></label>
-              <label>State<input type="text" name="state"></label>
-              <label>ZIP Code<input type="text" name="zip"></label>
+              <label>Name for Mailing
+                <input type="text" name="mail_name" data-required-when-visible="true">
+              </label>
+
+              <label>Street Address
+                <input type="text" name="street" data-required-when-visible="true">
+              </label>
+
+              <label>Apartment or Suite
+                <input type="text" name="apt">
+              </label>
+
+              <label>City
+                <input type="text" name="city" data-required-when-visible="true">
+              </label>
+
+              <label>State
+                <input type="text" name="state" data-required-when-visible="true">
+              </label>
+
+              <label>ZIP Code
+                <input type="text" name="zip" data-required-when-visible="true">
+              </label>
             </div>
           </fieldset>
 
           <fieldset class="order-card">
-            <legend>6. Anything Else?</legend>
-            <label>Additional requests or details<textarea name="additional_notes" rows="4"></textarea></label>
+            <legend>7. Anything Else?</legend>
+            <label>Additional requests or details
+              <textarea name="additional_notes" rows="4"></textarea>
+            </label>
           </fieldset>
 
-          <aside class="order-summary" aria-live="polite">
+          <aside class="order-summary sticky-summary" aria-live="polite">
             <h3>Order Summary</h3>
-            <div class="summary-line"><span id="summaryProduct">No product selected</span><strong id="summaryPrice">$0.00</strong></div>
-            <div class="summary-total"><span>Total</span><strong id="summaryTotal">$0.00</strong></div>
-            <p class="summary-note">After the form is connected to payment, customers will pay securely by card or PayPal.</p>
+            <div class="summary-line">
+              <span id="summaryProduct">No product selected</span>
+              <strong id="summaryPrice">$0.00</strong>
+            </div>
+            <div class="summary-total">
+              <span>Total</span>
+              <strong id="summaryTotal">$0.00</strong>
+            </div>
+            <p class="summary-note">
+              After the form is connected to payment, customers will pay securely by card or PayPal.
+            </p>
             <div class="payment-buttons">
               <a class="pay-button disabled" id="payButton" href="#" aria-disabled="true">Continue to Payment</a>
             </div>
