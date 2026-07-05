@@ -1,190 +1,577 @@
-.order-section {
-  padding: 5rem 1.25rem;
-  background: linear-gradient(180deg, #fffaf7 0%, #ffffff 100%);
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Made for the Moments | Personalized Songs & Greeting Cards</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="order-section.css" />
+</head>
 
-.order-wrap {
-  max-width: 1100px;
-  margin: 0 auto;
-}
+<body>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Made for the Moments home">
+      <div class="logo">♪</div>
+      <div>
+        <h1>Made for the Moments</h1>
+        <p>Personalized songs and greeting cards</p>
+      </div>
+    </a>
 
-.order-form {
-  display: grid;
-  gap: 1.25rem;
-}
+    <nav class="site-nav" aria-label="Main navigation">
+      <a href="#gallery">Gallery</a>
+      <a href="#song-samples">Song Samples</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#testimonials">Testimonials</a>
+      <a class="header-button" href="#order-form">Start Your Order</a>
+    </nav>
+  </header>
 
-.order-card,
-.order-summary {
-  background: #ffffff;
-  border: 1px solid rgba(40, 30, 60, 0.12);
-  border-radius: 22px;
-  padding: 1.5rem;
-  box-shadow: 0 12px 35px rgba(40, 30, 60, 0.08);
-}
+  <main id="top">
 
-.order-card legend {
-  font-size: 1.25rem;
-  font-weight: 800;
-  color: #2b2342;
-  margin-bottom: 1rem;
-}
+    <section class="hero hero-new">
+      <div class="hero-overlay"></div>
 
-.gift-option {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  gap: 1rem;
-  align-items: center;
-  padding: 1.1rem;
-  border: 2px solid rgba(40, 30, 60, 0.12);
-  border-radius: 18px;
-  cursor: pointer;
-  margin-bottom: 1rem;
-  transition: 0.2s ease;
-}
+      <div class="hero-content">
+        <div class="eyebrow">Unique and custom gifts made from the heart</div>
 
-.gift-option:hover,
-.gift-option:has(input:checked) {
-  border-color: #ff8a3d;
-  background: #fff4ed;
-  transform: translateY(-2px);
-}
+        <h2>Turn someone’s story into a song or card they’ll never forget.</h2>
 
-.gift-content strong {
-  display: block;
-  font-size: 1.05rem;
-  color: #2b2342;
-  margin-bottom: 0.25rem;
-}
+        <p class="hero-description">
+          Share the occasion, special details, memories, names, inside jokes, and the feeling you want to capture.
+          I’ll create something personal, meaningful, and made just for the moment.
+        </p>
 
-.gift-content small {
-  display: block;
-  color: #60586f;
-  line-height: 1.4;
-}
+        <div class="hero-notes">
+          <div class="hero-note">
+            <span class="note-icon">💌</span>
+            <p>Customers receive a personalized card mailed to the recipient.</p>
+          </div>
 
-.gift-price {
-  font-size: 1.15rem;
-  font-weight: 800;
-  color: #2b2342;
-}
+          <div class="hero-note">
+            <span class="note-icon">🎵</span>
+            <p>Songs include MP3 and MP4 files.</p>
+          </div>
+        </div>
 
-.featured-gift {
-  border-color: rgba(255, 138, 61, 0.45);
-}
+        <div class="what-i-create-heading">
+          <span></span>
+          <h3>What I Create</h3>
+          <span></span>
+        </div>
 
-.form-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem;
-}
+        <div class="hero-packages">
+          <article class="package featured-package">
+            <div class="package-icon">🎁</div>
+            <strong>Song + Greeting Card Bundle</strong>
+            <p>A personalized song and a custom 5x7 photo card for one special moment.</p>
+            <p class="package-price">$29.99</p>
+            <p>Includes mailed greeting card, MP3, and MP4 download.</p>
+            <a href="#order-form">Order Bundle</a>
+          </article>
 
-.order-form label {
-  display: grid;
-  gap: 0.4rem;
-  color: #2b2342;
-  font-weight: 700;
-}
+          <article class="package">
+            <div class="package-icon">💌</div>
+            <strong>Personalized Greeting Card</strong>
+            <p>Custom heartfelt greeting card created from your memories and details.</p>
+            <p class="package-price">$7.99</p>
+            <p>Includes personalized 5x7 photo card mailed to the recipient.</p>
+            <a href="#order-form">Order a Card</a>
+          </article>
 
-.order-form input,
-.order-form select,
-.order-form textarea {
-  width: 100%;
-  border: 1px solid rgba(40, 30, 60, 0.18);
-  border-radius: 14px;
-  padding: 0.85rem 0.95rem;
-  font: inherit;
-  background: #ffffff;
-}
+          <article class="package">
+            <div class="package-icon">🎵</div>
+            <strong>Personalized Song</strong>
+            <p>Custom personalized song created for your special occasion.</p>
+            <p class="package-price">$24.99</p>
+            <p>Includes MP3 and MP4 digital download.</p>
+            <a href="#order-form">Order a Song</a>
+          </article>
+        </div>
+      </div>
+    </section>
 
-.order-form textarea {
-  resize: vertical;
-}
+    <section class="section categories" id="categories">
+      <div class="section-heading">
+        <span class="eyebrow">Made for every occasion</span>
+        <h2>Choose your moment</h2>
+        <p>Each card or song can be customized with names, dates, photos, hobbies, memories, and personal messages.</p>
+      </div>
 
-.conditional-section {
-  display: none;
-}
+      <div class="category-grid">
+        <article><h3>Birthdays</h3><p>Milestone birthdays, kids’ themes, funny songs, heartfelt tributes, and party-ready cards.</p></article>
+        <article><h3>Weddings & Anniversaries</h3><p>Celebrate the couple, their journey, and the love story they are still writing.</p></article>
+        <article><h3>Sympathy & Memorial</h3><p>Comforting keepsakes that honor a loved one’s life, memories, and legacy.</p></article>
+        <article><h3>Graduation</h3><p>Cards and songs for high school, college, nursing, cosmetology, teaching, and more.</p></article>
+        <article><h3>Mother’s & Father’s Day</h3><p>Personal messages for the people who give love, strength, guidance, and support.</p></article>
+        <article><h3>Holidays & Friendship</h3><p>Christmas, Valentine’s Day, friendship, retirement, thank-you gifts, and special surprises.</p></article>
+      </div>
+    </section>
 
-.conditional-section.show {
-  display: block;
-}
+    <section class="section gallery-section" id="gallery">
+      <div class="section-heading">
+        <span class="eyebrow">Sample Gallery</span>
+        <h2>Greeting card examples</h2>
+        <p>Browse examples by occasion. Your final card will be personalized with your photos, message, occasion, and details.</p>
+      </div>
 
-.mailing-choice {
-  margin-top: 1rem;
-  padding: 1rem;
-  border-radius: 16px;
-  background: #f8f5ff;
-}
+      <div class="gallery-filters">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="birthday">Birthday</button>
+        <button class="filter-btn" data-filter="anniversary">Anniversary</button>
+        <button class="filter-btn" data-filter="wedding">Wedding</button>
+        <button class="filter-btn" data-filter="graduation">Graduation</button>
+        <button class="filter-btn" data-filter="holidays">Holidays</button>
+        <button class="filter-btn" data-filter="sympathy">Sympathy</button>
+      </div>
 
-.mailing-choice p {
-  margin: 0 0 0.75rem;
-  font-weight: 800;
-  color: #2b2342;
-}
+      <div class="gallery-grid">
+        <figure class="gallery-item" data-category="birthday">
+          <img src="images/Birthday/21st Birthday.png" alt="21st Birthday Card">
+          <figcaption>21st Birthday</figcaption>
+        </figure>
 
-.mailing-choice label,
-.terms-check {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  font-weight: 600;
-}
+        <figure class="gallery-item" data-category="birthday">
+          <img src="images/Birthday/Bourbon and Cigar Theme.png" alt="Bourbon and Cigar Birthday Card">
+          <figcaption>Bourbon & Cigar Theme</figcaption>
+        </figure>
 
-.mailing-choice input,
-.terms-check input,
-.gift-option input {
-  width: auto;
-}
+        <figure class="gallery-item" data-category="birthday">
+          <img src="images/Birthday/Princess Themed.png" alt="Princess Birthday Card">
+          <figcaption>Princess Theme</figcaption>
+        </figure>
 
-.summary-line,
-.summary-total {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: 0.8rem 0;
-  border-bottom: 1px solid rgba(40, 30, 60, 0.12);
-}
+        <figure class="gallery-item" data-category="birthday">
+          <img src="images/Birthday/Soccer Themed.png" alt="Soccer Birthday Card">
+          <figcaption>Soccer Theme</figcaption>
+        </figure>
 
-.summary-total {
-  font-size: 1.2rem;
-  border-bottom: none;
-}
+        <figure class="gallery-item" data-category="birthday">
+          <img src="images/Birthday/Woman's 50th Birthday.png" alt="Woman's 50th Birthday Card">
+          <figcaption>50th Birthday</figcaption>
+        </figure>
 
-.summary-note {
-  color: #60586f;
-}
+        <figure class="gallery-item" data-category="anniversary">
+          <img src="images/Anniversary/25th Anniversary to a couple.png" alt="25th Anniversary Couple Card">
+          <figcaption>25th Anniversary Couple</figcaption>
+        </figure>
 
-.pay-button,
-.submit-order {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  border: 0;
-  border-radius: 999px;
-  padding: 0.9rem 1.4rem;
-  font-weight: 800;
-  text-decoration: none;
-  background: #ff7a2f;
-  color: #ffffff;
-  cursor: pointer;
-}
+        <figure class="gallery-item" data-category="anniversary">
+          <img src="images/Anniversary/25th Anniversary.png" alt="25th Anniversary Card">
+          <figcaption>25th Anniversary</figcaption>
+        </figure>
 
-.pay-button.disabled {
-  opacity: 0.5;
-  pointer-events: none;
-}
+        <figure class="gallery-item" data-category="anniversary">
+          <img src="images/Anniversary/5th Anniversary.png" alt="5th Anniversary Card">
+          <figcaption>5th Anniversary</figcaption>
+        </figure>
 
-.submit-order {
-  justify-self: start;
-  font-size: 1rem;
-}
+        <figure class="gallery-item" data-category="wedding">
+          <img src="images/Wedding/Destination Wedding.png" alt="Destination Wedding Card">
+          <figcaption>Destination Wedding</figcaption>
+        </figure>
 
-@media (max-width: 760px) {
-  .form-grid,
-  .gift-option {
-    grid-template-columns: 1fr;
-  }
+        <figure class="gallery-item" data-category="wedding">
+          <img src="images/Wedding/Wedding 1.png" alt="Wedding Card">
+          <figcaption>Wedding</figcaption>
+        </figure>
 
-  .gift-price {
-    justify-self: start;
-  }
-}
+        <figure class="gallery-item" data-category="graduation">
+          <img src="images/Graduation/College Graduation.png" alt="College Graduation Card">
+          <figcaption>College Graduation</figcaption>
+        </figure>
+
+        <figure class="gallery-item" data-category="graduation">
+          <img src="images/Graduation/High School Graduation - Cosmetology .png" alt="Cosmetology Graduation Card">
+          <figcaption>Cosmetology Graduation</figcaption>
+        </figure>
+
+        <figure class="gallery-item" data-category="graduation">
+          <img src="images/Graduation/High School Graduation - Teacher.png" alt="Teacher Graduation Card">
+          <figcaption>Teacher Graduation</figcaption>
+        </figure>
+
+        <figure class="gallery-item" data-category="holidays">
+          <img src="images/Holidays/Christmas Card.png" alt="Christmas Card">
+          <figcaption>Christmas</figcaption>
+        </figure>
+
+        <figure class="gallery-item" data-category="holidays">
+          <img src="images/Holidays/Christmas Card 2.png" alt="Christmas Card 2">
+          <figcaption>Christmas</figcaption>
+        </figure>
+
+        <figure class="gallery-item" data-category="holidays">
+          <img src="images/Holidays/Happy Easter .png" alt="Happy Easter Card">
+          <figcaption>Easter</figcaption>
+        </figure>
+
+        <figure class="gallery-item" data-category="holidays">
+          <img src="images/Holidays/Happy Father's Day.png" alt="Father's Day Card">
+          <figcaption>Father's Day</figcaption>
+        </figure>
+
+        <figure class="gallery-item" data-category="holidays">
+          <img src="images/Holidays/Happy Mother's Day.png" alt="Mother's Day Card">
+          <figcaption>Mother's Day</figcaption>
+        </figure>
+
+        <figure class="gallery-item" data-category="holidays">
+          <img src="images/Holidays/Valentine's Day.png" alt="Valentine's Day Card">
+          <figcaption>Valentine's Day</figcaption>
+        </figure>
+
+        <figure class="gallery-item" data-category="holidays">
+          <img src="images/Holidays/Valentine's Day 2.png" alt="Valentine's Day Card 2">
+          <figcaption>Valentine's Day</figcaption>
+        </figure>
+
+        <figure class="gallery-item" data-category="sympathy">
+          <img src="images/Sympathy/Angel Wings.png" alt="Angel Wings Sympathy Card">
+          <figcaption>Angel Wings</figcaption>
+        </figure>
+
+        <figure class="gallery-item" data-category="sympathy">
+          <img src="images/Sympathy/Sympathy Golf Themed.png" alt="Golf Sympathy Card">
+          <figcaption>Golf Sympathy Theme</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section song-samples" id="song-samples">
+      <div class="section-heading">
+        <span class="eyebrow">Listen to Examples</span>
+        <h2>Personalized song samples</h2>
+        <p>Hear examples of custom songs created for birthdays, holidays, memorials, and special moments.</p>
+      </div>
+
+      <div class="song-grid">
+        <article class="song-card">
+          <h3>Christmas Cheers for Mary &amp; Kurt</h3>
+          <p>Christmas song sample</p>
+          <audio controls>
+            <source src="audio/Christmas Cheers for Mary _ Kurt (1).mp3" type="audio/mpeg">
+            Your browser does not support the audio player.
+          </audio>
+        </article>
+
+        <article class="song-card">
+          <h3>Happy 70th Birthday Hazel</h3>
+          <p>Birthday song sample</p>
+          <audio controls>
+            <source src="audio/Happy 70th Birthday Hazel.mp3" type="audio/mpeg">
+            Your browser does not support the audio player.
+          </audio>
+        </article>
+
+        <article class="song-card">
+          <h3>Happy Birthday Patrick</h3>
+          <p>Birthday song sample</p>
+          <audio controls>
+            <source src="audio/Happy Birthday Patrick.mp3" type="audio/mpeg">
+            Your browser does not support the audio player.
+          </audio>
+        </article>
+
+        <article class="song-card">
+          <h3>Remembering Darlene</h3>
+          <p>Memorial video song sample</p>
+          <video controls>
+            <source src="audio/Remembering Darlene_lyricsvideo_v_1.mp4" type="video/mp4">
+            Your browser does not support the video player.
+          </video>
+        </article>
+      </div>
+    </section>
+
+    <section class="section pricing" id="pricing">
+      <div class="section-heading">
+        <span class="eyebrow">Simple Pricing</span>
+        <h2>Personalized gifts at affordable prices</h2>
+      </div>
+
+      <div class="pricing-grid">
+        <article class="price-card">
+          <h3>Greeting Card</h3>
+          <p class="price">$7.99</p>
+          <ul>
+            <li>Personalized 5x7 photo card</li>
+            <li>Custom message and design</li>
+            <li>Mailed to the recipient</li>
+          </ul>
+          <a href="#order-form">Order a Card</a>
+        </article>
+
+        <article class="price-card highlighted">
+          <div class="badge">Best Value</div>
+          <h3>Song + Card Bundle</h3>
+          <p class="price">$29.99</p>
+          <ul>
+            <li>Personalized song</li>
+            <li>MP3 and MP4 download</li>
+            <li>Custom 5x7 mailed card</li>
+          </ul>
+          <a href="#order-form">Order the Bundle</a>
+        </article>
+
+        <article class="price-card">
+          <h3>Personalized Song</h3>
+          <p class="price">$24.99</p>
+          <ul>
+            <li>Custom song for any occasion</li>
+            <li>MP3 digital file</li>
+            <li>MP4 video file</li>
+          </ul>
+          <a href="#order-form">Order a Song</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="section testimonials" id="testimonials">
+      <div class="section-heading">
+        <span class="eyebrow">Kind Words</span>
+        <h2>Made to feel personal</h2>
+      </div>
+
+      <div class="testimonial-grid">
+        <blockquote>
+          “The song captured our story perfectly. It felt like it was written just for us.”
+          <cite>— Happy Customer</cite>
+        </blockquote>
+
+        <blockquote>
+          “The card was beautiful and meaningful. It was so much more personal than anything from a store.”
+          <cite>— Card Recipient</cite>
+        </blockquote>
+
+        <blockquote>
+          “Such a special keepsake. The details, memories, and message made it unforgettable.”
+          <cite>— Gift Giver</cite>
+        </blockquote>
+      </div>
+    </section>
+
+    <section class="order-section" id="order-form">
+      <div class="order-wrap">
+        <div class="form-heading">
+          <span class="eyebrow">Start Your Order</span>
+          <h2>Create a personalized gift they'll never forget</h2>
+          <p>
+            Choose your gift, share the story, and I'll create something meaningful for your special moment.
+            Songs are delivered by email as MP3 and MP4 files. Greeting cards are mailed to you or directly to the recipient.
+          </p>
+        </div>
+
+        <form class="order-form" id="momentOrderForm" name="momentOrderForm">
+          <fieldset class="order-card choose-gift">
+            <legend>1. What would you like to order?</legend>
+
+            <label class="gift-option">
+              <input type="radio" name="product" value="song" data-name="Personalized Song" data-price="24.99" required>
+              <span class="gift-content">
+                <strong>🎵 Personalized Song</strong>
+                <small>Custom song for any occasion. Includes MP3 and MP4 digital download by email.</small>
+              </span>
+              <span class="gift-price">$24.99</span>
+            </label>
+
+            <label class="gift-option">
+              <input type="radio" name="product" value="card" data-name="Personalized Greeting Card" data-price="7.99">
+              <span class="gift-content">
+                <strong>💌 Personalized Greeting Card</strong>
+                <small>Custom 5x7 greeting card, personalized message, beautiful design, and mailed via USPS.</small>
+              </span>
+              <span class="gift-price">$7.99</span>
+            </label>
+
+            <label class="gift-option featured-gift">
+              <input type="radio" name="product" value="bundle" data-name="Song + Greeting Card Bundle" data-price="29.99">
+              <span class="gift-content">
+                <strong>🎁 Song + Greeting Card Bundle</strong>
+                <small>Best value. Includes a personalized song and matching personalized greeting card.</small>
+              </span>
+              <span class="gift-price">$29.99</span>
+            </label>
+          </fieldset>
+
+          <fieldset class="order-card">
+            <legend>2. Customer Information</legend>
+            <div class="form-grid">
+              <label>Full Name *<input type="text" name="customer_name" required></label>
+              <label>Email Address *<input type="email" name="email" required></label>
+              <label>Phone Number<input type="tel" name="phone"></label>
+              <label>Recipient's Name *<input type="text" name="recipient_name" required></label>
+              <label>Occasion *
+                <select id="occasion" name="occasion" required>
+                  <option value="">Choose an occasion</option>
+                  <option>Birthday</option><option>Anniversary</option><option>Wedding</option><option>Graduation</option>
+                  <option>Retirement</option><option>Mother's Day</option><option>Father's Day</option><option>Christmas</option>
+                  <option>Valentine's Day</option><option>Sympathy</option><option>Just Because</option><option>Other</option>
+                </select>
+              </label>
+              <label id="otherOccasionBox" class="conditional-inline" style="display:none;">Other Occasion *
+                <input type="text" id="otherOccasion" name="other_occasion">
+              </label>
+              <label>Requested Date *<input type="date" id="requestedDate" name="needed_date" required></label>
+            </div>
+          </fieldset>
+
+          <fieldset class="order-card conditional-section" id="songSection">
+            <legend>3. Song Details</legend>
+            <div class="form-grid">
+              <label>Style of Song
+                <select id="songStyle" name="music_style">
+                  <option value="">Choose a style</option>
+                  <option>Country</option><option>Pop</option><option>Christian / Inspirational</option><option>Bluegrass</option>
+                  <option>Rock</option><option>Acoustic</option><option>Folk</option><option>Funny / Lighthearted</option><option>Other</option>
+                </select>
+              </label>
+              <label>What mood should the song have?
+                <select id="songMood" name="song_mood">
+                  <option value="">Choose a mood</option>
+                  <option>Sweet</option><option>Emotional</option><option>Funny</option><option>Uplifting</option>
+                  <option>Romantic</option><option>Celebratory</option><option>Sentimental</option><option>Inspirational</option><option>Upbeat</option>
+                </select>
+              </label>
+            </div>
+            <label>Details to include in the song
+              <textarea id="songDetails" name="song_details" rows="7" placeholder="Names, memories, phrases, dates, inside jokes, or special details to include"></textarea>
+            </label>
+            <label>Anything you do NOT want included?<textarea name="song_avoid" rows="3"></textarea></label>
+          </fieldset>
+
+          <fieldset class="order-card conditional-section" id="cardSection">
+            <legend>4. Help Me Create Something They'll Never Forget</legend>
+
+            <div class="story-intro">
+              <h3>Every great gift begins with a story.</h3>
+              <p>
+                Every personalized greeting card is thoughtfully designed using the memories,
+                personalities, and special moments you share with me.
+              </p>
+              <p>
+                Don't worry about writing perfectly—just tell me about the person.
+                The more details you provide, the more personal and meaningful your gift will become.
+              </p>
+            </div>
+
+            <div class="story-box">
+              <h4>Tell me about the recipient. <span class="required">*</span></h4>
+
+              <p class="story-description">
+                Imagine you're introducing your favorite person to me. Tell me what makes them smile,
+                what makes them laugh, what makes them unique, and what details would make the card feel personal.
+              </p>
+
+              <div class="ideas-box">
+                <h4>Ideas to Include</h4>
+                <div class="ideas-grid">
+                  <div>🎂 Age or milestone birthday</div>
+                  <div>😂 Funny stories or inside jokes</div>
+                  <div>🏡 Where they live</div>
+                  <div>❤️ Spouse, children, or grandchildren</div>
+                  <div>🐶 Pets</div>
+                  <div>⚾ Favorite sports or teams</div>
+                  <div>🎣 Hobbies and interests</div>
+                  <div>💼 Occupation or retirement</div>
+                  <div>🏆 Accomplishments or milestones</div>
+                  <div>💬 Favorite sayings or nicknames</div>
+                  <div>🌴 Favorite vacation spots</div>
+                  <div>🎵 Favorite music or activities</div>
+                  <div>📖 Special memories</div>
+                  <div>✨ Anything that makes them unique</div>
+                </div>
+              </div>
+
+              <label>
+                Your Story *
+                <textarea
+                  id="cardDetailsText"
+                  name="card_details"
+                  rows="12"
+                  required
+                  data-required-when-visible="true"
+                  placeholder="Example:
+
+John is turning 50 this year. He lives in Florida with his wife Susan. They have three grandchildren who absolutely adore him. He loves golfing, cheering on the Green Bay Packers, telling terrible dad jokes, and spending weekends fishing. Everyone calls him 'Big John.' We'd love the card to be funny but heartfelt and mention how much his family appreciates everything he does."></textarea>
+              </label>
+            </div>
+
+            <hr class="section-divider">
+
+            <h3>Greeting Card Style</h3>
+
+            <div class="form-grid">
+              <label>Card Style
+                <select name="card_style">
+                  <option value="">Choose a style</option>
+                  <option>Elegant</option><option>Funny</option><option>Sweet</option><option>Cute</option>
+                  <option>Rustic</option><option>Floral</option><option>Pet-themed</option><option>Modern</option><option>Simple</option>
+                  <option>Minimalist</option><option>Vintage</option>
+                </select>
+              </label>
+              <label>Favorite Colors<input type="text" name="favorite_colors"></label>
+            </div>
+
+            <label>
+              Upload Photos (Optional)
+              <input type="file" name="photos" accept="image/*" multiple>
+            </label>
+
+            <div class="mailing-choice">
+              <label>Where should we mail your greeting card? *
+                <select id="mailChoice" name="mail_to">
+                  <option value="">Select one</option>
+                  <option value="customer">Mail it to me, the person ordering</option>
+                  <option value="recipient">Mail it directly to the recipient</option>
+                </select>
+              </label>
+            </div>
+          </fieldset>
+
+          <fieldset class="order-card conditional-section" id="mailSection">
+            <legend>5. Mailing Address</legend>
+            <div class="form-grid">
+              <label>Name for Mailing<input type="text" name="mail_name"></label>
+              <label>Street Address<input type="text" name="street"></label>
+              <label>Apartment or Suite<input type="text" name="apt"></label>
+              <label>City<input type="text" name="city"></label>
+              <label>State<input type="text" name="state"></label>
+              <label>ZIP Code<input type="text" name="zip"></label>
+            </div>
+          </fieldset>
+
+          <fieldset class="order-card">
+            <legend>6. Anything Else?</legend>
+            <label>Additional requests or details<textarea name="additional_notes" rows="4"></textarea></label>
+          </fieldset>
+
+          <aside class="order-summary" aria-live="polite">
+            <h3>Order Summary</h3>
+            <div class="summary-line"><span id="summaryProduct">No product selected</span><strong id="summaryPrice">$0.00</strong></div>
+            <div class="summary-total"><span>Total</span><strong id="summaryTotal">$0.00</strong></div>
+            <p class="summary-note">After the form is connected to payment, customers will pay securely by card or PayPal.</p>
+            <div class="payment-buttons">
+              <a class="pay-button disabled" id="payButton" href="#" aria-disabled="true">Continue to Payment</a>
+            </div>
+          </aside>
+
+          <label class="terms-check">
+            <input type="checkbox" name="terms" required>
+            I understand every song and greeting card is custom created specifically for me. All sales are final once production has started.
+          </label>
+
+          <button type="submit" class="submit-order">Create My Personalized Gift</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© <span id="year"></span> Made for the Moments. Personalized creations for life’s special moments.</p>
+  </footer>
+
+  <script src="order-section.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
