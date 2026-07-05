@@ -588,11 +588,24 @@ John is turning 50 this year. He lives in Florida with his wife Susan. They have
                 <input type="text" name="favorite_colors">
               </label>
             </div>
+<label>
+    <strong>Upload at least one photo <span class="required">*</span></strong>
 
-            <label>
-              Upload Photos (Optional)
-              <input type="file" name="photos" accept="image/*" multiple>
-            </label>
+    <p class="field-description">
+        Please upload at least one high-quality photo you'd like incorporated into your greeting card.
+        You may upload multiple photos if you'd like me to choose the best one(s).
+    </p>
+
+    <input
+        type="file"
+        id="cardPhotos"
+        name="photos"
+        accept="image/*"
+        multiple
+        required>
+
+</label>
+            
 
             <div class="mailing-choice">
               <label>Where should we mail your greeting card? *
