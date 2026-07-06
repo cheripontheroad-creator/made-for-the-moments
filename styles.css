@@ -97,7 +97,7 @@ a {
   padding: 70px 6% 90px;
   overflow: hidden;
   background:
-    linear-gradient(rgba(255, 248, 251, 0.86), rgba(255, 248, 251, 0.92)),
+    linear-gradient(rgba(255, 248, 251, 0.70), rgba(255, 248, 251, 0.78)),
     url("images/hero-celebration-background.png");
   background-size: cover;
   background-position: center;
