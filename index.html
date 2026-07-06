@@ -481,14 +481,27 @@ John is turning 50 this year. He lives in Florida with his wife Susan. They have
 </label>
             
 
-            <div class="mailing-choice">
-              <label>Where should we mail your greeting card? *
-                <select id="mailChoice" name="mail_to" data-required-when-visible="true">
-                  <option value="">Select one</option>
-                  <option value="customer">Mail it to me, the person ordering</option>
-                  <option value="recipient">Mail it directly to the recipient</option>
-                </select>
-              </label>
+            <div class="form-grid">
+
+  <label>
+    Where should we mail your greeting card? <span class="required">*</span>
+    <select id="mailChoice" required>
+      <option value="">Select one</option>
+      <option value="customer">Mail to Me</option>
+      <option value="recipient">Mail Directly to Recipient</option>
+      <option value="digital">Digital Download Only</option>
+    </select>
+  </label>
+
+  <label>
+    Do you need your card sooner than 7 days?
+    <select id="rushChoice">
+      <option value="no">No</option>
+      <option value="yes">Yes</option>
+    </select>
+  </label>
+
+</div>
               <p class="field-description">
   Please allow 7 days for USPS delivery. If you need the card in less than 7 days,
   I can send the final design to Walgreens for printing and it can be picked up there.
