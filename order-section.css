@@ -157,3 +157,29 @@
 .delivery-box p {
     max-width: 850px;
 }
+
+.example-link-list {
+  max-width: 850px;
+  margin: 30px auto 0;
+  display: grid;
+  gap: 12px;
+}
+
+.example-link-list a {
+  display: block;
+  background: #ffffff;
+  border: 2px solid #eadde7;
+  border-radius: 14px;
+  padding: 14px 18px;
+  color: #7b2c58;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 8px 20px rgba(74, 38, 70, 0.08);
+  transition: 0.25s;
+}
+
+.example-link-list a:hover {
+  border-color: #d48bb4;
+  background: #fff7fb;
+  transform: translateY(-2px);
+}
