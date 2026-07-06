@@ -87,3 +87,43 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 });
+const payButton = document.getElementById("payButton");
+
+if (payButton) {
+  payButton.addEventListener("click", async function (event) {
+    event.preventDefault();
+
+    const selectedProduct = document.querySelector('input[name="product"]:checked');
+
+    if (!selectedProduct) {
+      alert("Please select a product before continuing to payment.");
+      return;
+    }
+
+    payButton.textContent = "Opening Checkout...";
+
+    try {
+      const response = await fetch("/api/create-checkout-session", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          product: selectedProduct.value
+        })
+      });
+
+      const data = await response.json();
+
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        alert("Unable to start checkout. Please try again.");
+        payButton.textContent = "Continue to Payment";
+      }
+    } catch (error) {
+      alert("There was a problem connecting to Stripe.");
+      payButton.textContent = "Continue to Payment";
+    }
+  });
+}
