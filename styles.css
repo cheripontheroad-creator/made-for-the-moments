@@ -224,7 +224,7 @@ a {
 }
 
 .section {
-  padding: 80px 6%;
+  padding: 40px 20px;
 }
 
 .section-heading {
@@ -354,7 +354,7 @@ a {
 }
 
 .form-section {
-  padding: 80px 6%;
+  padding: 40px 6%;
   background: #fff0f5;
 }
 
