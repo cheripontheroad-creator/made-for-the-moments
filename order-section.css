@@ -202,16 +202,25 @@
   margin-top: 22px;
 }
 
-.pay-button.disabled {
-    background: #bfbfbf;
-    box-shadow: none;
-    cursor: not-allowed;
-    pointer-events: none;
-    opacity: 1;
+.pay-button {
+    display: inline-block;
+    background: #22c55e;        /* Bright Green */
+    color: #fff;
+    text-decoration: none;
+    padding: 16px 34px;
+    border-radius: 999px;
+    font-weight: 800;
+    font-size: 1.05rem;
+    border: none;
+    cursor: pointer;
+    transition: all .25s ease;
+    box-shadow: 0 10px 24px rgba(34,197,94,.35);
 }
 
 .pay-button:hover {
-  background: #5f2144;
+    background: #16a34a;
+    transform: translateY(-2px);
+    box-shadow: 0 14px 28px rgba(34,197,94,.45);
 }
 
 .terms-check {
