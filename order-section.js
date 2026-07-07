@@ -19,6 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const mailChoice = document.getElementById("mailChoice");
   const payButton = document.getElementById("payButton");
+  const termsCheckbox = document.getElementById("termsCheckbox");
 
   function hideOptionalSections() {
     if (songSection) songSection.style.display = "none";
@@ -89,9 +90,41 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  // ===================================
+// Enable payment after accepting terms
+// ===================================
+
+if (termsCheckbox && payButton) {
+
+    payButton.classList.add("disabled");
+    payButton.setAttribute("aria-disabled", "true");
+
+    termsCheckbox.addEventListener("change", function () {
+
+        if (this.checked) {
+
+            payButton.classList.remove("disabled");
+            payButton.removeAttribute("aria-disabled");
+
+        } else {
+
+            payButton.classList.add("disabled");
+            payButton.setAttribute("aria-disabled", "true");
+
+        }
+
+    });
+
+}
+
   if (payButton) {
     payButton.addEventListener("click", async function (e) {
       e.preventDefault();
+      
+      if (!termsCheckbox.checked) {
+    alert("Please accept the terms before continuing.");
+    return;
+}
 
       const selectedProduct = document.querySelector('input[name="product"]:checked');
 
