@@ -183,3 +183,49 @@
   background: #fff7fb;
   transform: translateY(-2px);
 }
+
+.order-summary,
+.terms-check {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1100px;
+}
+
+.order-summary {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 28px;
+  box-shadow: 0 12px 30px rgba(74, 38, 70, 0.12);
+}
+
+.payment-buttons {
+  margin-top: 22px;
+}
+
+.pay-button {
+  display: inline-block;
+  background: #7b2c58;
+  color: #ffffff !important;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  border-radius: 999px;
+  padding: 14px 32px;
+  font-weight: 800;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 10px 24px rgba(123, 44, 88, 0.25);
+}
+
+.pay-button:hover {
+  background: #5f2144;
+}
+
+.terms-check {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 10px;
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 18px;
+}
