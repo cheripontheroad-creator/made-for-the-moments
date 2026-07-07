@@ -42,3 +42,29 @@ filterButtons.forEach((button) => {
     });
   });
 });
+document.addEventListener("DOMContentLoaded", function () {
+  const filterButtons = document.querySelectorAll(".filter-btn");
+  const galleryItems = document.querySelectorAll(".gallery-link-list .gallery-item");
+
+  filterButtons.forEach(function (button) {
+    button.addEventListener("click", function () {
+      const filter = this.getAttribute("data-filter");
+
+      filterButtons.forEach(function (btn) {
+        btn.classList.remove("active");
+      });
+
+      this.classList.add("active");
+
+      galleryItems.forEach(function (item) {
+        const category = item.getAttribute("data-category");
+
+        if (filter === "all" || category === filter) {
+          item.style.display = "block";
+        } else {
+          item.style.display = "none";
+        }
+      });
+    });
+  });
+});
