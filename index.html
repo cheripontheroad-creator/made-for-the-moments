@@ -548,23 +548,29 @@ John is turning 50 this year. He lives in Florida with his wife Susan. They have
             <p class="summary-note">
               You will be taken to Stripe's secure checkout page to complete your payment.
             </p>
-            <div class="payment-buttons">
-              <a class="pay-button"
-   id="payButton"
-   href="#">
-   Continue to Payment
+        <a
+    id="payButton"
+    class="pay-button disabled"
+    href="#"
+    aria-disabled="true"
+>
+    Complete Secure Checkout
+</a>
+   Proceed to Secure Checkout
 </a>
             </div>
           </aside>
 
           <label class="terms-check">
-            <input type="checkbox" name="terms" required>
+          <input
+    type="checkbox"
+    id="termsCheckbox"
+    name="terms"
+    required
+>
             I understand every song and greeting card is custom created specifically for me. All sales are final once production has started.
           </label>
 
-          <button type="submit" class="submit-order">Create My Personalized Gift</button>
-        </form>
-      </div>
     </section>
   </main>
 
