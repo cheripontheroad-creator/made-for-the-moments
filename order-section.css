@@ -202,19 +202,12 @@
   margin-top: 22px;
 }
 
-.pay-button {
-  display: inline-block;
-  background: #7b2c58;
-  color: #ffffff !important;
-  text-align: center;
-  text-decoration: none;
-  border: none;
-  border-radius: 999px;
-  padding: 14px 32px;
-  font-weight: 800;
-  font-size: 1rem;
-  cursor: pointer;
-  box-shadow: 0 10px 24px rgba(123, 44, 88, 0.25);
+.pay-button.disabled {
+    background: #bfbfbf;
+    box-shadow: none;
+    cursor: not-allowed;
+    pointer-events: none;
+    opacity: 1;
 }
 
 .pay-button:hover {
