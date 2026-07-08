@@ -28,18 +28,20 @@ a {
 }
 
 .brand-logo-row {
-  height: 170px;
+  height: 210px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10px 5%;
+  overflow: visible;
+  padding-top: 20px;
 }
 
 .brand-logo {
-  width: 720px;
-  max-width: 88vw;
+  width: 760px;
+  max-width: 90vw;
   height: auto;
   display: block;
+  object-fit: contain;
 }
 
 .brand-nav {
