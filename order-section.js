@@ -1,13 +1,15 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const productRadios = document.querySelectorAll('input[name="product"]');
+  const steps = Array.from(document.querySelectorAll(".wizard-step"));
+  const nextBtn = document.getElementById("nextStep");
+  const prevBtn = document.getElementById("prevStep");
+  const stepCounter = document.getElementById("stepCounter");
+  const stepTitle = document.getElementById("stepTitle");
+  const progressFill = document.getElementById("progressFill");
 
+  const productRadios = document.querySelectorAll('input[name="product"]');
   const summaryProduct = document.getElementById("summaryProduct");
   const summaryPrice = document.getElementById("summaryPrice");
   const summaryTotal = document.getElementById("summaryTotal");
-
-  const songSection = document.getElementById("songSection");
-  const cardSection = document.getElementById("cardSection");
-  const mailSection = document.getElementById("mailSection");
 
   const occasion = document.getElementById("occasion");
   const otherOccasionBox = document.getElementById("otherOccasionBox");
@@ -17,47 +19,218 @@ document.addEventListener("DOMContentLoaded", function () {
   const otherSongStyleBox = document.getElementById("otherSongStyleBox");
   const otherSongStyle = document.getElementById("otherSongStyle");
 
+  const rushChoice = document.getElementById("rushChoice");
+  const rushInfo = document.getElementById("rushInfo");
   const mailChoice = document.getElementById("mailChoice");
+
   const payButton = document.getElementById("payButton");
   const termsCheckbox = document.getElementById("termsCheckbox");
 
-  function hideOptionalSections() {
-    if (songSection) songSection.style.display = "none";
-    if (cardSection) cardSection.style.display = "none";
-    if (mailSection) mailSection.style.display = "none";
+  const answerMap = {
+    customerName: document.getElementById("customerName"),
+    customerEmail: document.getElementById("customerEmail"),
+    recipientName: document.getElementById("recipientName"),
+    occasion: document.getElementById("occasion"),
+    requestedDate: document.getElementById("requestedDate"),
+    songStyle: document.getElementById("songStyle"),
+    songMood: document.getElementById("songMood"),
+    vocalStyle: document.getElementById("vocalStyle"),
+    cardStyle: document.getElementById("cardStyle"),
+    mailChoice: document.getElementById("mailChoice"),
+    rushChoice: document.getElementById("rushChoice")
+  };
+
+  let currentStepIndex = 0;
+
+  function selectedProductValue() {
+    const selected = document.querySelector('input[name="product"]:checked');
+    return selected ? selected.value : "";
+  }
+
+  function getVisibleSteps() {
+    const product = selectedProductValue();
+
+    return steps.filter(function (step) {
+      const allowedProducts = step.dataset.product;
+
+      if (!allowedProducts) return true;
+      if (!product) return false;
+
+      return allowedProducts.split(",").includes(product);
+    }).filter(function (step) {
+      if (step.id === "mailSection") {
+        return product === "card" || product === "bundle";
+      }
+      return true;
+    });
+  }
+
+  function updateStepDisplay() {
+    const visibleSteps = getVisibleSteps();
+
+    if (currentStepIndex >= visibleSteps.length) {
+      currentStepIndex = visibleSteps.length - 1;
+    }
+
+    steps.forEach(function (step) {
+      step.classList.remove("active");
+    });
+
+    const activeStep = visibleSteps[currentStepIndex];
+    if (!activeStep) return;
+
+    activeStep.classList.add("active");
+
+    if (stepCounter) {
+      stepCounter.textContent =
+        "Step " + (currentStepIndex + 1) + " of " + visibleSteps.length;
+    }
+
+    if (stepTitle) {
+      stepTitle.textContent = activeStep.dataset.title || "";
+    }
+
+    if (progressFill) {
+      progressFill.style.width =
+        ((currentStepIndex + 1) / visibleSteps.length * 100) + "%";
+    }
+
+    if (prevBtn) {
+      prevBtn.disabled = currentStepIndex === 0;
+    }
+
+    if (nextBtn) {
+      nextBtn.style.display =
+        currentStepIndex === visibleSteps.length - 1 ? "none" : "inline-block";
+    }
+
+    activeStep.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  function validateCurrentStep() {
+    const visibleSteps = getVisibleSteps();
+    const activeStep = visibleSteps[currentStepIndex];
+    if (!activeStep) return true;
+
+    const requiredFields = activeStep.querySelectorAll(
+      "input[required], select[required], textarea[required]"
+    );
+
+    for (const field of requiredFields) {
+      if (field.type === "radio") {
+        const group = activeStep.querySelectorAll(
+          'input[name="' + field.name + '"]'
+        );
+
+        if (![...group].some((radio) => radio.checked)) {
+          field.reportValidity();
+          return false;
+        }
+      } else if (!field.value) {
+        field.reportValidity();
+        return false;
+      }
+    }
+
+    const product = selectedProductValue();
+
+    if (
+      (product === "song" || product === "bundle") &&
+      activeStep.id === "songSection"
+    ) {
+      for (const id of ["songStyle", "songMood", "vocalStyle"]) {
+        const field = document.getElementById(id);
+        if (field && !field.value) {
+          field.reportValidity();
+          return false;
+        }
+      }
+    }
+
+    if (
+      (product === "card" || product === "bundle") &&
+      activeStep.id === "cardSection"
+    ) {
+      for (const id of ["cardStyle", "mailChoice"]) {
+        const field = document.getElementById(id);
+        if (field && !field.value) {
+          field.reportValidity();
+          return false;
+        }
+      }
+
+      const photos = document.getElementById("cardPhotos");
+      if (photos && photos.files.length === 0) {
+        alert("Please upload at least one photo for the greeting card.");
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  function updateProductSummary() {
+    const selected = document.querySelector('input[name="product"]:checked');
+
+    if (!selected) {
+      if (summaryProduct) summaryProduct.textContent = "No product selected";
+      if (summaryPrice) summaryPrice.textContent = "$0.00";
+      if (summaryTotal) summaryTotal.textContent = "$0.00";
+      return;
+    }
+
+    const productName = selected.dataset.name || "Selected Product";
+    const productPrice = Number(selected.dataset.price || 0);
+
+    if (summaryProduct) summaryProduct.textContent = productName;
+    if (summaryPrice) summaryPrice.textContent = "$" + productPrice.toFixed(2);
+    if (summaryTotal) summaryTotal.textContent = "$" + productPrice.toFixed(2);
+  }
+
+  function updateAnswers() {
+    Object.keys(answerMap).forEach(function (key) {
+      const field = answerMap[key];
+      const target = document.querySelector('[data-answer="' + key + '"]');
+
+      if (!field || !target) return;
+
+      target.textContent = field.value || "—";
+    });
   }
 
   productRadios.forEach(function (radio) {
     radio.addEventListener("change", function () {
-      const productName = this.dataset.name || "Selected Product";
-      const productPrice = Number(this.dataset.price || 0);
-      const productValue = this.value;
-
-      if (summaryProduct) summaryProduct.textContent = productName;
-      if (summaryPrice) summaryPrice.textContent = "$" + productPrice.toFixed(2);
-      if (summaryTotal) summaryTotal.textContent = "$" + productPrice.toFixed(2);
-
-      hideOptionalSections();
-
-      if (productValue === "song" && songSection) {
-        songSection.style.display = "block";
-      }
-
-      if (productValue === "card" && cardSection) {
-        cardSection.style.display = "block";
-      }
-
-      if (productValue === "bundle") {
-        if (songSection) songSection.style.display = "block";
-        if (cardSection) cardSection.style.display = "block";
-      }
+      updateProductSummary();
+      currentStepIndex = 0;
+      updateStepDisplay();
+      updateAnswers();
     });
   });
+
+  document.querySelectorAll("input, select, textarea").forEach(function (field) {
+    field.addEventListener("input", updateAnswers);
+    field.addEventListener("change", updateAnswers);
+  });
+
+  if (nextBtn) {
+    nextBtn.addEventListener("click", function () {
+      if (!validateCurrentStep()) return;
+      currentStepIndex += 1;
+      updateStepDisplay();
+    });
+  }
+
+  if (prevBtn) {
+    prevBtn.addEventListener("click", function () {
+      currentStepIndex -= 1;
+      updateStepDisplay();
+    });
+  }
 
   if (occasion && otherOccasionBox && otherOccasion) {
     occasion.addEventListener("change", function () {
       if (this.value === "Other") {
-        otherOccasionBox.style.display = "block";
+        otherOccasionBox.style.display = "flex";
         otherOccasion.required = true;
       } else {
         otherOccasionBox.style.display = "none";
@@ -70,7 +243,7 @@ document.addEventListener("DOMContentLoaded", function () {
   if (songStyle && otherSongStyleBox && otherSongStyle) {
     songStyle.addEventListener("change", function () {
       if (this.value === "Other") {
-        otherSongStyleBox.style.display = "block";
+        otherSongStyleBox.style.display = "flex";
         otherSongStyle.required = true;
       } else {
         otherSongStyleBox.style.display = "none";
@@ -80,60 +253,53 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  if (mailChoice && mailSection) {
-    mailChoice.addEventListener("change", function () {
-      if (this.value === "customer" || this.value === "recipient") {
-        mailSection.style.display = "block";
-      } else {
-        mailSection.style.display = "none";
-      }
+  if (rushChoice && rushInfo) {
+    rushChoice.addEventListener("change", function () {
+      rushInfo.style.display = this.value === "yes" ? "block" : "none";
     });
   }
 
-  // ===================================
-// Enable payment after accepting terms
-// ===================================
+  if (mailChoice) {
+    mailChoice.addEventListener("change", function () {
+      updateStepDisplay();
+    });
+  }
 
-if (termsCheckbox && payButton) {
-
+  if (termsCheckbox && payButton) {
     payButton.classList.add("disabled");
     payButton.setAttribute("aria-disabled", "true");
 
     termsCheckbox.addEventListener("change", function () {
-
-        if (this.checked) {
-
-            payButton.classList.remove("disabled");
-            payButton.removeAttribute("aria-disabled");
-
-        } else {
-
-            payButton.classList.add("disabled");
-            payButton.setAttribute("aria-disabled", "true");
-
-        }
-
+      if (this.checked) {
+        payButton.classList.remove("disabled");
+        payButton.removeAttribute("aria-disabled");
+      } else {
+        payButton.classList.add("disabled");
+        payButton.setAttribute("aria-disabled", "true");
+      }
     });
-
-}
+  }
 
   if (payButton) {
     payButton.addEventListener("click", async function (e) {
       e.preventDefault();
-      
-      if (!termsCheckbox.checked) {
-    alert("Please accept the terms before continuing.");
-    return;
-}
 
-      const selectedProduct = document.querySelector('input[name="product"]:checked');
+      if (termsCheckbox && !termsCheckbox.checked) {
+        alert("Please accept the terms before continuing.");
+        return;
+      }
+
+      const selectedProduct = document.querySelector(
+        'input[name="product"]:checked'
+      );
 
       if (!selectedProduct) {
         alert("Please select a product.");
         return;
       }
 
-      payButton.textContent = "Opening Checkout...";
+      payButton.textContent = "Opening Secure Checkout...";
+      payButton.classList.add("disabled");
 
       try {
         const response = await fetch("/api/create-checkout-session", {
@@ -153,13 +319,19 @@ if (termsCheckbox && payButton) {
         } else {
           console.error(data);
           alert("Unable to start checkout.");
-          payButton.textContent = "Continue to Payment";
+          payButton.classList.remove("disabled");
+          payButton.textContent = "Complete Secure Checkout";
         }
       } catch (err) {
         console.error(err);
         alert("Error connecting to Stripe.");
-        payButton.textContent = "Continue to Payment";
+        payButton.classList.remove("disabled");
+        payButton.textContent = "Complete Secure Checkout";
       }
     });
   }
+
+  updateProductSummary();
+  updateAnswers();
+  updateStepDisplay();
 });
