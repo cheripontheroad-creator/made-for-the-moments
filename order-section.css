@@ -407,3 +407,20 @@ input[type="file"] {
     width: 100%;
   }
 }
+
+@media (max-width: 900px) {
+  .wizard-layout {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .wizard-form {
+    order: 1;
+  }
+
+  .wizard-summary {
+    order: 2;
+    position: static;
+    margin-top: 28px;
+  }
+}
