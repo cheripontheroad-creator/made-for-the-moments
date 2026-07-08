@@ -501,3 +501,54 @@ footer {
     font-size: 2rem;
   }
 }
+
+.example-modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  inset: 0;
+  background: rgba(0,0,0,.75);
+  padding: 30px;
+  align-items: center;
+  justify-content: center;
+}
+
+.example-modal.active {
+  display: flex;
+}
+
+.example-modal-content {
+  background: #fff;
+  border-radius: 18px;
+  padding: 25px;
+  max-width: 850px;
+  width: 100%;
+  max-height: 90vh;
+  overflow: auto;
+  position: relative;
+}
+
+.example-modal-close {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  border: none;
+  background: #d94370;
+  color: #fff;
+  font-size: 28px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.example-modal img,
+.example-modal video {
+  width: 100%;
+  border-radius: 12px;
+}
+
+.example-modal audio {
+  width: 100%;
+  margin-top: 30px;
+}
