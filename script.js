@@ -19,35 +19,38 @@ document.addEventListener("DOMContentLoaded", function () {
 
       galleryItems.forEach(function (item) {
         const category = item.getAttribute("data-category");
-
-        if (filter === "all" || category === filter) {
-          item.style.display = "block";
-        } else {
-          item.style.display = "none";
-        }
+        item.style.display = filter === "all" || category === filter ? "block" : "none";
       });
     });
   });
-});
-document.addEventListener("DOMContentLoaded", function () {
+
   const modal = document.getElementById("exampleModal");
   const modalBody = document.getElementById("exampleModalBody");
   const closeBtn = document.getElementById("closeExampleModal");
   const links = document.querySelectorAll(".example-modal-link");
 
+  function closeModal() {
+    if (!modal || !modalBody) return;
+    modal.classList.remove("active");
+    modal.setAttribute("aria-hidden", "true");
+    modalBody.innerHTML = "";
+  }
+
   links.forEach(function (link) {
     link.addEventListener("click", function (e) {
       e.preventDefault();
+      if (!modal || !modalBody) return;
 
       const type = this.dataset.type;
       const src = this.dataset.src;
+      const title = this.textContent.trim();
 
       if (type === "image") {
-        modalBody.innerHTML = `<img src="${src}" alt="Example">`;
+        modalBody.innerHTML = `<img src="${src}" alt="${title}">`;
       }
 
       if (type === "audio") {
-        modalBody.innerHTML = `<audio controls autoplay><source src="${src}"></audio>`;
+        modalBody.innerHTML = `<h3>${title}</h3><audio controls autoplay><source src="${src}"></audio>`;
       }
 
       if (type === "video") {
@@ -55,18 +58,21 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
       modal.classList.add("active");
+      modal.setAttribute("aria-hidden", "false");
     });
   });
 
-  closeBtn.addEventListener("click", function () {
-    modal.classList.remove("active");
-    modalBody.innerHTML = "";
-  });
+  if (closeBtn) {
+    closeBtn.addEventListener("click", closeModal);
+  }
 
-  modal.addEventListener("click", function (e) {
-    if (e.target === modal) {
-      modal.classList.remove("active");
-      modalBody.innerHTML = "";
-    }
+  if (modal) {
+    modal.addEventListener("click", function (e) {
+      if (e.target === modal) closeModal();
+    });
+  }
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") closeModal();
   });
 });
