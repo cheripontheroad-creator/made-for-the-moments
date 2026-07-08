@@ -557,10 +557,12 @@ footer {
 }
 
 .logo-header {
-  background: #eef7ff;
-  justify-content: center;
-  padding: 28px 5% 22px;
-  border-bottom: none;
+    background: #eef7ff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2px 5%;
+}
 }
 
 .logo-wrap {
@@ -569,10 +571,10 @@ footer {
   width: 100%;
 }
 
-.main-logo {
-  width: min(760px, 90vw);
-  height: auto;
-  display: block;
+.main-logo{
+    width:600px;
+    max-width:90%;
+    height:auto;
 }
 
 .nav-bar {
