@@ -409,16 +409,10 @@
                       <option value="">Select one</option>
                       <option value="customer">Mail to Me</option>
                       <option value="recipient">Mail Directly to Recipient</option>
-                      <option value="digital">Walgreens Pickup / Digital Design</option>
+                      <option value="digital">Walgreens Pickup</option>
                     </select>
                   </label>
 
-                  <label>Do you need your card sooner than 7 days?
-                    <select id="rushChoice" name="rush_choice">
-                      <option value="no">No</option>
-                      <option value="yes">Yes, Walgreens pickup</option>
-                    </select>
-                  </label>
                 </div>
 
                 <div id="rushInfo" class="delivery-box" style="display:none;">
@@ -431,27 +425,29 @@
             <section class="wizard-step conditional-step" id="mailSection" data-product="card,bundle" data-step="7" data-title="Mailing Address">
               <div class="question-card">
                 <p class="step-eyebrow">Question 7</p>
-                <h3>Where should the greeting card be mailed?</h3>
-                <p class="question-help">Skip this if you chose Walgreens pickup / digital design.</p>
+                <h3>Where should the greeting card be sent?</h3>
+<p class="question-help">
+  Please enter the mailing address or the Walgreens location where you would like the card sent for pickup.
+</p>
 
                 <div class="form-grid">
                   <label>Name for Mailing
-                    <input type="text" name="mail_name">
+                    <input type="text" name="mail_name" required>
                   </label>
                   <label>Street Address
-                    <input type="text" name="street">
+                    <input type="text" name="street" required>
                   </label>
                   <label>Apartment or Suite
                     <input type="text" name="apt">
                   </label>
                   <label>City
-                    <input type="text" name="city">
+                    <input type="text" name="city" required>
                   </label>
                   <label>State
-                    <input type="text" name="state">
+                    <input type="text" name="state" required>
                   </label>
                   <label>ZIP Code
-                    <input type="text" name="zip">
+                    <input type="text" name="zip" required>
                   </label>
                 </div>
               </div>
