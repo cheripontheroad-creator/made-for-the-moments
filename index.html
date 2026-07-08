@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Made for the Moments | Personalized Songs & Greeting Cards</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="order-section.css" />
+</head>
+
+<body>
+  <header class="brand-header">
+    <div class="brand-logo-row">
+      <a href="#top" aria-label="Made for the Moments home">
+        <img
+          src="images/Made for the Moments Logo Horizontal.png"
+          alt="Made for the Moments"
+          class="brand-logo"
+        >
+      </a>
+    </div>
+
+    <nav class="brand-nav" aria-label="Main navigation">
+      <a href="#song-samples">Song Samples</a>
+      <a href="#gallery">Greeting Card Examples</a>
+      <a href="#testimonials">Testimonials</a>
+      <a class="brand-order-button" href="#order-form">Start Your Order</a>
+    </nav>
+  </header>
+
+  <main id="top">
+
+    <section class="hero hero-new">
+      <div class="hero-overlay"></div>
+
+      <div class="hero-content">
+        <div class="eyebrow">Unique and custom gifts made from the heart</div>
+
+        <h2>Turn someone’s story into a song or card. Create a gift they’ll never forget.</h2>
+
+        <p class="hero-description">
+          Share the occasion, special details, memories, names, inside jokes, and the feeling you want to capture.
+          The more information you share, the more personal I can make your song, card, or bundle.
+          I’ll create something personal, meaningful, and made just for the moment.
+        </p>
+
+        <div class="what-i-create-heading">
+          <span></span>
+          <h3>What I Create</h3>
+          <span></span>
+        </div>
+
+        <div class="hero-packages">
+          <article class="package">
+            <div class="package-icon">🎵</div>
+            <strong>Personalized Song</strong>
+            <p>Custom personalized song created from your story, memories, and special details.</p>
+            <p class="package-price">$24.99</p>
+            <p>Includes MP3 and MP4 digital download by email.</p>
+            <a href="#order-form">Order a Song</a>
+          </article>
+
+          <article class="package">
+            <div class="package-icon">💌</div>
+            <strong>Personalized Greeting Card</strong>
+            <p>Personalized 5×7 greeting card created from your story, memories, photos, and special details.</p>
+            <p class="package-price">$7.99</p>
+            <p>Professionally printed and mailed via USPS. Need it sooner? Walgreens pickup is available.</p>
+            <a href="#order-form">Order a Card</a>
+          </article>
+
+          <article class="package featured-package">
+            <div class="package-icon">🎁</div>
+            <strong>Song + Greeting Card Bundle</strong>
+            <p>A personalized song and a custom 5×7 greeting card for one special moment.</p>
+            <p class="package-price">$29.99</p>
+            <p>Includes digital song delivery and greeting card mailed or sent to Walgreens.</p>
+            <a href="#order-form">Order Bundle</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section categories" id="categories">
+      <div class="section-heading">
+        <span class="eyebrow">Made for every occasion</span>
+       <p>Each song or card can be customized with names, dates, photos, hobbies, memories, personal messages, and meaningful details. The more information you share, the more personal I can make it.</p>
+      </div>
+    </section>
+
+    <section class="section examples-section" id="song-samples">
+      <div class="section-heading">
+        <span class="eyebrow">Examples</span>
+        <h2>Song examples</h2>
+        <p>Listen to sample personalized songs. The more information you share, the more personal and meaningful your song or card can be.</p>
+      </div>
+
+      <div class="example-link-list">
+        <a href="#" class="example-modal-link" data-type="audio" data-src="audio/Christmas Cheers for Mary _ Kurt (1).mp3">🎵 Christmas Cheers for Mary &amp; Kurt</a>
+        <a href="#" class="example-modal-link" data-type="audio" data-src="audio/Happy 70th Birthday Hazel.mp3">🎵 Happy 70th Birthday Hazel</a>
+        <a href="#" class="example-modal-link" data-type="audio" data-src="audio/Happy Birthday Patrick.mp3">🎵 Happy Birthday Patrick</a>
+        <a href="#" class="example-modal-link" data-type="video" data-src="audio/Remembering Darlene_lyricsvideo_v_1.mp4">🎵 Remembering Darlene</a>
+        <a href="#" class="example-modal-link" data-type="video" data-src="audio/Sweet 12 in the 630_lyricsvideo_v_2.mp4">🎵 Sweet 12 in the 630</a>
+        <a href="#" class="example-modal-link" data-type="video" data-src="audio/21 Looks Good On You Ethan_lyricsvideo_v_1.mp4">🎵 21 Looks Good On You Ethan</a>
+      </div>
+    </section>
+
+    <section class="section examples-section" id="gallery">
+      <div class="section-heading">
+        <span class="eyebrow">Greeting Card Gallery</span>
+        <h2>Greeting card examples</h2>
+        <p>Browse sample greeting cards by occasion. Your final card will be personalized with your photos, story, occasion, and special details.</p>
+      </div>
+
+      <div class="gallery-filters">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="birthday">Birthday</button>
+        <button class="filter-btn" data-filter="anniversary">Anniversary</button>
+        <button class="filter-btn" data-filter="wedding">Wedding</button>
+        <button class="filter-btn" data-filter="graduation">Graduation</button>
+        <button class="filter-btn" data-filter="holidays">Holidays</button>
+        <button class="filter-btn" data-filter="sympathy">Sympathy</button>
+      </div>
+
+      <div class="example-link-list gallery-link-list">
+        <a href="#" class="gallery-item example-modal-link" data-category="birthday" data-type="image" data-src="images/Birthday/21st Birthday.png">💌 21st Birthday</a>
+        <a href="#" class="gallery-item example-modal-link" data-category="birthday" data-type="image" data-src="images/Birthday/Bourbon and Cigar Theme.png">💌 Bourbon &amp; Cigar Birthday</a>
+        <a href="#" class="gallery-item example-modal-link" data-category="birthday" data-type="image" data-src="images/Birthday/Princess Themed.png">💌 Princess Birthday</a>
+        <a href="#" class="gallery-item example-modal-link" data-category="birthday" data-type="image" data-src="images/Birthday/Soccer Themed.png">💌 Soccer Birthday</a>
+        <a href="#" class="gallery-item example-modal-link" data-category="birthday" data-type="image" data-src="images/Birthday/Woman's 50th Birthday.png">💌 50th Birthday</a>
+        <a href="#" class="gallery-item example-modal-link" data-category="anniversary" data-type="image" data-src="images/Anniversary/25th Anniversary to a couple.png">💌 25th Anniversary Couple</a>
+        <a href="#" class="gallery-item example-modal-link" data-category="anniversary" data-type="image" data-src="images/Anniversary/25th Anniversary.png">💌 25th Anniversary</a>
+        <a href="#" class="gallery-item example-modal-link" data-category="anniversary" data-type="image" data-src="images/Anniversary/5th Anniversary.png">💌 5th Anniversary</a>
+        <a href="#" class="gallery-item example-modal-link" data-category="wedding" data-type="image" data-src="images/Wedding/Destination Wedding.png">💌 Destination Wedding</a>
+        <a href="#" class="gallery-item example-modal-link" data-category="wedding" data-type="image" data-src="images/Wedding/Wedding 1.png">💌 Wedding</a>
+        <a href="#" class="gallery-item example-modal-link" data-category="graduation" data-type="image" data-src="images/Graduation/College Graduation.png">💌 College Graduation</a>
+        <a href="#" class="gallery-item example-modal-link" data-category="graduation" data-type="image" data-src="images/Graduation/High School Graduation - Cosmetology .png">💌 Cosmetology Graduation</a>
+        <a href="#" class="gallery-item example-modal-link" data-category="graduation" data-type="image" data-src="images/Graduation/High School Graduation - Teacher.png">💌 Teacher Graduation</a>
+        <a href="#" class="gallery-item example-modal-link" data-category="holidays" data-type="image" data-src="images/Holidays/Christmas Card.png">💌 Christmas Card</a>
+        <a href="#" class="gallery-item example-modal-link" data-category="holidays" data-type="image" data-src="images/Holidays/Christmas Card 2.png">💌 Christmas Card 2</a>
+        <a href="#" class="gallery-item example-modal-link" data-category="holidays" data-type="image" data-src="images/Holidays/Happy Easter .png">💌 Easter</a>
+        <a href="#" class="gallery-item example-modal-link" data-category="holidays" data-type="image" data-src="images/Holidays/Happy Father's Day.png">💌 Father's Day</a>
+        <a href="#" class="gallery-item example-modal-link" data-category="holidays" data-type="image" data-src="images/Holidays/Happy Mother's Day.png">💌 Mother's Day</a>
+        <a href="#" class="gallery-item example-modal-link" data-category="holidays" data-type="image" data-src="images/Holidays/Valentine's Day.png">💌 Valentine's Day</a>
+        <a href="#" class="gallery-item example-modal-link" data-category="holidays" data-type="image" data-src="images/Holidays/Valentine's Day 2.png">💌 Valentine's Day 2</a>
+        <a href="#" class="gallery-item example-modal-link" data-category="sympathy" data-type="image" data-src="images/Sympathy/Angel Wings.png">💌 Angel Wings Sympathy</a>
+        <a href="#" class="gallery-item example-modal-link" data-category="sympathy" data-type="image" data-src="images/Sympathy/Sympathy Golf Themed.png">💌 Golf Sympathy Theme</a>
+      </div>
+    </section>
+
+    <section class="section testimonials" id="testimonials">
+      <div class="section-heading">
+        <span class="eyebrow">Kind Words</span>
+        <h2>Made to feel personal</h2>
+      </div>
+
+      <div class="testimonial-grid">
+        <blockquote>“The song captured our story perfectly. It made me cry, it was so perfect.”<cite>— Marie</cite></blockquote>
+        <blockquote>“The card was beautiful and meaningful. It was so much more personal than anything from a store.”<cite>— Brian</cite></blockquote>
+        <blockquote>“Such a special keepsake. The details, memories, and message made it unforgettable.”<cite>— Mary</cite></blockquote>
+      </div>
+    </section>
+
+    <section class="order-section wizard-section" id="order-form">
+      <div class="wizard-shell">
+        <div class="form-heading">
+          <span class="eyebrow">Start Your Order</span>
+          <h2>Create a personalized gift they'll never forget</h2>
+          <p>One simple step at a time. Your answers will stay visible in the summary as you move through the order.</p>
+        </div>
+
+        <div class="wizard-layout">
+          <form class="wizard-form" id="momentOrderForm" name="momentOrderForm">
+            <div class="wizard-progress" aria-label="Order progress">
+              <div class="progress-top">
+                <span id="stepCounter">Step 1 of 8</span>
+                <span id="stepTitle">Choose Your Gift</span>
+              </div>
+              <div class="progress-bar"><div id="progressFill"></div></div>
+            </div>
+
+            <section class="wizard-step active" data-step="1" data-title="Choose Your Gift">
+              <div class="question-card">
+                <p class="step-eyebrow">Question 1</p>
+                <h3>What would you like to create?</h3>
+                <p class="question-help">Choose one option. The order summary will update automatically.</p>
+
+                <label class="gift-option">
+                  <input type="radio" name="product" value="song" data-name="Personalized Song" data-price="24.99" required>
+                  <span class="gift-content">
+                    <strong>🎵 Personalized Song</strong>
+                    <small>Custom song for any occasion. Includes MP3 and MP4 digital download by email.</small>
+                  </span>
+                  <span class="gift-price">$24.99</span>
+                </label>
+
+                <label class="gift-option">
+                  <input type="radio" name="product" value="card" data-name="Personalized Greeting Card" data-price="7.99">
+                  <span class="gift-content">
+                    <strong>💌 Personalized Greeting Card</strong>
+                    <small>Custom 5×7 greeting card mailed by USPS or sent to Walgreens for pickup.</small>
+                  </span>
+                  <span class="gift-price">$7.99</span>
+                </label>
+
+                <label class="gift-option featured-gift">
+                  <input type="radio" name="product" value="bundle" data-name="Song + Greeting Card Bundle" data-price="29.99">
+                  <span class="gift-content">
+                    <strong>🎁 Song + Greeting Card Bundle</strong>
+                    <small>Best value. Includes a personalized song and matching personalized greeting card.</small>
+                  </span>
+                  <span class="gift-price">$29.99</span>
+                </label>
+              </div>
+            </section>
+
+            <section class="wizard-step" data-step="2" data-title="Your Information">
+              <div class="question-card">
+                <p class="step-eyebrow">Question 2</p>
+                <h3>Who is placing the order?</h3>
+                <p class="question-help">This lets me contact you if I have questions about your personalized project.</p>
+
+                <div class="form-grid">
+                  <label>Full Name *
+                    <input type="text" id="customerName" name="customer_name" required>
+                  </label>
+                  <label>Email Address *
+                    <input type="email" id="customerEmail" name="email" required>
+                  </label>
+                  <label>Phone Number
+                    <input type="tel" id="customerPhone" name="phone">
+                  </label>
+                </div>
+              </div>
+            </section>
+
+            <section class="wizard-step" data-step="3" data-title="Recipient & Occasion">
+              <div class="question-card">
+                <p class="step-eyebrow">Question 3</p>
+                <h3>Who is this for and what is the occasion?</h3>
+
+                <div class="form-grid">
+                  <label>Recipient's Name *
+                    <input type="text" id="recipientName" name="recipient_name" required>
+                  </label>
+
+                  <label>Occasion *
+                    <select id="occasion" name="occasion" required>
+                      <option value="">Choose an occasion</option>
+                      <option>Birthday</option>
+                      <option>Anniversary</option>
+                      <option>Wedding</option>
+                      <option>Graduation</option>
+                      <option>Retirement</option>
+                      <option>Mother's Day</option>
+                      <option>Father's Day</option>
+                      <option>Christmas</option>
+                      <option>Valentine's Day</option>
+                      <option>Sympathy</option>
+                      <option>Just Because</option>
+                      <option>Other</option>
+                    </select>
+                  </label>
+
+                  <label id="otherOccasionBox" class="conditional-inline" style="display:none;">Other Occasion *
+                    <input type="text" id="otherOccasion" name="other_occasion">
+                  </label>
+                </div>
+
+                <div class="delivery-box">
+                  <h4>📅 What is your desired delivery date? <span class="required">*</span></h4>
+                  <p>Songs are delivered by email. Greeting cards are mailed through USPS. Please allow 7 days for greeting card delivery. If you need it sooner, I can send the final design to Walgreens for printing and it can be picked up there.</p>
+                  <input type="date" id="requestedDate" name="needed_date" required>
+                </div>
+              </div>
+            </section>
+
+            <section class="wizard-step" data-step="4" data-title="Tell the Story">
+              <div class="question-card">
+                <p class="step-eyebrow">Question 4</p>
+                <h3>Tell me the story.</h3>
+                <p class="question-help">The more information you give me, the more personal and meaningful I can make your song or card.</p>
+
+                <div class="ideas-box">
+                  <h4>Ideas to include</h4>
+                  <div class="ideas-grid">
+                    <div>🎂 Age or milestone birthday</div>
+                    <div>❤️ Relationship or love story</div>
+                    <div>😂 Funny stories or inside jokes</div>
+                    <div>🏡 Where they live or grew up</div>
+                    <div>👨‍👩‍👧 Family, children, or grandchildren</div>
+                    <div>🐶 Pets</div>
+                    <div>⚾ Favorite sports or teams</div>
+                    <div>🎣 Hobbies and interests</div>
+                    <div>💼 Career or retirement</div>
+                    <div>🏆 Accomplishments or milestones</div>
+                    <div>💬 Favorite sayings or nicknames</div>
+                    <div>📖 Special memories</div>
+                  </div>
+                </div>
+
+                <label>Your Story *
+                  <textarea id="sharedStory" name="shared_story" rows="10" required placeholder="Tell me about the recipient, occasion, memories, names, places, favorite sayings, inside jokes, and anything else that makes this special."></textarea>
+                </label>
+              </div>
+            </section>
+
+            <section class="wizard-step conditional-step" id="songSection" data-product="song,bundle" data-step="5" data-title="Song Details">
+              <div class="question-card">
+                <p class="step-eyebrow">Question 5</p>
+                <h3>Help me shape the song.</h3>
+                <p class="question-help">Choose the style, mood, and vocalist preference for the song.</p>
+
+                <div class="form-grid">
+                  <label>Style of Song *
+                    <select id="songStyle" name="music_style">
+                      <option value="">Choose a style</option>
+                      <option>Country</option>
+                      <option>Pop</option>
+                      <option>Christian / Inspirational</option>
+                      <option>Bluegrass</option>
+                      <option>Rock</option>
+                      <option>Acoustic</option>
+                      <option>Folk</option>
+                      <option value="Other">Other</option>
+                    </select>
+                  </label>
+
+                  <label>What mood should the song have? *
+                    <select id="songMood" name="song_mood">
+                      <option value="">Choose a mood</option>
+                      <option>Sweet</option>
+                      <option>Emotional</option>
+                      <option>Funny</option>
+                      <option>Uplifting</option>
+                      <option>Romantic</option>
+                      <option>Celebratory</option>
+                      <option>Sentimental</option>
+                      <option>Inspirational</option>
+                      <option>Upbeat</option>
+                    </select>
+                  </label>
+
+                  <label>Preferred Singer *
+                    <select id="vocalStyle" name="vocal_style">
+                      <option value="">Choose a vocalist...</option>
+                      <option value="Female">Female Singer</option>
+                      <option value="Male">Male Singer</option>
+                      <option value="No Preference">Surprise Me (Best Fit)</option>
+                    </select>
+                  </label>
+                </div>
+
+                <label id="otherSongStyleBox" class="conditional-inline" style="display:none;">Tell me what style of music you'd like *
+                  <input type="text" id="otherSongStyle" name="other_song_style" placeholder="Example: Jazz, Blues, Disney, 80's Rock, Rap, etc.">
+                </label>
+
+                <label>Anything you do NOT want included?
+                  <textarea name="song_avoid" rows="3"></textarea>
+                </label>
+              </div>
+            </section>
+
+            <section class="wizard-step conditional-step" id="cardSection" data-product="card,bundle" data-step="6" data-title="Greeting Card Details">
+              <div class="question-card">
+                <p class="step-eyebrow">Question 6</p>
+                <h3>Help me design the card.</h3>
+                <p class="question-help">Choose the look, upload a photo, and tell me how the card should be delivered.</p>
+
+                <div class="form-grid">
+                  <label>Card Style *
+                    <select id="cardStyle" name="card_style">
+                      <option value="">Choose a style</option>
+                      <option>Elegant</option>
+                      <option>Funny</option>
+                      <option>Sweet</option>
+                      <option>Cute</option>
+                      <option>Rustic</option>
+                      <option>Floral</option>
+                      <option>Pet-themed</option>
+                      <option>Modern</option>
+                      <option>Simple</option>
+                      <option>Minimalist</option>
+                      <option>Vintage</option>
+                    </select>
+                  </label>
+
+                  <label>Favorite Colors
+                    <input type="text" id="favoriteColors" name="favorite_colors">
+                  </label>
+                </div>
+
+                <label><strong>Upload at least one photo <span class="required">*</span></strong>
+                  <span class="field-description">Please upload at least one high-quality photo you'd like incorporated into your greeting card.</span>
+                  <input type="file" id="cardPhotos" name="photos" accept="image/*" multiple>
+                </label>
+
+                <div class="form-grid">
+                  <label>Where should we mail your greeting card? *
+                    <select id="mailChoice" name="mail_to">
+                      <option value="">Select one</option>
+                      <option value="customer">Mail to Me</option>
+                      <option value="recipient">Mail Directly to Recipient</option>
+                      <option value="digital">Walgreens Pickup</option>
+                    </select>
+                  </label>
+
+                </div>
+              </div>
+            </section>
+
+            <section class="wizard-step conditional-step" id="mailSection" data-product="card,bundle" data-step="7" data-title="Mailing Address">
+              <div class="question-card">
+                <p class="step-eyebrow">Question 7</p>
+                <h3>Where should the greeting card be sent?</h3>
+<p class="question-help">
+  Please enter the mailing address or the Walgreens location where you would like the card sent for pickup.
+</p>
+
+                <div class="form-grid">
+                  <label>Name for Mailing
+                    <input type="text" name="mail_name" required>
+                  </label>
+                  <label>Street Address
+                    <input type="text" name="street" required>
+                  </label>
+                  <label>Apartment or Suite
+                    <input type="text" name="apt">
+                  </label>
+                  <label>City
+                    <input type="text" name="city" required>
+                  </label>
+                  <label>State
+                    <input type="text" name="state" required>
+                  </label>
+                  <label>ZIP Code
+                    <input type="text" name="zip" required>
+                  </label>
+                </div>
+              </div>
+            </section>
+
+            <section class="wizard-step" data-step="8" data-title="Review & Checkout">
+              <div class="question-card">
+                <p class="step-eyebrow">Final Step</p>
+                <h3>Review your order and complete checkout.</h3>
+                <p class="question-help">You'll be taken to Stripe's secure checkout page to complete your payment.</p>
+
+                <label>Additional requests or details
+                  <textarea name="additional_notes" rows="4"></textarea>
+                </label>
+
+                <label class="terms-check">
+                  <input type="checkbox" id="termsCheckbox" name="terms" required>
+                  <span>I understand every song and greeting card is custom created specifically for me. All sales are final once production has started.</span>
+                </label>
+
+                <a id="payButton" class="pay-button disabled" href="#" aria-disabled="true">Complete Secure Checkout</a>
+              </div>
+            </section>
+
+            <div class="wizard-nav">
+              <button type="button" class="wizard-btn secondary" id="prevStep">Back</button>
+              <button type="button" class="wizard-btn primary" id="nextStep">Next</button>
+            </div>
+          </form>
+
+          <aside class="wizard-summary" aria-live="polite">
+            <h3>Your Answers</h3>
+            <div class="summary-row"><span>Product</span><strong id="summaryProduct">No product selected</strong></div>
+            <div class="summary-row"><span>Price</span><strong id="summaryPrice">$0.00</strong></div>
+            <div class="summary-row"><span>Total</span><strong id="summaryTotal">$0.00</strong></div>
+
+            <hr>
+
+            <div class="answer-list">
+              <p><strong>Your Name:</strong> <span data-answer="customerName">—</span></p>
+              <p><strong>Email:</strong> <span data-answer="customerEmail">—</span></p>
+              <p><strong>Recipient:</strong> <span data-answer="recipientName">—</span></p>
+              <p><strong>Occasion:</strong> <span data-answer="occasion">—</span></p>
+              <p><strong>Needed By:</strong> <span data-answer="requestedDate">—</span></p>
+              <p><strong>Song Style:</strong> <span data-answer="songStyle">—</span></p>
+              <p><strong>Mood:</strong> <span data-answer="songMood">—</span></p>
+              <p><strong>Singer:</strong> <span data-answer="vocalStyle">—</span></p>
+              <p><strong>Card Style:</strong> <span data-answer="cardStyle">—</span></p>
+              <p><strong>Mailing:</strong> <span data-answer="mailChoice">—</span></p>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© <span id="year"></span> Made for the Moments. Personalized creations for life’s special moments.</p>
+  </footer>
+
+
+  <div id="exampleModal" class="example-modal" aria-hidden="true">
+    <div class="example-modal-content" role="dialog" aria-modal="true" aria-label="Example preview">
+      <button id="closeExampleModal" class="example-modal-close" type="button" aria-label="Close preview">×</button>
+      <div id="exampleModalBody"></div>
+    </div>
+  </div>
+
+  <script src="order-section.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
