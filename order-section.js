@@ -104,7 +104,7 @@ document.addEventListener("DOMContentLoaded", function () {
         currentStepIndex === visibleSteps.length - 1 ? "none" : "inline-block";
     }
 
-    activeStep.scrollIntoView({ behavior: "smooth", block: "start" });
+   // activeStep.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
   function validateCurrentStep() {
