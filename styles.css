@@ -555,3 +555,55 @@ footer {
   width: 100%;
   margin-top: 30px;
 }
+
+.logo-header {
+  background: #eef7ff;
+  justify-content: center;
+  padding: 28px 5% 22px;
+  border-bottom: none;
+}
+
+.logo-wrap {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.main-logo {
+  width: min(760px, 90vw);
+  height: auto;
+  display: block;
+}
+
+.nav-bar {
+  background: #ffffff;
+  justify-content: center;
+  padding: 18px 5%;
+  border-bottom: 1px solid #f5d6df;
+  box-shadow: 0 8px 24px rgba(62, 31, 47, 0.06);
+}
+
+.nav-bar .header-button {
+  margin-left: 20px;
+}
+
+@media (max-width: 700px) {
+  .logo-header {
+    padding: 20px 4% 16px;
+  }
+
+  .main-logo {
+    width: 95vw;
+  }
+
+  .nav-bar {
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .nav-bar .header-button {
+    margin-left: 0;
+    width: 100%;
+    text-align: center;
+  }
+}
