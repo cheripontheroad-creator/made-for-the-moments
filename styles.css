@@ -556,13 +556,9 @@ footer {
   margin-top: 30px;
 }
 
-.logo-header {
-    background: #eef7ff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 1px 8%;
-}
+.logo-banner {
+    background: #eaf5ff;
+    min-height: 420px;
 }
 
 .logo-wrap {
