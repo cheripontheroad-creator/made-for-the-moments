@@ -19,8 +19,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const otherSongStyleBox = document.getElementById("otherSongStyleBox");
   const otherSongStyle = document.getElementById("otherSongStyle");
 
-  const rushChoice = document.getElementById("rushChoice");
-  const rushInfo = document.getElementById("rushInfo");
   const mailChoice = document.getElementById("mailChoice");
 
   const payButton = document.getElementById("payButton");
@@ -253,13 +251,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  if (rushChoice && rushInfo) {
-    rushChoice.addEventListener("change", function () {
-      rushInfo.style.display = this.value === "yes" ? "block" : "none";
-    });
-  }
-
-  if (mailChoice) {
+ if (mailChoice) {
     mailChoice.addEventListener("change", function () {
       updateStepDisplay();
     });
