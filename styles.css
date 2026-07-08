@@ -19,16 +19,20 @@ a {
 }
 
 .site-header {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: #ffffff;
-  border-bottom: 1px solid #f5d6df;
-  padding: 12px 5%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 25px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+    background: #eef7ff;   /* soft blue */
+    border-bottom: 2px solid #d7e8f8;
+
+    padding: 10px 5%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    box-shadow: 0 4px 20px rgba(0,0,0,.08);
 }
 
 .brand {
@@ -43,7 +47,7 @@ a {
 }
 
 .site-logo{
-    height:70px;
+    height:125px;
     width:auto;
     display:block;
     transition:.25s;
@@ -430,7 +434,7 @@ footer {
   }
 
  .site-logo {
-    height: 90px;
+    height: 85px;
     width: auto;
     display: block;
 }
