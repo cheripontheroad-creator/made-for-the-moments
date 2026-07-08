@@ -120,11 +120,11 @@ a {
 }
 
 .hero-content h2 {
-  max-width: 900px;
-  margin: 0 auto 20px;
-  font-size: clamp(2.2rem, 4.5vw, 4rem);
-  line-height: 1.08;
-  letter-spacing: -0.04em;
+  max-width: 920px;
+  margin: 0 auto 18px;
+  font-size: clamp(2.0rem, 4.0vw, 3rem);
+  line-height: 1.07;
+  letter-spacing: -0.03em;
 }
 
 .hero-description {
