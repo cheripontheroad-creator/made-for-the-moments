@@ -1,3 +1,11 @@
+if ("scrollRestoration" in history) {
+  history.scrollRestoration = "manual";
+}
+
+window.addEventListener("pageshow", function () {
+  window.scrollTo(0, 0);
+});
+
 document.addEventListener("DOMContentLoaded", function () {
   const year = document.getElementById("year");
   if (year) {
