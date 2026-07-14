@@ -266,50 +266,206 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  if (payButton) {
-    payButton.addEventListener("click", async function (e) {
-      e.preventDefault();
+ if (payButton) {
+  payButton.addEventListener("click", async function (event) {
+    event.preventDefault();
 
-      if (termsCheckbox && !termsCheckbox.checked) {
-        alert("Please accept the terms before continuing.");
-        return;
-      }
+    if (termsCheckbox && !termsCheckbox.checked) {
+      alert("Please accept the terms before continuing.");
+      return;
+    }
 
-      const selectedProduct = document.querySelector('input[name="product"]:checked');
+    const selectedProduct = document.querySelector(
+      'input[name="product"]:checked'
+    );
 
-      if (!selectedProduct) {
-        alert("Please select a product.");
-        return;
+    if (!selectedProduct) {
+      alert("Please select a product.");
+      return;
+    }
+
+    const form = document.getElementById("momentOrderForm");
+
+    if (!form) {
+      alert("The order form could not be found.");
+      return;
+    }
+
+    /*
+     * Validate all fields that apply to the selected product.
+     */
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    const customerName =
+      document.getElementById("customerName")?.value.trim() || "";
+
+    const customerEmail =
+      document.getElementById("customerEmail")?.value.trim() || "";
+
+    if (!customerName || !customerEmail) {
+      alert("Please enter your name and email address.");
+      return;
+    }
+
+    /*
+     * Create one order number used in both the order email
+     * and the Stripe Checkout Session.
+     */
+    const datePart = new Date()
+      .toISOString()
+      .slice(0, 10)
+      .replaceAll("-", "");
+
+    const randomPart =
+      window.crypto && window.crypto.randomUUID
+        ? window.crypto
+            .randomUUID()
+            .replaceAll("-", "")
+            .slice(0, 6)
+            .toUpperCase()
+        : Math.random()
+            .toString(36)
+            .slice(2, 8)
+            .toUpperCase();
+
+    const orderNumber = `MFTM-${datePart}-${randomPart}`;
+
+    const photoInput = document.getElementById("cardPhotos");
+
+    const photoNames = photoInput
+      ? Array.from(photoInput.files).map(function (file) {
+          return file.name;
+        })
+      : [];
+
+    const getValue = function (selector) {
+      const field = document.querySelector(selector);
+      return field ? field.value.trim() : "";
+    };
+
+    const orderData = {
+      orderNumber: orderNumber,
+
+      product: selectedProduct.value,
+      productName:
+        selectedProduct.dataset.name || "Selected Product",
+
+      price:
+        "$" +
+        Number(selectedProduct.dataset.price || 0).toFixed(2),
+
+      customerName: customerName,
+      customerEmail: customerEmail,
+      customerPhone: getValue("#customerPhone"),
+
+      recipientName: getValue("#recipientName"),
+      occasion: getValue("#occasion"),
+      otherOccasion: getValue("#otherOccasion"),
+      requestedDate: getValue("#requestedDate"),
+
+      sharedStory: getValue("#sharedStory"),
+
+      songStyle: getValue("#songStyle"),
+      otherSongStyle: getValue("#otherSongStyle"),
+      songMood: getValue("#songMood"),
+      vocalStyle: getValue("#vocalStyle"),
+      songAvoid: getValue('[name="song_avoid"]'),
+
+      cardStyle: getValue("#cardStyle"),
+      favoriteColors: getValue("#favoriteColors"),
+      mailChoice: getValue("#mailChoice"),
+      photoNames: photoNames,
+
+      mailName: getValue('[name="mail_name"]'),
+      street: getValue('[name="street"]'),
+      apt: getValue('[name="apt"]'),
+      city: getValue('[name="city"]'),
+      state: getValue('[name="state"]'),
+      zip: getValue('[name="zip"]'),
+
+      additionalNotes: getValue('[name="additional_notes"]')
+    };
+
+    const originalButtonText = payButton.textContent;
+
+    payButton.textContent = "Saving Your Order...";
+    payButton.classList.add("disabled");
+    payButton.setAttribute("aria-disabled", "true");
+
+    try {
+      /*
+       * First, send all written order details through Resend.
+       */
+      const orderResponse = await fetch("/api/send-order", {
+        method: "POST",
+
+        headers: {
+          "Content-Type": "application/json"
+        },
+
+        body: JSON.stringify(orderData)
+      });
+
+      const orderResult = await orderResponse.json();
+
+      if (!orderResponse.ok || !orderResult.success) {
+        throw new Error(
+          orderResult.error ||
+          "The order details could not be sent."
+        );
       }
 
       payButton.textContent = "Opening Secure Checkout...";
-      payButton.classList.add("disabled");
 
-      try {
-        const response = await fetch("/api/create-checkout-session", {
+      /*
+       * Second, create the Stripe Checkout Session using
+       * the same order number.
+       */
+      const checkoutResponse = await fetch(
+        "/api/create-checkout-session",
+        {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ product: selectedProduct.value })
-        });
 
-        const data = await response.json();
+          headers: {
+            "Content-Type": "application/json"
+          },
 
-        if (data.url) {
-          window.location.href = data.url;
-        } else {
-          console.error(data);
-          alert("Unable to start checkout.");
-          payButton.classList.remove("disabled");
-          payButton.textContent = "Complete Secure Checkout";
+          body: JSON.stringify({
+            product: selectedProduct.value,
+            orderNumber: orderNumber,
+            customerEmail: customerEmail,
+            customerName: customerName
+          })
         }
-      } catch (err) {
-        console.error(err);
-        alert("Error connecting to Stripe.");
-        payButton.classList.remove("disabled");
-        payButton.textContent = "Complete Secure Checkout";
+      );
+
+      const checkoutResult = await checkoutResponse.json();
+
+      if (!checkoutResponse.ok || !checkoutResult.url) {
+        throw new Error(
+          checkoutResult.error ||
+          "Stripe Checkout could not be opened."
+        );
       }
-    });
-  }
+
+      window.location.href = checkoutResult.url;
+    } catch (error) {
+      console.error("Order checkout error:", error);
+
+      alert(
+        error.message ||
+        "There was a problem saving your order. Please try again."
+      );
+
+      payButton.textContent = originalButtonText;
+      payButton.classList.remove("disabled");
+      payButton.removeAttribute("aria-disabled");
+    }
+  });
+}
 
   updateProductSummary();
   updateAnswers();
