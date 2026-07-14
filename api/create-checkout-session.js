@@ -11,7 +11,10 @@ const prices = {
 module.exports = async function handler(req, res) {
   if (req.method !== "POST") {
     res.setHeader("Allow", "POST");
-    return res.status(405).json({ error: "Method not allowed" });
+
+    return res.status(405).json({
+      error: "Method not allowed"
+    });
   }
 
   try {
@@ -50,7 +53,7 @@ module.exports = async function handler(req, res) {
 
       metadata: {
         order_number: orderNumber,
-        product,
+        product: product,
         customer_name: String(customerName || "").slice(0, 500),
         customer_email: String(customerEmail || "").slice(0, 500)
       },
@@ -58,7 +61,7 @@ module.exports = async function handler(req, res) {
       payment_intent_data: {
         metadata: {
           order_number: orderNumber,
-          product
+          product: product
         }
       },
 
@@ -71,7 +74,7 @@ module.exports = async function handler(req, res) {
 
     return res.status(200).json({
       url: session.url,
-      orderNumber
+      orderNumber: orderNumber
     });
   } catch (error) {
     console.error("Stripe Checkout error:", error);
