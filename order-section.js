@@ -195,6 +195,16 @@ document.addEventListener("DOMContentLoaded", function () {
  }
 
  function updateAnswers() {
+  // Update selected product
+const selectedProduct = document.querySelector('input[name="product"]:checked');
+
+const productAnswer = document.querySelector('[data-answer="product"]');
+
+if (productAnswer) {
+    productAnswer.textContent = selectedProduct
+        ? selectedProduct.dataset.name
+        : "No product selected";
+}
    Object.keys(answerMap).forEach(function (key) {
      const field = answerMap[key];
      const target = document.querySelector('[data-answer="' + key + '"]');
