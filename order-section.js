@@ -19,8 +19,6 @@ document.addEventListener("DOMContentLoaded", function () {
  const otherSongStyleBox = document.getElementById("otherSongStyleBox");
  const otherSongStyle = document.getElementById("otherSongStyle");
 
- const rushChoice = document.getElementById("rushChoice");
- const rushInfo = document.getElementById("rushInfo");
  const mailChoice = document.getElementById("mailChoice");
 
  const payButton = document.getElementById("payButton");
@@ -37,7 +35,6 @@ document.addEventListener("DOMContentLoaded", function () {
    vocalStyle: document.getElementById("vocalStyle"),
    cardStyle: document.getElementById("cardStyle"),
    mailChoice: document.getElementById("mailChoice"),
-   rushChoice: document.getElementById("rushChoice")
  };
 
  let currentStepIndex = 0;
