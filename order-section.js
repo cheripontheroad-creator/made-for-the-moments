@@ -94,16 +94,40 @@ document.addEventListener("DOMContentLoaded", function () {
    }
 
    if (prevBtn) {
-     prevBtn.disabled = currentStepIndex === 0;
-   }
+  prevBtn.addEventListener("click", function () {
+    currentStepIndex -= 1;
+    updateStepDisplay();
+
+    const wizardForm = document.querySelector(".wizard-form");
+
+    if (wizardForm) {
+      wizardForm.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+    }
+  });
+}
 
    if (nextBtn) {
-     nextBtn.style.display = currentStepIndex === visibleSteps.length - 1 ? "none" : "inline-block";
-   }
+  nextBtn.addEventListener("click", function () {
+    if (!validateCurrentStep()) return;
 
-   activeStep.scrollIntoView({ behavior: "smooth", block: "start" });
- }
+    currentStepIndex += 1;
+    updateStepDisplay();
 
+    const wizardForm = document.querySelector(".wizard-form");
+
+    if (wizardForm) {
+      wizardForm.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+    }
+  });
+}
+
+   
  function validateCurrentStep() {
    const visibleSteps = getVisibleSteps();
    const activeStep = visibleSteps[currentStepIndex];
