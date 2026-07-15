@@ -1,467 +1,1021 @@
 document.addEventListener("DOMContentLoaded", function () {
- const steps = Array.from(document.querySelectorAll(".wizard-step"));
- const nextBtn = document.getElementById("nextStep");
- const prevBtn = document.getElementById("prevStep");
- const stepCounter = document.getElementById("stepCounter");
- const stepTitle = document.getElementById("stepTitle");
- const progressFill = document.getElementById("progressFill");
+  "use strict";
 
- const productRadios = document.querySelectorAll('input[name="product"]');
- const summaryProduct = document.getElementById("summaryProduct");
- const summaryPrice = document.getElementById("summaryPrice");
- const summaryTotal = document.getElementById("summaryTotal");
+  // =========================================================
+  // ELEMENTS
+  // =========================================================
 
- const occasion = document.getElementById("occasion");
- const otherOccasionBox = document.getElementById("otherOccasionBox");
- const otherOccasion = document.getElementById("otherOccasion");
+  const steps = Array.from(document.querySelectorAll(".wizard-step"));
 
- const songStyle = document.getElementById("songStyle");
- const otherSongStyleBox = document.getElementById("otherSongStyleBox");
- const otherSongStyle = document.getElementById("otherSongStyle");
+  const nextBtn = document.getElementById("nextStep");
+  const prevBtn = document.getElementById("prevStep");
 
- const mailChoice = document.getElementById("mailChoice");
+  const stepCounter = document.getElementById("stepCounter");
+  const stepTitle = document.getElementById("stepTitle");
+  const progressFill = document.getElementById("progressFill");
 
- const payButton = document.getElementById("payButton");
- const termsCheckbox = document.getElementById("termsCheckbox");
+  const productRadios = document.querySelectorAll(
+    'input[name="product"]'
+  );
 
- const answerMap = {
-   customerName: document.getElementById("customerName"),
-   customerEmail: document.getElementById("customerEmail"),
-   recipientName: document.getElementById("recipientName"),
-   occasion: document.getElementById("occasion"),
-   requestedDate: document.getElementById("requestedDate"),
-   songStyle: document.getElementById("songStyle"),
-   songMood: document.getElementById("songMood"),
-   vocalStyle: document.getElementById("vocalStyle"),
-   cardStyle: document.getElementById("cardStyle"),
-   mailChoice: document.getElementById("mailChoice"),
- };
+  const summaryProduct = document.getElementById("summaryProduct");
+  const summaryPrice = document.getElementById("summaryPrice");
+  const summaryTotal = document.getElementById("summaryTotal");
 
- let currentStepIndex = 0;
+  const occasion = document.getElementById("occasion");
+  const otherOccasionBox =
+    document.getElementById("otherOccasionBox");
+  const otherOccasion =
+    document.getElementById("otherOccasion");
 
- function selectedProductValue() {
-   const selected = document.querySelector('input[name="product"]:checked');
-   return selected ? selected.value : "";
- }
+  const songStyle = document.getElementById("songStyle");
+  const otherSongStyleBox =
+    document.getElementById("otherSongStyleBox");
+  const otherSongStyle =
+    document.getElementById("otherSongStyle");
 
- function getVisibleSteps() {
-   const product = selectedProductValue();
+  const mailChoice = document.getElementById("mailChoice");
 
-   return steps.filter(function (step) {
-     const allowedProducts = step.dataset.product;
+  const payButton = document.getElementById("payButton");
+  const termsCheckbox =
+    document.getElementById("termsCheckbox");
 
-     if (!allowedProducts) return true;
-     if (!product) return false;
+  const orderForm =
+    document.getElementById("momentOrderForm");
 
-     return allowedProducts.split(",").includes(product);
-   }).filter(function (step) {
-     if (step.id === "mailSection") {
-       return product === "card" || product === "bundle";
-     }
-     return true;
-   });
- }
+  const wizardForm =
+    document.querySelector(".wizard-form");
 
- function updateStepDisplay() {
-   const visibleSteps = getVisibleSteps();
+  const answerMap = {
+    customerName:
+      document.getElementById("customerName"),
 
-   if (currentStepIndex >= visibleSteps.length) {
-     currentStepIndex = visibleSteps.length - 1;
-   }
+    customerEmail:
+      document.getElementById("customerEmail"),
 
-   steps.forEach(function (step) {
-     step.classList.remove("active");
-   });
+    recipientName:
+      document.getElementById("recipientName"),
 
-   const activeStep = visibleSteps[currentStepIndex];
-   if (!activeStep) return;
+    occasion:
+      document.getElementById("occasion"),
 
-   activeStep.classList.add("active");
+    requestedDate:
+      document.getElementById("requestedDate"),
 
-   if (stepCounter) {
-     stepCounter.textContent = "Step " + (currentStepIndex + 1) + " of " + visibleSteps.length;
-   }
+    songStyle:
+      document.getElementById("songStyle"),
 
-   if (stepTitle) {
-     stepTitle.textContent = activeStep.dataset.title || "";
-   }
+    songMood:
+      document.getElementById("songMood"),
 
-   if (progressFill) {
-     progressFill.style.width = ((currentStepIndex + 1) / visibleSteps.length * 100) + "%";
-   }
+    vocalStyle:
+      document.getElementById("vocalStyle"),
 
-   if (prevBtn) {
-  prevBtn.addEventListener("click", function () {
-    currentStepIndex -= 1;
-    updateStepDisplay();
+    cardStyle:
+      document.getElementById("cardStyle"),
 
-    const wizardForm = document.querySelector(".wizard-form");
+    mailChoice:
+      document.getElementById("mailChoice")
+  };
 
-    if (wizardForm) {
-      wizardForm.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-      });
+  let currentStepIndex = 0;
+
+  // =========================================================
+  // HELPERS
+  // =========================================================
+
+  function getSelectedProduct() {
+    return document.querySelector(
+      'input[name="product"]:checked'
+    );
+  }
+
+  function getSelectedProductValue() {
+    const selected = getSelectedProduct();
+
+    return selected ? selected.value : "";
+  }
+
+  function getValue(selector) {
+    const field = document.querySelector(selector);
+
+    return field
+      ? String(field.value || "").trim()
+      : "";
+  }
+
+  function getSelectedOptionText(field) {
+    if (!field || field.tagName !== "SELECT") {
+      return "";
     }
-  });
-}
 
-   if (nextBtn) {
-  nextBtn.addEventListener("click", function () {
-    if (!validateCurrentStep()) return;
+    const selectedOption =
+      field.options[field.selectedIndex];
 
-    currentStepIndex += 1;
-    updateStepDisplay();
-
-    const wizardForm = document.querySelector(".wizard-form");
-
-    if (wizardForm) {
-      wizardForm.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-      });
+    if (!field.value || !selectedOption) {
+      return "";
     }
+
+    return selectedOption.text.trim();
+  }
+
+  function createOrderNumber() {
+    const datePart = new Date()
+      .toISOString()
+      .slice(0, 10)
+      .replaceAll("-", "");
+
+    let randomPart;
+
+    if (
+      window.crypto &&
+      typeof window.crypto.randomUUID === "function"
+    ) {
+      randomPart = window.crypto
+        .randomUUID()
+        .replaceAll("-", "")
+        .slice(0, 6)
+        .toUpperCase();
+    } else {
+      randomPart = Math.random()
+        .toString(36)
+        .slice(2, 8)
+        .toUpperCase();
+    }
+
+    return `MFTM-${datePart}-${randomPart}`;
+  }
+
+  function scrollToQuestionArea() {
+    if (!wizardForm) {
+      return;
+    }
+
+    wizardForm.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+  }
+
+  // =========================================================
+  // VISIBLE STEPS
+  // =========================================================
+
+  function getVisibleSteps() {
+    const product = getSelectedProductValue();
+
+    return steps.filter(function (step) {
+      const allowedProducts = step.dataset.product;
+
+      if (!allowedProducts) {
+        return true;
+      }
+
+      if (!product) {
+        return false;
+      }
+
+      const products = allowedProducts
+        .split(",")
+        .map(function (item) {
+          return item.trim();
+        });
+
+      return products.includes(product);
+    });
+  }
+
+  function updateStepDisplay() {
+    const visibleSteps = getVisibleSteps();
+
+    if (!visibleSteps.length) {
+      return;
+    }
+
+    if (currentStepIndex < 0) {
+      currentStepIndex = 0;
+    }
+
+    if (currentStepIndex >= visibleSteps.length) {
+      currentStepIndex = visibleSteps.length - 1;
+    }
+
+    steps.forEach(function (step) {
+      step.classList.remove("active");
+    });
+
+    const activeStep =
+      visibleSteps[currentStepIndex];
+
+    if (!activeStep) {
+      return;
+    }
+
+    activeStep.classList.add("active");
+
+    if (stepCounter) {
+      stepCounter.textContent =
+        "Step " +
+        (currentStepIndex + 1) +
+        " of " +
+        visibleSteps.length;
+    }
+
+    if (stepTitle) {
+      stepTitle.textContent =
+        activeStep.dataset.title || "";
+    }
+
+    if (progressFill) {
+      const percentage =
+        ((currentStepIndex + 1) /
+          visibleSteps.length) *
+        100;
+
+      progressFill.style.width =
+        percentage + "%";
+    }
+
+    if (prevBtn) {
+      prevBtn.disabled =
+        currentStepIndex === 0;
+    }
+
+    if (nextBtn) {
+      nextBtn.style.display =
+        currentStepIndex ===
+        visibleSteps.length - 1
+          ? "none"
+          : "inline-block";
+    }
+
+    /*
+     * Do not scroll here.
+     * This function runs when the page first opens.
+     */
+  }
+
+  // =========================================================
+  // PRODUCT SUMMARY
+  // =========================================================
+
+  function updateProductSummary() {
+    const selected = getSelectedProduct();
+
+    if (!selected) {
+      if (summaryProduct) {
+        summaryProduct.textContent =
+          "No product selected";
+      }
+
+      if (summaryPrice) {
+        summaryPrice.textContent = "$0.00";
+      }
+
+      if (summaryTotal) {
+        summaryTotal.textContent = "$0.00";
+      }
+
+      return;
+    }
+
+    const productName =
+      selected.dataset.name ||
+      "Selected Product";
+
+    const productPrice =
+      Number(selected.dataset.price || 0);
+
+    if (summaryProduct) {
+      summaryProduct.textContent =
+        productName;
+    }
+
+    if (summaryPrice) {
+      summaryPrice.textContent =
+        "$" + productPrice.toFixed(2);
+    }
+
+    if (summaryTotal) {
+      summaryTotal.textContent =
+        "$" + productPrice.toFixed(2);
+    }
+  }
+
+  // =========================================================
+  // YOUR ANSWERS SIDEBAR
+  // =========================================================
+
+  function updateAnswers() {
+    Object.keys(answerMap).forEach(
+      function (key) {
+        const field = answerMap[key];
+
+        const target =
+          document.querySelector(
+            '[data-answer="' + key + '"]'
+          );
+
+        if (!field || !target) {
+          return;
+        }
+
+        let displayText = "";
+
+        if (field.tagName === "SELECT") {
+          displayText =
+            getSelectedOptionText(field);
+        } else {
+          displayText =
+            String(field.value || "").trim();
+        }
+
+        target.textContent =
+          displayText || "—";
+      }
+    );
+  }
+
+  // =========================================================
+  // CONDITIONAL FIELDS
+  // =========================================================
+
+  function updateOtherOccasion() {
+    if (
+      !occasion ||
+      !otherOccasionBox ||
+      !otherOccasion
+    ) {
+      return;
+    }
+
+    const showOther =
+      occasion.value === "Other";
+
+    otherOccasionBox.style.display =
+      showOther ? "flex" : "none";
+
+    otherOccasion.required = showOther;
+
+    if (!showOther) {
+      otherOccasion.value = "";
+    }
+  }
+
+  function updateOtherSongStyle() {
+    if (
+      !songStyle ||
+      !otherSongStyleBox ||
+      !otherSongStyle
+    ) {
+      return;
+    }
+
+    const showOther =
+      songStyle.value === "Other";
+
+    otherSongStyleBox.style.display =
+      showOther ? "flex" : "none";
+
+    otherSongStyle.required = showOther;
+
+    if (!showOther) {
+      otherSongStyle.value = "";
+    }
+  }
+
+  // =========================================================
+  // VALIDATION
+  // =========================================================
+
+  function validateRequiredFields(container) {
+    const requiredFields = Array.from(
+      container.querySelectorAll(
+        "input[required], select[required], textarea[required]"
+      )
+    );
+
+    for (const field of requiredFields) {
+      if (field.disabled) {
+        continue;
+      }
+
+      if (field.type === "radio") {
+        const radioGroup =
+          container.querySelectorAll(
+            'input[name="' +
+              field.name +
+              '"]'
+          );
+
+        const hasSelection =
+          Array.from(radioGroup).some(
+            function (radio) {
+              return radio.checked;
+            }
+          );
+
+        if (!hasSelection) {
+          field.reportValidity();
+          return false;
+        }
+      } else if (!field.checkValidity()) {
+        field.reportValidity();
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  function validateProductFields(step) {
+    const product =
+      getSelectedProductValue();
+
+    if (
+      (product === "song" ||
+        product === "bundle") &&
+      step.id === "songSection"
+    ) {
+      const songFields = [
+        document.getElementById("songStyle"),
+        document.getElementById("songMood"),
+        document.getElementById("vocalStyle")
+      ];
+
+      for (const field of songFields) {
+        if (field && !field.value) {
+          field.setCustomValidity(
+            "Please complete this field."
+          );
+
+          field.reportValidity();
+          field.setCustomValidity("");
+
+          return false;
+        }
+      }
+    }
+
+    if (
+      (product === "card" ||
+        product === "bundle") &&
+      step.id === "cardSection"
+    ) {
+      const cardFields = [
+        document.getElementById("cardStyle"),
+        document.getElementById("mailChoice")
+      ];
+
+      for (const field of cardFields) {
+        if (field && !field.value) {
+          field.setCustomValidity(
+            "Please complete this field."
+          );
+
+          field.reportValidity();
+          field.setCustomValidity("");
+
+          return false;
+        }
+      }
+
+      const photos =
+        document.getElementById("cardPhotos");
+
+      if (
+        photos &&
+        photos.files.length === 0
+      ) {
+        alert(
+          "Please upload at least one photo for the greeting card."
+        );
+
+        photos.focus();
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  function validateCurrentStep() {
+    const visibleSteps =
+      getVisibleSteps();
+
+    const activeStep =
+      visibleSteps[currentStepIndex];
+
+    if (!activeStep) {
+      return true;
+    }
+
+    if (
+      activeStep.dataset.step === "1" &&
+      !getSelectedProductValue()
+    ) {
+      alert("Please select a product.");
+      return false;
+    }
+
+    if (
+      !validateRequiredFields(activeStep)
+    ) {
+      return false;
+    }
+
+    return validateProductFields(activeStep);
+  }
+
+  function validateAllSteps() {
+    const visibleSteps =
+      getVisibleSteps();
+
+    for (
+      let index = 0;
+      index < visibleSteps.length;
+      index += 1
+    ) {
+      const step = visibleSteps[index];
+
+      if (
+        step.dataset.step === "1" &&
+        !getSelectedProductValue()
+      ) {
+        currentStepIndex = index;
+        updateStepDisplay();
+        scrollToQuestionArea();
+
+        alert("Please select a product.");
+        return false;
+      }
+
+      if (!validateRequiredFields(step)) {
+        currentStepIndex = index;
+        updateStepDisplay();
+        scrollToQuestionArea();
+
+        return false;
+      }
+
+      if (!validateProductFields(step)) {
+        currentStepIndex = index;
+        updateStepDisplay();
+        scrollToQuestionArea();
+
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  // =========================================================
+  // PRODUCT SELECTION EVENTS
+  // =========================================================
+
+  productRadios.forEach(function (radio) {
+    radio.addEventListener(
+      "change",
+      function () {
+        updateProductSummary();
+        updateAnswers();
+
+        currentStepIndex = 0;
+        updateStepDisplay();
+      }
+    );
   });
-}
 
-   
- function validateCurrentStep() {
-   const visibleSteps = getVisibleSteps();
-   const activeStep = visibleSteps[currentStepIndex];
-   if (!activeStep) return true;
+  // =========================================================
+  // ANSWER FIELD EVENTS
+  // =========================================================
 
-   const requiredFields = activeStep.querySelectorAll("input[required], select[required], textarea[required]");
+  document
+    .querySelectorAll(
+      "input, select, textarea"
+    )
+    .forEach(function (field) {
+      field.addEventListener(
+        "input",
+        updateAnswers
+      );
 
-   for (const field of requiredFields) {
-     if (field.type === "radio") {
-       const group = activeStep.querySelectorAll('input[name="' + field.name + '"]');
-       if (![...group].some(radio => radio.checked)) {
-         field.reportValidity();
-         return false;
-       }
-     } else if (!field.value) {
-       field.reportValidity();
-       return false;
-     }
-   }
+      field.addEventListener(
+        "change",
+        updateAnswers
+      );
+    });
 
-   const product = selectedProductValue();
+  if (occasion) {
+    occasion.addEventListener(
+      "change",
+      function () {
+        updateOtherOccasion();
+        updateAnswers();
+      }
+    );
+  }
 
-   if ((product === "song" || product === "bundle") && activeStep.id === "songSection") {
-     for (const id of ["songStyle", "songMood", "vocalStyle"]) {
-       const field = document.getElementById(id);
-       if (field && !field.value) {
-         field.reportValidity();
-         return false;
-       }
-     }
-   }
+  if (songStyle) {
+    songStyle.addEventListener(
+      "change",
+      function () {
+        updateOtherSongStyle();
+        updateAnswers();
+      }
+    );
+  }
 
-   if ((product === "card" || product === "bundle") && activeStep.id === "cardSection") {
-     for (const id of ["cardStyle", "mailChoice"]) {
-       const field = document.getElementById(id);
-       if (field && !field.value) {
-         field.reportValidity();
-         return false;
-       }
-     }
+  if (mailChoice) {
+    mailChoice.addEventListener(
+      "change",
+      updateAnswers
+    );
+  }
 
-     const photos = document.getElementById("cardPhotos");
-     if (photos && photos.files.length === 0) {
-       alert("Please upload at least one photo for the greeting card.");
-       return false;
-     }
-   }
+  // =========================================================
+  // NEXT AND BACK BUTTONS
+  // =========================================================
 
-   return true;
- }
+  if (nextBtn) {
+    nextBtn.addEventListener(
+      "click",
+      function () {
+        if (!validateCurrentStep()) {
+          return;
+        }
 
- function updateProductSummary() {
-   const selected = document.querySelector('input[name="product"]:checked');
+        currentStepIndex += 1;
 
-   if (!selected) {
-     if (summaryProduct) summaryProduct.textContent = "No product selected";
-     if (summaryPrice) summaryPrice.textContent = "$0.00";
-     if (summaryTotal) summaryTotal.textContent = "$0.00";
-     return;
-   }
+        updateStepDisplay();
+        scrollToQuestionArea();
+      }
+    );
+  }
 
-   const productName = selected.dataset.name || "Selected Product";
-   const productPrice = Number(selected.dataset.price || 0);
+  if (prevBtn) {
+    prevBtn.addEventListener(
+      "click",
+      function () {
+        currentStepIndex -= 1;
 
-   if (summaryProduct) summaryProduct.textContent = productName;
-   if (summaryPrice) summaryPrice.textContent = "$" + productPrice.toFixed(2);
-   if (summaryTotal) summaryTotal.textContent = "$" + productPrice.toFixed(2);
- }
+        updateStepDisplay();
+        scrollToQuestionArea();
+      }
+    );
+  }
 
- function updateAnswers() {
-  // Update selected product
-const selectedProduct = document.querySelector('input[name="product"]:checked');
+  // =========================================================
+  // PAYMENT BUTTON
+  // =========================================================
 
-const productAnswer = document.querySelector('[data-answer="product"]');
+  function updatePaymentButtonState() {
+    if (
+      !payButton ||
+      !termsCheckbox
+    ) {
+      return;
+    }
 
-if (productAnswer) {
-    productAnswer.textContent = selectedProduct
-        ? selectedProduct.dataset.name
-        : "No product selected";
-}
-   Object.keys(answerMap).forEach(function (key) {
-     const field = answerMap[key];
-     const target = document.querySelector('[data-answer="' + key + '"]');
+    if (termsCheckbox.checked) {
+      payButton.classList.remove(
+        "disabled"
+      );
 
-     if (!field || !target) return;
+      payButton.removeAttribute(
+        "aria-disabled"
+      );
+    } else {
+      payButton.classList.add(
+        "disabled"
+      );
 
-     if (field.tagName === "SELECT") {
-       target.textContent = field.value || "";
-     }
-   });
- }
+      payButton.setAttribute(
+        "aria-disabled",
+        "true"
+      );
+    }
+  }
 
- productRadios.forEach(function (radio) {
-   radio.addEventListener("change", function () {
-     updateProductSummary();
-     currentStepIndex = 0;
-     updateStepDisplay();
-     updateAnswers();
-   });
- });
+  if (termsCheckbox) {
+    termsCheckbox.addEventListener(
+      "change",
+      updatePaymentButtonState
+    );
+  }
 
- document.querySelectorAll("input, select, textarea").forEach(function (field) {
-   field.addEventListener("input", updateAnswers);
-   field.addEventListener("change", updateAnswers);
- });
+  // =========================================================
+  // BUILD ORDER DATA
+  // =========================================================
 
- if (nextBtn) {
-   nextBtn.addEventListener("click", function () {
-     if (!validateCurrentStep()) return;
-     currentStepIndex += 1;
-     updateStepDisplay();
-   });
- }
+  function buildOrderData(orderNumber) {
+    const selectedProduct =
+      getSelectedProduct();
 
- if (prevBtn) {
-   prevBtn.addEventListener("click", function () {
-     currentStepIndex -= 1;
-     updateStepDisplay();
-   });
- }
+    const photoInput =
+      document.getElementById(
+        "cardPhotos"
+      );
 
- if (occasion && otherOccasionBox && otherOccasion) {
-   occasion.addEventListener("change", function () {
-     if (this.value === "Other") {
-       otherOccasionBox.style.display = "flex";
-       otherOccasion.required = true;
-     } else {
-       otherOccasionBox.style.display = "none";
-       otherOccasion.required = false;
-       otherOccasion.value = "";
-     }
-   });
- }
+    const photoNames = photoInput
+      ? Array.from(
+          photoInput.files
+        ).map(function (file) {
+          return file.name;
+        })
+      : [];
 
- if (songStyle && otherSongStyleBox && otherSongStyle) {
-   songStyle.addEventListener("change", function () {
-     if (this.value === "Other") {
-       otherSongStyleBox.style.display = "flex";
-       otherSongStyle.required = true;
-     } else {
-       otherSongStyleBox.style.display = "none";
-       otherSongStyle.required = false;
-       otherSongStyle.value = "";
-     }
-   });
- }
+    return {
+      orderNumber: orderNumber,
 
- if (rushChoice && rushInfo) {
-   rushChoice.addEventListener("change", function () {
-     rushInfo.style.display = this.value === "yes" ? "block" : "none";
-   });
- }
+      product:
+        selectedProduct.value,
 
- if (mailChoice) {
-   mailChoice.addEventListener("change", function () {
-     updateStepDisplay();
-   });
- }
+      productName:
+        selectedProduct.dataset.name ||
+        "Selected Product",
 
- if (termsCheckbox && payButton) {
-   payButton.classList.add("disabled");
-   payButton.setAttribute("aria-disabled", "true");
+      price:
+        "$" +
+        Number(
+          selectedProduct.dataset.price ||
+            0
+        ).toFixed(2),
 
-   termsCheckbox.addEventListener("change", function () {
-     if (this.checked) {
-       payButton.classList.remove("disabled");
-       payButton.removeAttribute("aria-disabled");
-     } else {
-       payButton.classList.add("disabled");
-       payButton.setAttribute("aria-disabled", "true");
-     }
-   });
- }
+      customerName:
+        getValue("#customerName"),
 
- function getValue(selector) {
-   const field = document.querySelector(selector);
-   return field ? String(field.value || "").trim() : "";
- }
+      customerEmail:
+        getValue("#customerEmail"),
 
- function createOrderNumber() {
-   const datePart = new Date()
-     .toISOString()
-     .slice(0, 10)
-     .replaceAll("-", "");
+      customerPhone:
+        getValue("#customerPhone"),
 
-   const randomPart =
-     window.crypto && window.crypto.randomUUID
-       ? window.crypto
-           .randomUUID()
-           .replaceAll("-", "")
-           .slice(0, 6)
-           .toUpperCase()
-       : Math.random().toString(36).slice(2, 8).toUpperCase();
+      recipientName:
+        getValue("#recipientName"),
 
-   return `MFTM-${datePart}-${randomPart}`;
- }
+      occasion:
+        getValue("#occasion"),
 
- if (payButton) {
-   payButton.addEventListener("click", async function (event) {
-     event.preventDefault();
+      otherOccasion:
+        getValue("#otherOccasion"),
 
-     if (termsCheckbox && !termsCheckbox.checked) {
-       alert("Please accept the terms before continuing.");
-       return;
-     }
+      requestedDate:
+        getValue("#requestedDate"),
 
-     const selectedProduct = document.querySelector(
-       'input[name="product"]:checked'
-     );
+      sharedStory:
+        getValue("#sharedStory"),
 
-     if (!selectedProduct) {
-       alert("Please select a product.");
-       return;
-     }
+      songStyle:
+        getValue("#songStyle"),
 
-     const customerName = getValue("#customerName");
-     const customerEmail = getValue("#customerEmail");
+      otherSongStyle:
+        getValue("#otherSongStyle"),
 
-     if (!customerName || !customerEmail) {
-       alert("Please enter your name and email address.");
-       return;
-     }
+      songMood:
+        getValue("#songMood"),
 
-     const orderNumber = createOrderNumber();
-     const photoInput = document.getElementById("cardPhotos");
+      vocalStyle:
+        getValue("#vocalStyle"),
 
-     const photoNames = photoInput
-       ? Array.from(photoInput.files).map(function (file) {
-           return file.name;
-         })
-       : [];
+      songAvoid:
+        getValue(
+          '[name="song_avoid"]'
+        ),
 
-     const orderData = {
-       orderNumber,
-       product: selectedProduct.value,
-       productName: selectedProduct.dataset.name || "Selected Product",
-       price: "$" + Number(selectedProduct.dataset.price || 0).toFixed(2),
+      cardStyle:
+        getValue("#cardStyle"),
 
-       customerName,
-       customerEmail,
-       customerPhone: getValue("#customerPhone"),
+      favoriteColors:
+        getValue("#favoriteColors"),
 
-       recipientName: getValue("#recipientName"),
-       occasion: getValue("#occasion"),
-       otherOccasion: getValue("#otherOccasion"),
-       requestedDate: getValue("#requestedDate"),
+      mailChoice:
+        getValue("#mailChoice"),
 
-       sharedStory: getValue("#sharedStory"),
+      photoNames: photoNames,
 
-       songStyle: getValue("#songStyle"),
-       otherSongStyle: getValue("#otherSongStyle"),
-       songMood: getValue("#songMood"),
-       vocalStyle: getValue("#vocalStyle"),
-       songAvoid: getValue('[name="song_avoid"]'),
+      mailName:
+        getValue(
+          '[name="mail_name"]'
+        ),
 
-       cardStyle: getValue("#cardStyle"),
-       favoriteColors: getValue("#favoriteColors"),
-       mailChoice: getValue("#mailChoice"),
-       photoNames,
+      street:
+        getValue('[name="street"]'),
 
-       mailName: getValue('[name="mail_name"]'),
-       street: getValue('[name="street"]'),
-       apt: getValue('[name="apt"]'),
-       city: getValue('[name="city"]'),
-       state: getValue('[name="state"]'),
-       zip: getValue('[name="zip"]'),
+      apt:
+        getValue('[name="apt"]'),
 
-       additionalNotes: getValue('[name="additional_notes"]')
-     };
+      city:
+        getValue('[name="city"]'),
 
-     const originalButtonText = payButton.textContent;
+      state:
+        getValue('[name="state"]'),
 
-     payButton.textContent = "Saving Your Order...";
-     payButton.classList.add("disabled");
-     payButton.setAttribute("aria-disabled", "true");
+      zip:
+        getValue('[name="zip"]'),
 
-     try {
-       const orderResponse = await fetch("/api/send-order", {
-         method: "POST",
-         headers: {
-           "Content-Type": "application/json"
-         },
-         body: JSON.stringify(orderData)
-       });
+      additionalNotes:
+        getValue(
+          '[name="additional_notes"]'
+        )
+    };
+  }
 
-       const orderResult = await orderResponse.json();
+  // =========================================================
+  // RESEND AND STRIPE
+  // =========================================================
 
-       if (!orderResponse.ok || !orderResult.success) {
-         throw new Error(
-           orderResult.error || "The order details could not be sent."
-         );
-       }
+  if (payButton) {
+    payButton.addEventListener(
+      "click",
+      async function (event) {
+        event.preventDefault();
 
-       payButton.textContent = "Opening Secure Checkout...";
+        if (
+          termsCheckbox &&
+          !termsCheckbox.checked
+        ) {
+          alert(
+            "Please accept the terms before continuing."
+          );
 
-       const checkoutResponse = await fetch(
-         "/api/create-checkout-session",
-         {
-           method: "POST",
-           headers: {
-             "Content-Type": "application/json"
-           },
-           body: JSON.stringify({
-             product: selectedProduct.value,
-             orderNumber,
-             customerEmail,
-             customerName
-           })
-         }
-       );
+          return;
+        }
 
-       const checkoutResult = await checkoutResponse.json();
+        const selectedProduct =
+          getSelectedProduct();
 
-       if (!checkoutResponse.ok || !checkoutResult.url) {
-         throw new Error(
-           checkoutResult.error ||
-             "Stripe Checkout could not be opened."
-         );
-       }
+        if (!selectedProduct) {
+          alert(
+            "Please select a product."
+          );
 
-       window.location.href = checkoutResult.url;
-     } catch (error) {
-       console.error("Order checkout error:", error);
+          return;
+        }
 
-       alert(
-         error.message ||
-           "There was a problem saving your order. Please try again."
-       );
+        if (!orderForm) {
+          alert(
+            "The order form could not be found. Please refresh the page."
+          );
 
-       payButton.textContent = originalButtonText;
-       payButton.classList.remove("disabled");
-       payButton.removeAttribute("aria-disabled");
-     }
-   });
- }
+          return;
+        }
 
- updateProductSummary();
- updateAnswers();
- updateStepDisplay();
+        if (!validateAllSteps()) {
+          return;
+        }
+
+        const customerName =
+          getValue("#customerName");
+
+        const customerEmail =
+          getValue("#customerEmail");
+
+        if (
+          !customerName ||
+          !customerEmail
+        ) {
+          alert(
+            "Please enter your name and email address."
+          );
+
+          return;
+        }
+
+        const orderNumber =
+          createOrderNumber();
+
+        const orderData =
+          buildOrderData(orderNumber);
+
+        const originalButtonText =
+          payButton.textContent;
+
+        payButton.textContent =
+          "Saving Your Order...";
+
+        payButton.classList.add(
+          "disabled"
+        );
+
+        payButton.setAttribute(
+          "aria-disabled",
+          "true"
+        );
+
+        try {
+          /*
+           * First, email all written order information.
+           */
+          const orderResponse =
+            await fetch(
+              "/api/send-order",
+              {
+                method: "POST",
+
+                headers: {
+                  "Content-Type":
+                    "application/json"
+                },
+
+                body:
+                  JSON.stringify(
+                    orderData
+                  )
+              }
+            );
+
+          const orderResult =
+            await orderResponse.json();
+
+          if (
+            !orderResponse.ok ||
+            !orderResult.success
+          ) {
+            throw new Error(
+              orderResult.error ||
+                "The order details could not be sent."
+            );
+          }
+
+          payButton.textContent =
+            "Opening Secure Checkout...";
+
+          /*
+           * Second, open Stripe Checkout.
+           */
+          const checkoutResponse =
+            await fetch(
+              "/api/create-checkout-session",
+              {
+                method: "POST",
+
+                headers: {
+                  "Content-Type":
+                    "application/json"
+                },
+
+                body:
+                  JSON.stringify({
+                    product:
+                      selectedProduct.value,
+
+                    orderNumber:
+                      orderNumber,
+
+                    customerEmail:
+                      customerEmail,
+
+                    customerName:
+                      customerName
+                  })
+              }
+            );
+
+          const checkoutResult =
+            await checkoutResponse.json();
+
+          if (
+            !checkoutResponse.ok ||
+            !checkoutResult.url
+          ) {
+            throw new Error(
+              checkoutResult.error ||
+                "Stripe Checkout could not be opened."
+            );
+          }
+
+          window.location.href =
+            checkoutResult.url;
+        } catch (error) {
+          console.error(
+            "Order checkout error:",
+            error
+          );
+
+          alert(
+            error.message ||
+              "There was a problem saving your order. Please try again."
+          );
+
+          payButton.textContent =
+            originalButtonText;
+
+          updatePaymentButtonState();
+        }
+      }
+    );
+  }
+
+  // =========================================================
+  // INITIAL PAGE STATE
+  // =========================================================
+
+  updateOtherOccasion();
+  updateOtherSongStyle();
+  updateProductSummary();
+  updateAnswers();
+  updatePaymentButtonState();
+  updateStepDisplay();
 });
