@@ -409,36 +409,89 @@
               </div>
             </section>
 
-            <section class="wizard-step conditional-step" id="mailSection" data-product="card,bundle" data-step="7" data-title="Mailing Address">
-              <div class="question-card">
-                <p class="step-eyebrow">Question 7</p>
-                <h3>Where should the greeting card be sent?</h3>
-<p class="question-help">
-  Please enter the mailing address or the Walgreens location where you would like the card sent for pickup.
-</p>
+            <section
+  class="wizard-step conditional-step"
+  id="mailSection"
+  data-product="card,bundle"
+  data-step="7"
+  data-title="Delivery Address"
+>
+  <div class="question-card">
+    <p class="step-eyebrow">Question 7</p>
 
-                <div class="form-grid">
-                  <label>Name for Mailing
-                    <input type="text" name="mail_name" required>
-                  </label>
-                  <label>Street Address
-                    <input type="text" name="street" required>
-                  </label>
-                  <label>Apartment or Suite
-                    <input type="text" name="apt">
-                  </label>
-                  <label>City
-                    <input type="text" name="city" required>
-                  </label>
-                  <label>State
-                    <input type="text" name="state" required>
-                  </label>
-                  <label>ZIP Code
-                    <input type="text" name="zip" required>
-                  </label>
-                </div>
-              </div>
-            </section>
+    <h3>Where should the greeting card be sent?</h3>
+
+    <p class="question-help">
+      Choose whether the card should be sent to a residential mailing
+      address or to a Walgreens location for pickup.
+    </p>
+
+    <div class="delivery-address-choice">
+      <label class="delivery-choice-option">
+        <input
+          type="radio"
+          name="address_type"
+          value="residential"
+          required
+        >
+        <span>
+          <strong>Residential Mailing Address</strong>
+          <small>
+            Enter the address where the greeting card should be mailed.
+          </small>
+        </span>
+      </label>
+
+      <label class="delivery-choice-option">
+        <input
+          type="radio"
+          name="address_type"
+          value="walgreens"
+          required
+        >
+        <span>
+          <strong>Walgreens Pickup Location</strong>
+          <small>
+            Enter the address of the Walgreens where the card should
+            be printed and picked up.
+          </small>
+        </span>
+      </label>
+    </div>
+
+    <div class="form-grid">
+      <label>
+        Name for Mailing or Pickup *
+        <input type="text" name="mail_name" required>
+      </label>
+
+      <label>
+        Street Address *
+        <input type="text" name="street" required>
+      </label>
+
+      <label>
+        Apartment or Suite
+        <input type="text" name="apt">
+      </label>
+
+      <label>
+        City *
+        <input type="text" name="city" required>
+      </label>
+
+      <label>
+        State *
+        <input type="text" name="state" required>
+      </label>
+
+      <label>
+        ZIP Code *
+        <input type="text" name="zip" required>
+      </label>
+    </div>
+  </div>
+</section>
 
             <section class="wizard-step" data-step="8" data-title="Review & Checkout">
               <div class="question-card">
