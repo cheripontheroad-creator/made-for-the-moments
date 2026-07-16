@@ -708,24 +708,144 @@ document.addEventListener("DOMContentLoaded", function () {
   // =========================================================
   // BUILD ORDER DATA
   // =========================================================
+function sanitizeFilename(filename) {
+  return String(filename || "photo")
+    .replace(/[^a-zA-Z0-9._-]/g, "-")
+    .replace(/-+/g, "-");
+}
 
-  function buildOrderData(orderNumber) {
+async function createUploadAuthorization(
+  orderNumber,
+  customerEmail,
+  product
+) {
+  const response = await fetch(
+    "/api/create-upload-session",
+    {
+      method: "POST",
+
+      headers: {
+        "Content-Type": "application/json"
+      },
+
+      body: JSON.stringify({
+        orderNumber,
+        customerEmail,
+        product
+      })
+    }
+  );
+
+  const result = await response.json();
+
+  if (!response.ok || !result.uploadToken) {
+    throw new Error(
+      result.error ||
+      "Photo uploads could not be authorized."
+    );
+  }
+
+  return result.uploadToken;
+}
+
+async function uploadOrderPhotos({
+  orderNumber,
+  customerEmail,
+  product,
+  onProgress
+}) {
+  if (
+    product !== "card" &&
+    product !== "bundle"
+  ) {
+    return [];
+  }
+
+  const photoInput =
+    document.getElementById("cardPhotos");
+
+  const files = photoInput
+    ? Array.from(photoInput.files)
+    : [];
+
+  if (!files.length) {
+    throw new Error(
+      "Please upload at least one greeting-card photo."
+    );
+  }
+
+  if (
+    typeof window.vercelBlobUpload !==
+    "function"
+  ) {
+    throw new Error(
+      "The photo-upload service has not finished loading. Please wait a moment and try again."
+    );
+  }
+
+  const uploadToken =
+    await createUploadAuthorization(
+      orderNumber,
+      customerEmail,
+      product
+    );
+
+  const uploadedPhotos = [];
+
+  for (
+    let index = 0;
+    index < files.length;
+    index += 1
+  ) {
+    const file = files[index];
+
+    if (typeof onProgress === "function") {
+      onProgress(index + 1, files.length);
+    }
+
+    const safeFilename =
+      sanitizeFilename(file.name);
+
+    const pathname =
+      `orders/${orderNumber}/${safeFilename}`;
+
+    const blob =
+      await window.vercelBlobUpload(
+        pathname,
+        file,
+        {
+          access: "private",
+
+          handleUploadUrl:
+            "/api/upload-photo",
+
+          clientPayload:
+            JSON.stringify({
+              orderNumber,
+              uploadToken
+            })
+        }
+      );
+
+    uploadedPhotos.push({
+      filename: file.name,
+      pathname: blob.pathname,
+      contentType:
+        file.type || "application/octet-stream",
+      size: file.size
+    });
+  }
+
+  return uploadedPhotos;
+}
+ function buildOrderData(
+  orderNumber,
+  photoBlobs
+) {
     const selectedProduct =
       getSelectedProduct();
 
-    const photoInput =
-      document.getElementById(
-        "cardPhotos"
-      );
-
-    const photoNames = photoInput
-      ? Array.from(
-          photoInput.files
-        ).map(function (file) {
-          return file.name;
-        })
-      : [];
-
+  
     return {
       orderNumber: orderNumber,
 
@@ -793,7 +913,7 @@ document.addEventListener("DOMContentLoaded", function () {
       mailChoice:
         getValue("#mailChoice"),
 
-      photoNames: photoNames,
+     photoBlobs: photoBlobs || [],
       
 addressType: getValue('[name="address_type"]:checked'),
       
@@ -888,8 +1008,37 @@ addressType: getValue('[name="address_type"]:checked'),
         const orderNumber =
           createOrderNumber();
 
-        const orderData =
-          buildOrderData(orderNumber);
+        let photoBlobs = [];
+
+if (
+  selectedProduct.value === "card" ||
+  selectedProduct.value === "bundle"
+) {
+  payButton.textContent =
+    "Preparing Photo Uploads...";
+
+  photoBlobs = await uploadOrderPhotos({
+    orderNumber,
+    customerEmail,
+    product: selectedProduct.value,
+
+    onProgress: function (
+      current,
+      total
+    ) {
+      payButton.textContent =
+        `Uploading Photo ${current} of ${total}...`;
+    }
+  });
+}
+
+payButton.textContent =
+  "Saving Your Order...";
+
+const orderData = buildOrderData(
+  orderNumber,
+  photoBlobs
+);
 
         const originalButtonText =
           payButton.textContent;
