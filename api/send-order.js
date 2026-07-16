@@ -130,6 +130,7 @@ module.exports = async function handler(req, res) {
                   ${row("Card Style", order.cardStyle)}
                   ${row("Favorite Colors", order.favoriteColors)}
                   ${row("Delivery Choice", order.mailChoice)}
+                  ${row("Address Type", order.addressType)}
                   ${row("Photo Files Selected", photoNames)}
                 </table>
 
