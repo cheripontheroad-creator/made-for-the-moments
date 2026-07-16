@@ -3,6 +3,52 @@ const crypto = require("crypto");
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
+const crypto = require("crypto");
+
+const SITE_URL =
+  "https://madeforthemomentspersonal.com";
+
+const PHOTO_LINK_DAYS = 30;
+
+function createPhotoSignature(
+  pathname,
+  expires
+) {
+  const secret =
+    process.env.PHOTO_LINK_SECRET;
+
+  if (!secret) {
+    throw new Error(
+      "PHOTO_LINK_SECRET is not configured."
+    );
+  }
+
+  return crypto
+    .createHmac("sha256", secret)
+    .update(`${pathname}|${expires}`)
+    .digest("base64url");
+}
+
+function createSecurePhotoUrl(pathname) {
+  const expires =
+    Math.floor(Date.now() / 1000)
+    + PHOTO_LINK_DAYS * 24 * 60 * 60;
+
+  const signature =
+    createPhotoSignature(
+      pathname,
+      expires
+    );
+
+  const query = new URLSearchParams({
+    pathname,
+    expires: String(expires),
+    signature
+  });
+
+  return `${SITE_URL}/api/view-photo?${query.toString()}`;
+}
+
 const BUSINESS_EMAIL = "yourmadeforthemoments@gmail.com";
 const FROM_EMAIL =
   "Made for the Moments <orders@madeforthemomentspersonal.com>";
@@ -74,6 +120,63 @@ module.exports = async function handler(req, res) {
       .filter(Boolean)
       .join("\n");
 
+    const photoBlobs = Array.isArray(
+  order.photoBlobs
+)
+  ? order.photoBlobs
+  : [];
+
+const photoLinksHtml = photoBlobs.length
+  ? photoBlobs
+      .map(function (photo, index) {
+        const secureUrl =
+          createSecurePhotoUrl(
+            photo.pathname
+          );
+
+        return `
+          <div style="
+            margin: 10px 0;
+            padding: 14px;
+            background: #fff3f9;
+            border-radius: 10px;
+          ">
+            <strong>
+              Photo ${index + 1}:
+            </strong>
+
+            ${escapeHtml(
+              photo.filename ||
+              "Uploaded photo"
+            )}
+
+            <br>
+
+            <a
+              href="${escapeHtml(secureUrl)}"
+              style="
+                display:inline-block;
+                margin-top:8px;
+                padding:10px 16px;
+                background:#d94370;
+                color:#ffffff;
+                text-decoration:none;
+                border-radius:8px;
+                font-weight:bold;
+              "
+            >
+              View or Download Photo
+            </a>
+          </div>
+        `;
+      })
+      .join("")
+  : `
+      <p>
+        No greeting-card photos were uploaded.
+      </p>
+    `;
+    
     const photoNames = Array.isArray(order.photoNames)
       ? order.photoNames.join(", ")
       : order.photoNames;
@@ -131,9 +234,18 @@ module.exports = async function handler(req, res) {
                   ${row("Favorite Colors", order.favoriteColors)}
                   ${row("Delivery Choice", order.mailChoice)}
                   ${row("Address Type", order.addressType)}
-                  ${row("Photo Files Selected", photoNames)}
                 </table>
+              <h2 style="color:#7b2c58;">Uploaded Photos</h2>
 
+<div style="margin-bottom:26px;">
+  ${photoLinksHtml}
+</div>
+
+<table style="
+  width:100%;
+  border-collapse:collapse;
+  margin-bottom:26px;
+">
                 <h2 style="color:#7b2c58;">Mailing or Walgreens Address</h2>
                 <div style="white-space:pre-wrap;background:#fffaf5;border:1px solid #ead9c4;border-radius:12px;padding:18px;line-height:1.65;margin-bottom:26px;">
                   ${escapeHtml(displayValue(mailingAddress))}
