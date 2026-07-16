@@ -794,7 +794,9 @@ document.addEventListener("DOMContentLoaded", function () {
         getValue("#mailChoice"),
 
       photoNames: photoNames,
-
+      
+addressType: getValue('[name="address_type"]:checked'),
+      
       mailName:
         getValue(
           '[name="mail_name"]'
