@@ -1035,10 +1035,33 @@ if (
 payButton.textContent =
   "Saving Your Order...";
 
+let photoBlobs = [];
+
+if (
+  selectedProduct.value === "card" ||
+  selectedProduct.value === "bundle"
+) {
+  payButton.textContent = "Preparing Photo Uploads...";
+
+  photoBlobs = await uploadOrderPhotos({
+    orderNumber: orderNumber,
+    customerEmail: customerEmail,
+    product: selectedProduct.value,
+
+    onProgress: function (current, total) {
+      payButton.textContent =
+        `Uploading Photo ${current} of ${total}...`;
+    }
+  });
+}
+
+payButton.textContent = "Saving Your Order...";
+
 const orderData = buildOrderData(
   orderNumber,
   photoBlobs
 );
+  
 
         const originalButtonText =
           payButton.textContent;
