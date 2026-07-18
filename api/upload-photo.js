@@ -1,68 +1,3 @@
-const crypto = require("crypto");
-
-function sign(value) {
-  const secret = process.env.PHOTO_LINK_SECRET;
-
-  if (!secret) {
-    throw new Error("PHOTO_LINK_SECRET is not configured.");
-  }
-
-  return crypto
-    .createHmac("sha256", secret)
-    .update(value)
-    .digest("base64url");
-}
-
-function safeEqual(left, right) {
-  const leftBuffer = Buffer.from(left);
-  const rightBuffer = Buffer.from(right);
-
-  if (leftBuffer.length !== rightBuffer.length) {
-    return false;
-  }
-
-  return crypto.timingSafeEqual(
-    leftBuffer,
-    rightBuffer
-  );
-}
-
-function verifyUploadToken(token) {
-  const parts = String(token || "").split(".");
-
-  if (parts.length !== 2) {
-    throw new Error("Invalid upload authorization.");
-  }
-
-  const [encodedPayload, suppliedSignature] = parts;
-  const expectedSignature = sign(encodedPayload);
-
-  if (
-    !safeEqual(
-      suppliedSignature,
-      expectedSignature
-    )
-  ) {
-    throw new Error("Invalid upload authorization.");
-  }
-
-  const payload = JSON.parse(
-    Buffer.from(
-      encodedPayload,
-      "base64url"
-    ).toString("utf8")
-  );
-
-  if (
-    !payload.expires ||
-    payload.expires < Math.floor(Date.now() / 1000)
-  ) {
-    throw new Error("The upload authorization has expired.");
-  }
-
-  return payload;
-}
-
 module.exports = async function handler(req, res) {
   if (req.method !== "POST") {
     res.setHeader("Allow", "POST");
@@ -77,51 +12,46 @@ module.exports = async function handler(req, res) {
       "@vercel/blob/client"
     );
 
-    const body = req.body;
-
     const jsonResponse = await handleUpload({
-      body,
+      body: req.body,
       request: req,
 
       onBeforeGenerateToken: async (
         pathname,
         clientPayload
       ) => {
-        if (!clientPayload) {
-          throw new Error(
-            "Missing upload authorization."
-          );
-        }
-
-        let suppliedData;
+        let payload = {};
 
         try {
-          suppliedData = JSON.parse(clientPayload);
+          payload = clientPayload
+            ? JSON.parse(clientPayload)
+            : {};
         } catch {
           throw new Error(
-            "Invalid upload information."
+            "The photo upload information is invalid."
           );
         }
 
-        const authorization = verifyUploadToken(
-          suppliedData.uploadToken
+        const orderNumber = String(
+          payload.orderNumber || ""
         );
 
         if (
-          suppliedData.orderNumber !==
-          authorization.orderNumber
+          !/^MFTM-\d{8}-[A-Z0-9]{6}$/.test(
+            orderNumber
+          )
         ) {
           throw new Error(
-            "The upload does not match this order."
+            "The photo upload has an invalid order number."
           );
         }
 
         const requiredPrefix =
-          `orders/${authorization.orderNumber}/`;
+          `orders/${orderNumber}/`;
 
         if (!pathname.startsWith(requiredPrefix)) {
           throw new Error(
-            "Invalid photo storage location."
+            "The photo storage path is invalid."
           );
         }
 
@@ -140,11 +70,7 @@ module.exports = async function handler(req, res) {
           addRandomSuffix: true,
 
           tokenPayload: JSON.stringify({
-            orderNumber:
-              authorization.orderNumber,
-
-            customerEmail:
-              authorization.customerEmail
+            orderNumber
           })
         };
       },
@@ -154,7 +80,7 @@ module.exports = async function handler(req, res) {
         tokenPayload
       }) => {
         console.log(
-          "Private order photo uploaded:",
+          "Order photo successfully uploaded:",
           {
             pathname: blob.pathname,
             tokenPayload
@@ -163,14 +89,20 @@ module.exports = async function handler(req, res) {
       }
     });
 
-    return res.status(200).json(jsonResponse);
+    return res.status(200).json(
+      jsonResponse
+    );
   } catch (error) {
-    console.error("Photo upload error:", error);
+    console.error(
+      "Photo upload authorization error:",
+      error
+    );
 
     return res.status(400).json({
       error:
-        error.message ||
-        "The photo could not be uploaded."
+        error instanceof Error
+          ? error.message
+          : "The photo could not be uploaded."
     });
   }
 };
