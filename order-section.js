@@ -783,12 +783,6 @@ async function uploadOrderPhotos({
     );
   }
 
-  const uploadToken =
-    await createUploadAuthorization(
-      orderNumber,
-      customerEmail,
-      product
-    );
 
   const uploadedPhotos = [];
 
@@ -810,22 +804,23 @@ async function uploadOrderPhotos({
       `orders/${orderNumber}/${safeFilename}`;
 
     const blob =
-      await window.vercelBlobUpload(
-        pathname,
-        file,
-        {
-          access: "private",
+  await window.vercelBlobUpload(
+    pathname,
+    file,
+    {
+      access: "private",
 
-          handleUploadUrl:
-            "/api/upload-photo",
+      handleUploadUrl:
+        "/api/upload-photo",
 
-          clientPayload:
-            JSON.stringify({
-              orderNumber,
-              uploadToken
-            })
-        }
-      );
+      multipart: true,
+
+      clientPayload:
+        JSON.stringify({
+          orderNumber
+        })
+    }
+  );
 
     uploadedPhotos.push({
       filename: file.name,
