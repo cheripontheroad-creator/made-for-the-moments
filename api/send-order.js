@@ -3,8 +3,6 @@ const crypto = require("crypto");
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-const crypto = require("crypto");
-
 const SITE_URL =
   "https://madeforthemomentspersonal.com";
 
