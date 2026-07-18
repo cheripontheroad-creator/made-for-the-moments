@@ -1030,7 +1030,10 @@ if (
 payButton.textContent =
   "Saving Your Order...";
 
- const orderData = buildOrderData(orderNumber);
+ const orderData = buildOrderData(
+  orderNumber,
+  photoBlobs
+);
 
         const originalButtonText =
           payButton.textContent;
